@@ -17,7 +17,7 @@ Sigue estos pasos para empezar.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1"] Agrega credenciales y permisos
 [role="quick-margin-para"]
-link:add-credentials.html["Agregar credenciales a una cuenta"]. Esto incluye seleccionar las capacidades de la carga de trabajo y crear las políticas de IAM para los permisos necesarios.
+link:add-credentials-oci.html["Agregar credenciales a una cuenta"]. Esto incluye seleccionar las capacidades de la carga de trabajo y crear las políticas de IAM para los permisos necesarios.
 
 [role="quick-margin-para"]
 Selecciona la política de permisos predeterminada link:permissions-oci.html["visión, planificación y análisis"].

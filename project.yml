@@ -321,7 +321,7 @@ sidebar:
     - title: Guía de inicio rápido para OCI NetApp Storage Service
       url: "/oci/quick-start-oci.html"
     - title: Agregar credenciales OCI
-      url: "/oci/add-credentials.html"
+      url: "/oci/add-credentials-oci.html"
     - title: Descubre los sistemas de almacenamiento de OCI
       url: "/oci/create-discover-systems.html"
     - title: Conéctate a un sistema de almacenamiento de OCI
