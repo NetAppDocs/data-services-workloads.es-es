@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/quick-start-fsx.html 
+keywords: Amazon FSx for NetApp ONTAP, fsx, netapp, quick, get started, install, deploy, setup, launch, requirements, prerequisites, credentials, permissions, policy 
+summary: Puedes empezar a usar FSx for ONTAP en NetApp Workload Factory en tan solo unos pasos. 
+---
+= Guía de inicio rápido para Amazon FSx for NetApp ONTAP en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Empieza a usar Amazon FSx for NetApp ONTAP añadiendo credenciales y permisos, creando un enlace si es necesario y creando o detectando un sistema de almacenamiento.
+
+Sigue estos pasos para empezar.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1"] Agrega credenciales y permisos
+[role="quick-margin-para"]
+link:add-credentials.html["Añade credenciales a una cuenta manualmente"^] Esto incluye seleccionar las funcionalidades de carga de trabajo, como Databases y EDA, y crear las políticas de IAM para los permisos necesarios.
+
+[role="quick-margin-para"]
+Elige link:permissions-reference-fsx.html["políticas de permisos"^] que mejor se adapte a tus necesidades.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dos"] Opcional: crear un agente de Console o un enlace
+[role="quick-margin-para"]
+Para realizar algunas tareas de administración desde la NetApp Console, necesitas un agente de Console o un enlace de NetApp Workload Factory. Un _agente de Console_ es una máquina virtual que despliegas en tu VPC para administrar tus sistemas de archivos FSx for ONTAP. Un _enlace_ utiliza AWS Lambda para crear una relación de confianza y conectividad con tus sistemas de archivos FSx for ONTAP.
+
+[role="quick-margin-list"]
+* link:../setup/links-overview.html["Descubre cuándo se necesita un agente de Console o un enlace para la gestión de FSx for ONTAP"]
+* https://docs.netapp.com/us-en/console-setup-admin/concept-install-options-aws.html["Aprende a crear un agente de Console en AWS"^]
+* https://docs.netapp.com/us-en/console-setup-admin/task-install-connector-on-prem.html["Aprende a crear un agente de Console en las instalaciones"^]
+* link:create-link.html["Aprende a crear un enlace"^]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Tres"] Crear un sistema de archivos
+[role="quick-margin-para"]
+Crea tu sistema de archivos FSx for ONTAP directamente desde NetApp Console o descubre un sistema de archivos que ya has creado en tu entorno de AWS. link:create-discover-systems.html["Aprende a crear un sistema de archivos o a detectar uno ya existente."]
+
+[role="quick-margin-para"]
+También puedes empezar con la calculadora de ahorro de almacenamiento para comparar los costes de tus entornos de almacenamiento de Amazon Elastic Block Store, Elastic File System y FSx for Windows File Server con los de FSx for ONTAP. link:explore-savings.html["Descubre cuánto puedes ahorrar con la calculadora de ahorro en almacenamiento."]
+
+.Qué sigue
+Si tienes un sistema de archivos en tu inventario de almacenamiento, puedes link:create-volume.html["crear volúmenes"], gestionar tu sistema de archivos de FSx for ONTAP y configurar la protección de datos para tus recursos.

@@ -1,0 +1,110 @@
+= 
+:allow-uri-read: 
+
+
+. En la página «Crear sistema de archivos FSx para ONTAP», selecciona *Creación avanzada*.
++
+También puedes cargar una configuración guardada.
+
+. En Configuración general del sistema de archivos, introduce lo siguiente:
++
+.. *Credenciales de AWS*: selecciona esta opción para añadir credenciales de AWS en Workload Factory o continúa sin credenciales.
+.. *Nombre del sistema de archivos*: introduce un nombre para el sistema de archivos.
+.. *Región y VPC*: selecciona la región y la VPC para el sistema de archivos.
+.. *Tipo de implementación*: selecciona un tipo de implementación y una generación de sistema de archivos. La disponibilidad de un sistema de archivos de segunda generación depende de la región seleccionada. Si la región seleccionada no es compatible con los sistemas de archivos FSx for ONTAP de segunda generación, el tipo de implementación pasa a ser de primera generación.
++
+*** Implementación en una única zona de disponibilidad (Single-AZ): garantiza la disponibilidad supervisando los fallos de hardware y sustituyendo automáticamente los componentes de la infraestructura en caso de fallo. Ofrece una gran durabilidad al replicar automáticamente tus datos dentro de una zona de disponibilidad para protegerlos frente a fallos de componentes.
++
+*Generación del sistema de archivos*: selecciona una de las siguientes opciones:
+
++
+**** *Segunda generación*: esta configuración se recomienda para cargas de trabajo de alto rendimiento o cuando las cargas de trabajo comienzan con un volumen reducido y se escalan de forma incremental hasta alcanzar un rendimiento de 72 GB/s y 2,4 millones de IOPS.
+**** *Primera generación*: esta configuración es ideal para cargas de trabajo que requieren hasta 4 GB/s o 160 000 IOPS. En los sistemas de archivos de primera generación solo se puede aumentar la capacidad.
+
+
+*** Implementación en varias zonas de disponibilidad (Multi-AZ): garantiza la disponibilidad continua de los datos incluso cuando una zona de disponibilidad no está operativa. Un sistema de archivos Multi-AZ está diseñado para cargas de trabajo de producción esenciales para la empresa que requieren alta disponibilidad de los datos de archivos ONTAP compartidos y necesitan almacenamiento con replicación integrada entre zonas de disponibilidad.
++
+*Generación del sistema de archivos*: selecciona una de las siguientes opciones:
+
++
+**** *Segunda generación*: esta configuración de un único par de alta disponibilidad se recomienda para cargas de trabajo que requieran un rendimiento de hasta 6 GB/s o 200 000 IOPS. En un sistema de archivos Multi-AZ y de segunda generación, la capacidad puede aumentar o disminuir para adaptarse a las demandas de la carga de trabajo.
+**** *Primera generación*: esta configuración es ideal para cargas de trabajo que requieren hasta 4 GB/s o 160 000 IOPS. En los sistemas de archivos de primera generación solo se puede aumentar la capacidad.
+
+
+
+
+.. *Etiquetas*: si lo deseas, puedes añadir hasta 50 etiquetas.
+
+
+. En Detalles del sistema de archivos, introduce lo siguiente:
++
+.. *Capacidad de almacenamiento del SSD*: introduce la capacidad de almacenamiento y selecciona la unidad de capacidad de almacenamiento.
++
+*** En las implementaciones de primera generación, no puedes reducir la capacidad una vez creado el sistema de archivos.
+*** En las implementaciones de segunda generación, puedes ajustar la capacidad.
+
+
+.. *Capacidad de rendimiento por par de alta disponibilidad*: Selecciona la capacidad de rendimiento en función del número de pares de alta disponibilidad. Los sistemas de archivos de primera generación solo admiten un par de alta disponibilidad.
+.. *IOPS aprovisionadas*: selecciona una de las siguientes opciones:
++
+*** *Automático*: en el modo automático, por cada GiB creado se añaden 3 IOPS.
+*** *Proporcionado por el usuario*: en el caso de «Proporcionado por el usuario», introduce el valor de IOPS.
+
+
+.. *Datos de acceso a ONTAP*: opcional. Introduce tu nombre de usuario y contraseña de ONTAP. La contraseña se puede establecer ahora o más adelante.
++
+Si el usuario que indicas no es el usuario fsxadmin y más adelante necesitas restablecer la contraseña de fsxadmin, podrás hacerlo desde la consola de AWS.
+
+.. *Credenciales de la máquina virtual de almacenamiento*: opcional. Introduce tu nombre de usuario. La contraseña puede ser específica para este sistema de archivos o puedes usar la misma contraseña que has introducido para las credenciales de ONTAP. Puedes configurar la contraseña ahora o más adelante.
+.. *Configuración de SMB/CIFS*: opcional. Si planeas usar el protocolo SMB/CIFS para acceder a los volúmenes, debes configurar Active Directory para la máquina virtual de almacenamiento durante la creación del sistema de archivos. Proporciona los siguientes datos para la máquina virtual de almacenamiento creada para este sistema de archivos.
++
+... *Dominio de Active Directory al que unirse*: introduce el dominio completo (FQDN) de Active Directory.
+... *Direcciones IP de DNS*: introduce hasta tres direcciones IP de DNS separadas por comas.
+... *Nombre NetBIOS del servidor SMB*: introduce el nombre NetBIOS del servidor SMB del objeto de equipo de Active Directory que se va a crear para tu máquina virtual de almacenamiento. Este es el nombre de esta máquina virtual de almacenamiento en Active Directory.
+... *Nombre de usuario*: introduce el nombre de usuario de la cuenta de servicio en tu Active Directory actual.
++
+No incluyas ningún prefijo ni sufijo de dominio. Para `EXAMPLE\ADMIN`, usa `ADMIN`.
+
+... *Contraseña*: introduce la contraseña de la cuenta de servicio.
+... *Unidad organizativa*: opcionalmente, introduce el nombre de la unidad organizativa en la que quieres crear la cuenta de equipo para FSx for ONTAP. La OU es el nombre de ruta distintivo de la unidad organizativa a la que quieres unir el sistema de archivos.
+... *Grupo de administradores delegados*: si lo deseas, introduce el nombre del grupo de tu Active Directory que puede administrar tu sistema de archivos.
++
+Si utilizas AWS Managed Microsoft AD, debes especificar un grupo como AWS Delegated FSx Administrators, AWS Delegated Administrators o un grupo personalizado con permisos delegados para la OU.
+
++
+Si te vas a unir a un AD autogestionado, utiliza el nombre del grupo de tu AD. El grupo predeterminado es `Domain Admins`.
+
+
+
+
+
+. En Red y seguridad, introduce lo siguiente:
++
+.. *Grupo de seguridad*: crea o usa un grupo de seguridad existente.
++
+Para un nuevo grupo de seguridad, consulta <<Security group details,detalles del grupo de seguridad>> para ver una descripción de los protocolos, los puertos y los roles del grupo de seguridad.
+
+.. *Zonas de disponibilidad*: selecciona las zonas de disponibilidad y las subredes.
++
+*** Para el nodo 1 de la configuración del clúster: selecciona una zona de disponibilidad y una subred.
+*** Para el nodo 2 de la configuración del clúster: selecciona una zona de disponibilidad y una subred.
+
+
+.. *Tablas de rutas de VPC*: selecciona la tabla de rutas de VPC para habilitar el acceso de los clientes a los volúmenes.
+.. *Rango de direcciones IP de los puntos finales*: selecciona *Rango de direcciones IP flotantes fuera de tu VPC* o *Introducir un rango de direcciones IP* e introduce un rango de direcciones IP.
+.. *Cifrado*: selecciona el nombre de la clave de cifrado en el menú desplegable.
+
+
+. En la sección «Copias de seguridad y mantenimiento», indica lo siguiente:
++
+.. *Copias de seguridad de volumen*: las copias de seguridad automáticas diarias están activadas por defecto. Desactívalo si quieres.
++
+... *Período de conservación de las copias de seguridad automáticas*: introduce el número de días durante los que se conservarán las copias de seguridad automáticas.
+... *Ventana de copia de seguridad automática diaria*: selecciona *Sin preferencia* (se seleccionará una hora de inicio de la copia de seguridad diaria por ti) o *Seleccionar hora de inicio para las copias de seguridad diarias* y especifica una hora de inicio.
+
+
+.. *Ventana de mantenimiento semanal*: selecciona *Sin preferencia* (el sistema te asignará automáticamente una hora de inicio para la ventana de mantenimiento semanal) o *Seleccionar hora de inicio para una ventana de mantenimiento semanal de 30 minutos* y especifica una hora de inicio.
+
+
+. Guarda o crea el sistema de archivos.
+

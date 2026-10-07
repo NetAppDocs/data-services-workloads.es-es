@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/track-replication-delays.html 
+keywords: replication, track replication, replication lag, replication delay, delay, monitor replication, replication threshold, lag notification 
+summary: Activa el seguimiento para supervisar los retrasos de todas las relaciones de replicación de tu cuenta. 
+---
+= Haz un seguimiento de los retrasos de replicación en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Activa el seguimiento para supervisar los retrasos en la replicación en toda tu cuenta. Workload Factory te avisa cuando los retrasos superan un umbral establecido. De forma predeterminada, el umbral es del 150 % del intervalo de replicación, para tener en cuenta el tiempo normal de transferencia y reducir las falsas alarmas. Puedes ajustar el umbral para que se adapte a tu RPO y recibir notificaciones cuando los retrasos lo superen. También puedes exportar los datos a un archivo CSV para analizarlos más a fondo.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx para ONTAP*, selecciona el menú de acciones del sistema de ficheros que quieres actualizar y luego selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Relaciones de replicación*.
+. Selecciona *Habilitar seguimiento*.
+. En el cuadro de diálogo Activar historial de retraso de replicación, selecciona *Activar*.
+. De nuevo en el mosaico Historial de retrasos de replicación, selecciona *Personalizar umbral* para establecer el umbral que prefieras.
+. En el cuadro de diálogo Personalizar umbral de tiempo de retardo, introduce el umbral en horas y minutos.
+. Opcionalmente, selecciona *Habilitar notificaciones de tiempo de retardo* para recibir notificaciones cuando los retardos de replicación superen el umbral.
++
+Las notificaciones llegan por correo electrónico e incluyen:
+
++
+** Sistema de archivos de origen
+** Volumen de origen
+** Sistema de archivos de destino
+** Volumen objetivo
+** Umbral de tiempo de retraso que se superó
+** Enlace a la relación de replicación
+
+
+. Selecciona *Aplicar*.
+
+
+.Información relacionada
+link:manage-replication.html["Gestiona las relaciones de replicación"^]

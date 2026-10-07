@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/delete-volume.html 
+keywords: delete volume, volume deletion 
+summary: Elimina un volumen en tu sistema de archivos FSx for ONTAP que ya no necesites para liberar espacio. Esta operación es irreversible. 
+---
+= Eliminar un volumen en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Elimina un volumen en tu sistema de archivos FSx for ONTAP que ya no necesites para liberar espacio. Esta operación es irreversible.
+
+.Antes de empezar
+Antes de eliminar un volumen, ten en cuenta lo siguiente:
+
+* Relaciones de replicación: debes link:manage-replication.html["elimina todas las relaciones de replicación existentes"] para este volumen antes de eliminarlo para que no queden relaciones rotas.
+* Instantáneas locales: todas las instantáneas asociadas a este sistema de archivos FSx for ONTAP se eliminarán de forma permanente.
+* Copias de seguridad de volúmenes: Las copias de seguridad de volúmenes permanecerán y aún puedes usarlas.
+* Archivos inmutables e instantáneas: los volúmenes que contengan archivos inmutables e instantáneas no se pueden eliminar hasta que finalice el periodo de retención.
+
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen que deseas eliminar.
+. Selecciona *Acciones básicas* y luego *Eliminar volumen*.
+. En el cuadro de diálogo «Eliminar volumen», haz lo siguiente:
++
+.. Si quieres, selecciona *Back up the volume* para hacer una copia de seguridad del volumen antes de eliminarlo.
++
+La copia de seguridad permanecerá en el sistema de archivos hasta que la elimines manualmente.
+
+.. Selecciona *Continue*.
+.. Escribe “delete” para eliminar el volumen.
+.. Selecciona *Eliminar* para confirmar.
+
+
+

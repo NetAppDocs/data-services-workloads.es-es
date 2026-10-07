@@ -1,0 +1,231 @@
+---
+sidebar: sidebar 
+permalink: admin/use-cloudshell.html 
+keywords: cloudshell, command line, aws cli, ontap cli, NetApp Workload Factory, Workload Factory 
+summary: Puedes utilizar CloudShell desde cualquier parte de la interfaz de usuario de NetApp Workload Factory para ejecutar comandos de la CLI de AWS o de ONTAP. 
+---
+= Usa CloudShell en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Accede a CloudShell para ejecutar comandos de la CLI de AWS u ONTAP desde cualquier lugar de la consola de NetApp Workload Factory.
+
+
+
+[[about-this-task]]
+== Acerca de esta tarea
+
+CloudShell te permite ejecutar comandos de AWS CLI o de ONTAP CLI en un entorno similar a un shell desde la consola de Workload Factory. Simula sesiones de terminal en el navegador, proporcionando funciones de terminal y enviando mensajes a través del backend de Workload Factory. Te permite utilizar las credenciales de AWS y ONTAP que has proporcionado en tu cuenta de NetApp.
+
+CloudShell incluye estas características:
+
+* Varias sesiones de CloudShell: despliega varias sesiones de CloudShell a la vez para ejecutar varias secuencias de comandos en paralelo,
+* Vistas múltiples: divide las sesiones de pestañas de CloudShell para que puedas ver dos o más pestañas a la vez, tanto en horizontal como en vertical
+* Cambio de nombre de las sesiones: cambia el nombre de las sesiones según sea necesario
+* Persistencia del contenido de la última sesión: vuelve a abrir la última sesión si la cierras por error
+* Preferencias de configuración: cambia el tamaño de la fuente y el tipo de salida
+* Respuestas de error generadas por IA para los comandos de la CLI de ONTAP
+* Función de autocompletado: empieza a escribir un comando y utiliza la tecla *Tab* para ver las opciones disponibles
+
+
+
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, no estarán disponibles las respuestas de error generadas por IA. link:manage-genai-features.html["Conoce cómo gestionar las funciones de IA"].
+
+
+
+[[cloudshell-commands]]
+== Comandos de CloudShell
+
+En la interfaz gráfica de usuario de CloudShell, puedes introducir `help` para ver los comandos disponibles de CloudShell. Tras ejecutar el comando `help`, aparecerá la siguiente referencia.
+
+.Descripción
+NetApp CloudShell es una interfaz gráfica de usuario integrada en NetApp Workload Factory que te permite ejecutar comandos de AWS CLI o de ONTAP CLI en un entorno similar a un shell. Simula sesiones de terminal en el navegador, proporciona funciones de terminal y actúa como proxy de los mensajes a través del backend de Workload Factory. Te permite usar las credenciales de AWS y ONTAP que has proporcionado en tu cuenta de NetApp.
+
+.Comandos disponibles
+* `clear`
+* `help`
+* `[--fsx <fsxId>] <ontap-command> [parameters]`
+* `aws <aws-command> <aws-sub-command> [parameters]`
+
+
+.Contexto
+Cada sesión de terminal se ejecuta en un contexto específico: credenciales, región y, opcionalmente, el sistema de archivos FSx for ONTAP.
+
++ Todos los comandos de AWS se ejecutan en el contexto proporcionado. Los comandos de AWS solo se ejecutarán correctamente si las credenciales proporcionadas tienen permisos en la región especificada.
+
++ Puedes especificar comandos ONTAP con un  `fsxId` opcional. Si indicas un  `fsxId` con un comando ONTAP concreto, este ID anula el ID del contexto. Si la sesión de terminal no tiene un contexto de ID del sistema de archivos FSx for ONTAP, debes indicar  `fsxId` con cada comando ONTAP.
+
++ Para actualizar los parámetros específicos de cada contexto, haz lo siguiente: * Para cambiar las credenciales: "using credentials <credentialId>" * Para cambiar la región: "using region <regionCode>" * Para cambiar el sistema de archivos de FSx for ONTAP: "using fsx <fileSystemId>"
+
+.Mostrando elementos
+* Para mostrar las credenciales disponibles: "show credentials"
+* Para ver las regiones disponibles: "show regions"
+* Para mostrar el historial de comandos: "show history"
+
+
+.Variables
+A continuación se muestran algunos ejemplos de cómo establecer y usar variables. Si el valor de una variable contiene espacios, debes escribirlo entre comillas.
+
++ * Para establecer una variable: $<variable> = <value> * Para usar una variable: $<variable> * Ejemplo de establecer una variable: $svm1 = svm123 * Ejemplo de usar una variable: --fsx FileSystem-1 volumes show --vserver $svm1 * Ejemplo de establecer una variable con un valor de cadena $comment1 = "Un comentario con espacios"
+
+.Operadores
+No se admiten operadores del shell como el de tubería `|`, el de ejecución en segundo plano `&` y el de redirección `>`. La ejecución del comando falla si incluyes estos operadores.
+
+
+
+[[before-you-begin]]
+== Antes de empezar
+
+CloudShell funciona con tus credenciales de AWS. Para utilizar CloudShell, debes proporcionar al menos una credencial de AWS.
+
+
+NOTE: CloudShell está disponible para que puedas ejecutar cualquier comando de la CLI de AWS u ONTAP. Sin embargo, si deseas trabajar en el contexto de un sistema de archivos FSx for ONTAP, asegúrate de ejecutar el siguiente comando: `using fsx <file-system-name>`.
+
+
+
+[[deploy-cloudshell]]
+== Implementa CloudShell
+
+Puedes desplegar CloudShell desde cualquier lugar de la consola de NetApp Workload Factory. También puedes desplegar CloudShell desde la NetApp Console.
+
+[role="tabbed-block"]
+====
+.Implementar desde la consola de Workload Factory
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. En el menú de NetApp Console, selecciona *Cargas de trabajo* > *Administración* > *CloudShell*.
+. En la ventana CloudShell, selecciona las credenciales y la región para la sesión de CloudShell y, a continuación, selecciona la flecha para continuar.
++
+image:screenshot-deploy-cloudshell-session.png["Captura de pantalla que muestra una nueva CloudShell sesión."]
+
+. Introduce `help` para ver los <<Comandos de CloudShell,Comandos de CloudShell>> disponibles y las instrucciones o consulta los siguientes documentos de referencia de la CLI para ver los comandos disponibles:
++
+** link:https://docs.aws.amazon.com/cli/latest/reference/["Referencia de la CLI de AWS"^]: para los comandos relacionados con FSx para ONTAP, selecciona *fsx*.
+** link:https://docs.netapp.com/us-en/ontap-cli/["Referencia de la CLI de ONTAP"^]
+
+
+. Ejecuta comandos en la sesión de CloudShell.
++
+Si se produce un error tras ejecutar un comando de la CLI de ONTAP, selecciona el icono de la bombilla para obtener una breve respuesta de error generada por IA con una descripción del fallo, la causa del fallo y una solución detallada. Selecciona *Más información* para obtener más detalles.
+
+
+
+--
+.Despliega desde la NetApp Console
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. En el menú de NetApp Console, selecciona *Cargas de trabajo* > *Administración* > *CloudShell*.
+. En la ventana CloudShell, selecciona las credenciales y la región para la sesión de CloudShell y, a continuación, selecciona la flecha para continuar.
++
+image:screenshot-deploy-cloudshell-session.png["Captura de pantalla que muestra una nueva CloudShell sesión."]
+
+. Introduce `help` para ver los comandos e instrucciones disponibles de CloudShell o consulta los siguientes documentos de referencia de la CLI para conocer los comandos disponibles:
++
+** link:https://docs.aws.amazon.com/cli/latest/reference/["Referencia de la CLI de AWS"^]: para los comandos relacionados con FSx para ONTAP, selecciona *fsx*.
+** link:https://docs.netapp.com/us-en/ontap-cli/["Referencia de la CLI de ONTAP"^]
+
+
+. Ejecuta comandos en la sesión de CloudShell.
++
+Si se produce un error tras ejecutar un comando de la CLI de ONTAP, selecciona el icono de la bombilla para obtener una breve respuesta de error generada por IA con una descripción del fallo, la causa del fallo y una solución detallada. Selecciona *Más información* para obtener más detalles.
+
+
+
+--
+====
+Las tareas de CloudShell que se muestran en esta captura de pantalla se pueden completar seleccionando el menú de acciones de una pestaña de sesión abierta de CloudShell. A continuación se detallan las instrucciones para cada una de estas tareas.
+
+image:screenshot-cloudshell-tab-menu.png["Captura de pantalla en la que se muestra el menú de acciones de la pestaña CloudShell, con opciones como «Renombrar», «Duplicar», «Cerrar otras pestañas» y «Cerrar todas»."]
+
+
+
+[[rename-a-cloudshell-session-tab]]
+== Cambiar el nombre de una pestaña de sesión de CloudShell
+
+Puedes cambiar el nombre de una pestaña de sesión de CloudShell para que te resulte más fácil identificarla.
+
+.Pasos
+. Selecciona el menú de acciones de la pestaña de sesión CloudShell.
+. Selecciona *Renombrar*.
+. Introduce un nombre nuevo para la pestaña de sesión y, a continuación, haz clic fuera del nombre de la pestaña para establecer el nombre nuevo.
+
+
+.Resultado
+El nuevo nombre aparece en la pestaña de sesión de CloudShell.
+
+
+
+[[duplicate-cloudshell-session-tab]]
+== Pestaña duplicada de la sesión de CloudShell
+
+Puedes duplicar una pestaña de sesión de CloudShell para crear una nueva sesión con el mismo nombre, las mismas credenciales y la misma región. La pestaña duplicada no incluye el código de la pestaña original.
+
+.Pasos
+. Selecciona el menú de acciones de la pestaña de sesión CloudShell.
+. Selecciona *Duplicar*.
+
+
+.Resultado
+La nueva pestaña aparece con el mismo nombre que la pestaña original.
+
+
+
+[[close-cloudshell-session-tabs]]
+== Cerrar las pestañas de sesión de CloudShell
+
+Puedes cerrar las pestañas de CloudShell de una en una, cerrar otras pestañas en las que no estés trabajando o cerrar todas las pestañas a la vez.
+
+.Pasos
+. Selecciona el menú de acciones de la pestaña de sesión CloudShell.
+. Selecciona una de las siguientes:
++
+** Selecciona "X" en la ventana de la pestaña CloudShell para cerrar una pestaña cada vez.
+** Selecciona *Cerrar otras pestañas* para cerrar todas las demás pestañas abiertas, excepto aquella en la que estés trabajando.
+** Selecciona *Cerrar todas las pestañas* para cerrar todas las pestañas.
+
+
+
+
+.Resultado
+Se cierran las pestañas de la sesión de CloudShell seleccionadas.
+
+
+
+[[split-cloudshell-session-tabs]]
+== Divide las pestañas de la sesión de CloudShell
+
+Puedes dividir las pestañas de sesión de CloudShell para ver dos o más pestañas a la vez.
+
+.Paso
+Arrastra y suelta las pestañas de la sesión de CloudShell en la parte superior, inferior, izquierda o derecha de la ventana de CloudShell para dividir la vista.
+
+image:screenshot-cloudshell-split-view.png["Captura de pantalla en la que se ven dos pestañas de CloudShell divididas horizontalmente. Las pestañas aparecen una al lado de la otra."]
+
+
+
+[[update-settings-for-a-cloudshell-session]]
+== Actualizar la configuración de una sesión de CloudShell
+
+Puedes actualizar la configuración de la fuente y el tipo de salida de las sesiones de CloudShell.
+
+.Pasos
+. Implementa una sesión de CloudShell.
+. En la pestaña CloudShell, selecciona el icono de configuración.
++
+Aparece el cuadro de diálogo de configuración.
+
+. Adapta el tamaño de la fuente y el tipo de salida según sea necesario.
++
+
+NOTE: La salida enriquecida se aplica a los objetos JSON y al formato de las tablas. Toda la demás salida aparece como texto sin formato.
+
+. Selecciona *Aplicar*.
+
+
+.Resultado
+La configuración de CloudShell se ha actualizado.

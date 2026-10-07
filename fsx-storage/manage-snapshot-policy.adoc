@@ -1,0 +1,184 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-snapshot-policy.html 
+keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
+summary: Gestiona las políticas de SnapVault para los volúmenes de FSx for ONTAP en Workload Factory. Una política de SnapVault define cómo crea el sistema las instantáneas de un volumen. 
+---
+= Gestiona las políticas de snapshots para volúmenes en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestiona las políticas de SnapVault para los volúmenes de FSx for ONTAP en Workload Factory. Una política de SnapVault define cómo crea el sistema las instantáneas de un volumen.
+
+Las operaciones de gestión de instantáneas, como la asignación, la modificación y la eliminación de políticas de SnapVault para volúmenes en un sistema de archivos FSx for ONTAP, se gestionan a nivel de la máquina virtual de almacenamiento. Las políticas de SnapVault se pueden compartir con una sola máquina virtual de almacenamiento o con todas las máquinas virtuales de almacenamiento.
+
+Algunas tareas de gestión requieren que asocies un enlace con el sistema de archivos FSx for ONTAP. link:../setup/links-overview.html["Obtén información sobre los enlaces de Workload Factory"^].
+
+De forma predeterminada, cada volumen está asociado a la política de SnapVault `default` del sistema de archivos. Recomendamos utilizar esta política para la mayoría de las cargas de trabajo.
+
+
+
+[[assign-a-snapshot-policy-to-a-volume]]
+== Asignar una política de SnapVault a un volumen
+
+Puedes asignar una política de SnapVault a un único volumen para crear instantáneas programadas para dicho volumen.
+
+.Antes de empezar
+Debes asociar un enlace para asignar una política de snapshot. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Almacenamiento*.
+. En el menú *Storage*, selecciona *Inventory*.
+. Selecciona el menú de acciones del sistema de archivos que contiene el volumen al que deseas asignar una política de SnapVault y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Storage VMs*.
+. Desde la pestaña *Storage VMs*, selecciona el menú de acciones de la máquina virtual de almacenamiento que contiene el volumen que quieres proteger con instantáneas programadas, luego *Advanced actions* y después *Manage snapshot policies*.
+. En la página de gestión de políticas de SnapVault, selecciona el menú de acciones de la política de SnapVault y luego selecciona *Asignar política al volumen*.
+. En el cuadro de diálogo «Asignar política de SnapVault», selecciona una política de SnapVault para asignarla al volumen y revisa la programación de la política.
++
+Si la política contiene instantáneas inmutables y quieres usarla, acepta la declaración.
+
+. Selecciona *Assign*.
+
+
+.Resultado
+La política de SnapVault se asigna al volumen.
+
+
+
+[[change-a-snapshot-policy]]
+== Modificar una política de SnapVault
+
+Puedes cambiar el nombre de la política de SnapVault, la programación y el número de copias que quieres conservar, y activar o desactivar las instantáneas inmutables. No es posible activar ni desactivar el uso compartido de políticas entre máquinas virtuales de almacenamiento. Esta opción solo está disponible durante la creación de la política de SnapVault.
+
+.Antes de empezar
+Para mostrar las políticas de snapshot existentes, debes asociar un enlace. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Almacenamiento*.
+. En el menú *Storage*, selecciona *Inventory*.
+. Selecciona el menú de acciones del sistema de archivos y luego selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Storage VMs*.
+. Desde la pestaña *Storage VMs*, selecciona el menú de acciones de la máquina virtual de almacenamiento que contiene el volumen que quieres proteger con instantáneas programadas, luego *Advanced actions* y después *Manage snapshot policies*.
+. En la página de gestión de políticas de SnapVault, selecciona el menú de acciones de la política de SnapVault que quieres cambiar y luego selecciona *Editar*.
+. En el cuadro de diálogo «Editar política de SnapVault», realiza los cambios necesarios en la política de SnapVault.
+. Selecciona *Aplicar*.
+
+
+.Resultado
+Se ha actualizado la política de SnapVault.
+
+
+
+[[enable-immutable-snapshots]]
+== Habilitar instantáneas inmutables
+
+Bloquea las instantáneas para evitar que se eliminen durante el periodo de retención.
+
+.Antes de empezar
+Debes asociar un enlace para habilitar las instantáneas inmutables. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen para el que deseas bloquear las instantáneas.
+. Selecciona *Acciones de protección de datos*, *Instantáneas* y luego *Hacer que una instantánea sea inmutable*.
+. En el cuadro de diálogo «Hacer que una instantánea sea inmutable», haz lo siguiente:
++
+.. *Nombre de la instantánea*: selecciona la instantánea que deseas bloquear.
+.. Establece el *período de retención* en número de horas, días, meses o años.
+.. Acepta la declaración.
+
+
+. Selecciona *Aplicar*.
+
+
+.Resultado
+La instantánea del volumen ahora está bloqueada.
+
+
+
+[[enable-long-term-snapshot-retention-in-netapp-workload-factory]]
+== Habilita la retención a largo plazo de instantáneas en NetApp Workload Factory
+
+En NetApp Workload Factory, puedes habilitar instantáneas para su conservación a largo plazo, lo que te permite replicar instantáneas específicas con fines de recuperación ante desastres a largo plazo.
+
+La retención a largo plazo permite que los servicios empresariales sigan funcionando incluso en caso de un fallo total del sitio, lo que facilita la conmutación por error transparente de las aplicaciones mediante una copia secundaria.
+
+Los mismos pasos se aplican para habilitar y editar instantáneas para la retención a largo plazo.
+
+Cuando el destino de la relación de replicación es un clúster de ONTAP local, no se admite la modificación de instantáneas para su conservación a largo plazo.
+
+
+NOTE: Editar la retención a largo plazo no está disponible cuando se replican datos y configuraciones de VM de almacenamiento.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú *FSx for ONTAP*, selecciona *Inventario* y, a continuación, selecciona el menú de acciones del sistema de archivos que deseas actualizar y, por último, selecciona *Gestionar*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Relaciones de replicación*.
+. En la pestaña «Relaciones de replicación», selecciona el menú de acciones de la programación de la relación de replicación que quieres cambiar.
+. Selecciona *Editar retención a largo plazo*.
+. En el cuadro de diálogo «Editar retención a largo plazo», activa o desactiva las instantáneas para la retención a largo plazo.
+. Si decides desactivar las instantáneas para la conservación a largo plazo, selecciona *Aplicar* para completar esta operación.
+. Si decides habilitar las instantáneas para la retención a largo plazo, puedes elegir entre seleccionar una política existente o crear una nueva.
++
+.. Para usar una política existente, selecciónala en el menú desplegable.
+.. Para crear una nueva política, introduce lo siguiente:
++
+... *Nombre de la política*: introduce un nombre para la política.
+... *Políticas de SnapVault*: selecciona una o varias políticas de SnapVault.
+... *Copias que se van a conservar*: introduce el número de copias snapshot que se van a conservar en el sistema de archivos de destino.
+
+
+
+
+. Selecciona *Aplicar*.
+
+
+
+
+[[remove-a-snapshot-policy-from-a-volume]]
+== Eliminar una política de SnapVault de un volumen
+
+Elimina una política de SnapVault de un volumen porque ya no deseas tener instantáneas de dicho volumen o porque quieres eliminar una política de SnapVault que está asignada a varios volúmenes. Para <<Eliminar una política de SnapVault,eliminar una política de SnapVault>> que esté asignada a más de un volumen, debes eliminarla manualmente de todos los volúmenes.
+
+.Antes de empezar
+Debes asociar un enlace para eliminar una política de snapshot. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú *FSx for ONTAP*, selecciona *Inventario* y, a continuación, selecciona el menú de acciones del sistema de archivos que deseas actualizar y, por último, selecciona *Gestionar*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Storage VMs*.
+. Desde la pestaña *Storage VMs*, selecciona el menú de acciones de la máquina virtual de almacenamiento que contiene el volumen que quieres proteger con instantáneas programadas, luego *Advanced actions* y después *Manage snapshot policies*.
+. En la página de gestión de políticas de SnapVault, selecciona el menú de acciones de la política de SnapVault y luego selecciona *Asignar política al volumen*.
+. En el cuadro de diálogo «Asignar política de SnapVault», selecciona *Ninguna* para eliminar la política de SnapVault.
+. Selecciona *Assign*.
+
+
+.Resultado
+La política de SnapVault se elimina del volumen.
+
+
+
+[[delete-a-snapshot-policy]]
+== Eliminar una política de SnapVault
+
+Elimina una política de SnapVault cuando ya no la necesites.
+
+Cuando se asigna una política de SnapVault a más de un volumen, debes <<Eliminar una política de SnapVault de un volumen,quítalo>> manualmente de todos los volúmenes para eliminar la política de SnapVault. Como alternativa, puedes <<Asignar una política de SnapVault a un volumen,asignar una política de SnapVault diferente>> a los volúmenes.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú *FSx for ONTAP*, selecciona *Inventario* y, a continuación, selecciona el menú de acciones del sistema de archivos que deseas actualizar y, por último, selecciona *Gestionar*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Storage VMs*.
+. En la pestaña *Máquinas virtuales de almacenamiento*, selecciona el menú de acciones de la máquina virtual de almacenamiento que tiene la política de SnapVault que deseas eliminar, a continuación *Acciones avanzadas* y, por último, *Gestionar políticas de SnapVault*.
+. En la página de gestión de políticas de SnapVault, selecciona el menú de acciones de la política de SnapVault que deseas eliminar y a continuación selecciona *Eliminar*.
+. En el cuadro de diálogo «Eliminar», selecciona *Eliminar* para eliminar la política.
+

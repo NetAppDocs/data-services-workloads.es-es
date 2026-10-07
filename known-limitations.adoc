@@ -1,0 +1,321 @@
+---
+sidebar: sidebar 
+permalink: known-limitations.html 
+keywords: limitations, fsx, ontap 
+summary: Las limitaciones conocidas identifican plataformas, dispositivos o funciones que no son compatibles con esta versión del producto o que no interoperan correctamente con él. 
+---
+= Limitaciones conocidas de las cargas de trabajo de FSx para ONTAP en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Las limitaciones conocidas identifican plataformas, dispositivos o funciones que no son compatibles con esta versión del producto o que no interoperan correctamente con él. Las siguientes limitaciones son específicas de Amazon FSx for NetApp ONTAP en NetApp Workload Factory. Revisa estas limitaciones con atención.
+
+
+
+[[known-limitations-of-fsx-for-ontap-storage-workloads]]
+== Limitaciones conocidas de las cargas de trabajo de almacenamiento de FSx for ONTAP
+
+
+
+[[region-support]]
+=== Compatibilidad con regiones
+
+Las siguientes regiones de AWS no son compatibles:
+
+* Regiones de China
+* Secret Cloud
+* Top Secret Cloud
+
+
+
+
+[[adding-ha-pairs-limitations]]
+=== Limitaciones al añadir pares de alta disponibilidad
+
+* Esta operación puede tardar aproximadamente 30 minutos en completarse.
+* Añadir pares de alta disponibilidad (HA) limita las siguientes operaciones: añadir más pares de alta disponibilidad, aprovisionar IOPS, aumentar la capacidad de los SSD y actualizar la capacidad de rendimiento.
+
+
+
+
+[[throughput-capacity-region-support]]
+=== Compatibilidad regional de la capacidad de rendimiento
+
+
+
+==== Implementaciones de escalado vertical
+
+Las configuraciones de escalado vertical son compatibles con velocidades de hasta 2 GB/s en todas las regiones. Las siguientes regiones admiten una capacidad máxima de rendimiento de hasta 4 GB/s para implementaciones de escalado vertical: región del Este de EE. UU. (Ohio), región del Este de EE. UU. (N. Virginia), región del Oeste de EE. UU. (Oregon) y Europa (Ireland).
+
+
+
+==== Implementaciones de escalado horizontal
+
+Las siguientes regiones admiten una capacidad de rendimiento máxima de hasta 6 GB/s para implementaciones de escalado horizontal: este de EE. UU. (Virginia del Norte y Ohio), oeste de EE. UU. (California del Norte y Oregón), Europa (Fráncfort, Irlanda y Estocolmo) y Asia-Pacífico (Singapur y Sídney).
+
+
+
+[[capacity-management]]
+=== Gestión de la capacidad
+
+* La función de crecimiento automático de volúmenes no es compatible actualmente con el protocolo iSCSI.
+* Cuando la función de gestión automática de la capacidad está activa, no puedes aumentar la capacidad manualmente.
+* Solo puedes desactivar la función de gestión automática de la capacidad con los mismos permisos que usaste para activarla.
+* Cuando se activa la gestión automática de la capacidad, es necesario establecer un enlace para garantizar que los inodos del volumen aumenten a medida que aumenta la capacidad de almacenamiento.
+
+
+
+
+[[storage-vms]]
+=== Máquinas virtuales de almacenamiento
+
+El número de máquinas virtuales de almacenamiento está limitado por SKU. Workload Factory no admite la creación de máquinas virtuales de almacenamiento que superen dicho límite.^1^
+
+Consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html#max-svms["Gestión de máquinas virtuales de almacenamiento de FSx for ONTAP"^] en la documentación de AWS para conocer el número máximo de SVMs por sistema de archivos.
+
+
+
+[[iscsi-protocol-support]]
+=== Compatibilidad con el protocolo iSCSI
+
+* El protocolo iSCSI solo está disponible para volúmenes FlexVol. ^1^
+* No se admite la reducción del tamaño de los volúmenes iSCSI.
+
+
+
+
+[[data-protection]]
+=== Protección de datos
+
+* Las instantáneas no se pueden eliminar.
+* Al replicar un sistema de archivos, todos los volúmenes de ese sistema de archivos usan la misma política de replicación.
+* En las relaciones de replicación con retención a largo plazo, solo puedes restaurar la última instantánea.
+* Las siguientes funciones no son compatibles con las instantáneas inmutables:
++
+** Grupos de coherencia
+** FabricPool
+** FlexCache volúmenes
+** SMtape
+** SnapMirror active sync
+** Reglas de la política de SnapMirror mediante el parámetro -schedule
+** SnapMirror sincrónico
+** Movilidad de datos de SVM (utilizada para migrar o reubicar una SVM de un clúster de origen a un clúster de destino)
+
+
+
+
+
+
+[[storage-savings-calculator]]
+=== Calculadora de ahorro en almacenamiento
+
+La calculadora de ahorro en almacenamiento no calcula el ahorro de costes para las siguientes configuraciones:
+
+* FSx for Windows File Server: tipo de almacenamiento HDD
+* Elastic Block Store (EBS): st1, sc1 y tipos de volumen estándar
+* Elastic File System (EFS): modo de rendimiento en ráfagas
+
+
+
+
+[[aws-secrets-manager-support]]
+=== Compatibilidad con AWS Secrets Manager
+
+AWS Secrets Manager no es compatible cuando se utiliza un agente de consola.
+
+
+
+[[amazon-s3-access-points-limitation]]
+=== Limitación de los puntos de acceso de Amazon S3
+
+El límite del número de puntos de acceso S3 por máquina virtual de almacenamiento es de 4.000.
+
+
+
+[[limitations-for-storage-vm-migration-replication]]
+=== Limitaciones para la replicación de la migración de storage VM
+
+* Workload Factory no admite la replicación de migración para máquinas virtuales de almacenamiento entre FSx de primera y segunda generación para sistemas de archivos ONTAP.
+* La transición de replicación no es compatible para volúmenes con puntos de acceso S3 o configuraciones de ONTAP S3, incluyendo object-store-server, buckets, users, groups o policies en el vserver.
+
+
+Nota:
+
+. Se aplica a Amazon FSx for NetApp ONTAP
+
+
+
+
+[[known-limitations-of-fsx-for-ontap-database-workloads]]
+== Limitaciones conocidas de las cargas de trabajo de bases de datos de FSx for ONTAP
+
+
+
+[[instance-detection-support]]
+=== Compatibilidad con la detección de instancias
+
+Workload Factory permite detectar instancias de PostgreSQL que se ejecutan únicamente en sistemas operativos Amazon Linux e instancias de Oracle que se ejecutan únicamente en Red Hat Enterprise Linux.
+
+
+
+[[ami-image-version-support]]
+=== Compatibilidad con versiones de imágenes AMI
+
+Solo mostramos hasta cuatro versiones o revisiones recientes de las imágenes AMI para cada versión de SQL. No permitimos la instalación desde una imagen AMI anterior a las cuatro versiones más recientes.
+
+
+
+[[custom-ami]]
+=== AMI personalizada
+
+La implementación con una AMI personalizada requiere que la imagen contenga un medio de instalación. Esto es necesario para la configuración de FCI por las siguientes razones:
+
+* Para desinstalar y volver a configurar para formar el clúster FCI
+* Al seleccionar una intercalación distinta de la establecida en la imagen para una implementación independiente
+
+
+Como parte de la implementación, Workload Factory no instala una AMI personalizada con varias instancias de Microsoft SQL Server. Como parte de la implementación, solo se selecciona y configura la instancia predeterminada de Microsoft SQL Server.
+
+
+
+[[roll-back-and-retry-for-failed-deployments]]
+=== Revertir y volver a intentarlo en implementaciones fallidas
+
+Workload Factory no admite revertir ni reintentar implementaciones fallidas. Puedes revertir o reintentar una pila fallida desde la consola de CloudFormation en AWS.
+
+
+
+[[active-directory-and-dns-resource-rollback]]
+=== Restauración de recursos de Active Directory y DNS
+
+Los siguientes recursos de DNS no se eliminan de Active Directory y DNS al revertir una implementación de prueba o fallida desde la consola de CloudFormation en AWS:
+
+* Cada nodo de la implementación de SQL a su dirección IP de administración
+* Nombre del clúster de Windows para las direcciones IP secundarias reservadas de las instancias de EC2 en caso de FCI
+* Nombre de SQL FCI para las dos direcciones IP reservadas de ambas instancias EC2 en FCI
+
+
+Tendrás que eliminarlas manualmente o esperar a que el dominio elimine las entradas obsoletas.
+
+
+
+[[always-on-availability-groups-configuration-support]]
+=== Compatibilidad con la configuración de grupos de disponibilidad Always On
+
+Workload Factory no admite la gestión de configuraciones de grupos de disponibilidad Always On.
+
+
+
+[[custom-encryption-keys]]
+=== Claves de cifrado personalizadas
+
+Las claves de cifrado personalizadas para FSx for ONTAP no se muestran en función de su aplicabilidad al servicio. Debes elegir la clave adecuada. Las claves gestionadas por AWS se filtran en función de su aplicabilidad al servicio.
+
+
+
+[[cloudformation-template]]
+=== Plantilla de CloudFormation
+
+Una plantilla de CloudFormation (archivo YAML) generada por Codebox y descargada o copiada tiene un periodo de conservación limitado de siete días.
+
+
+
+[[sandbox-support]]
+=== Compatibilidad con Sandbox
+
+El número máximo de clones de entorno de pruebas que puedes crear desde un servidor de bases de datos es de 90.
+
+
+
+[[microsoft-sql-server-detection-and-management]]
+=== Detección y gestión de Microsoft SQL Server
+
+La detección de Microsoft SQL Server no se guarda. Cada vez que accedes a Databases en Workload Factory, la detección de Microsoft SQL Server se vuelve a ejecutar para identificar las instalaciones de SQL en la región.
+
+
+
+[[explore-savings]]
+=== Descubre cómo ahorrar
+
+En la pestaña «Inventario», el coste estimado que se muestra para cada instancia de Microsoft SQL se calcula a nivel del sistema de archivos FSx for ONTAP y no para los volúmenes que alojan la instancia de SQL.
+
+
+
+[[multiple-fsx-for-ontap-file-systems]]
+=== Varios sistemas de archivos FSx for ONTAP
+
+Workload Factory no admite la creación ni el guardado de configuraciones para Microsoft SQL Server con varios sistemas de archivos FSx for ONTAP. Solo se admite la implementación de una única configuración de sistema de archivos FSx for ONTAP.
+
+
+
+[[optimization-limitations]]
+=== Limitaciones de la optimización
+
+
+
+==== Optimización del dimensionamiento adecuado de los recursos informáticos
+
+Al cambiar a determinados tipos de instancia, es posible que se restablezca la configuración de red, lo que podría provocar un fallo en la conexión de los nodos durante la optimización y dar lugar a un error en el trabajo. Puede que se necesite intervención manual para comprobar y actualizar la configuración de DNS y las sesiones iSCSI. Consulta link:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/resize-limitations.html["Documentación de Amazon Elastic Compute Cloud"^] para obtener más información sobre las limitaciones del cambio de tamaño de EC2.
+
+
+
+==== Optimización de la configuración de ONTAP y del sistema operativo
+
+La optimización masiva para más de una instancia de SQL Server no es compatible con la configuración de ONTAP ni con la configuración del sistema operativo.
+
+
+
+==== Evaluación de parches del sistema operativo con fines de optimización
+
+Es posible que la evaluación de parches del sistema operativo realizada con fines de optimización no funcione en una red privada. La evaluación se basa en AWS Patch Manager. Para saber cómo aplicar parches a instancias EC2 de Windows en una red privada, consulta el blog de AWS Cloud Operations link:https://aws.amazon.com/blogs/mt/how-to-patch-windows-ec2-instances-in-private-subnets-using-aws-systems-manager/["Cómo aplicar parches a instancias de Windows EC2 en subredes privadas mediante AWS Systems Manager"^].
+
+
+
+==== Evaluación de la replicación entre regiones
+
+* La evaluación de optimización no puede determinar si se está utilizando la replicación entre regiones (CRR) cuando el sistema de archivos FSx for ONTAP de destino se encuentra en una cuenta de AWS diferente.
+* Workload Factory evalúa únicamente la configuración de CRR del sistema de archivos FSx for ONTAP de origen.
+
+
+
+
+[[on-premises-savings-calculation]]
+=== Cálculo del ahorro local
+
+No se tienen en cuenta los cálculos de costos y porcentajes de ahorro relacionados con el tamaño del volumen del almacenamiento on-premises de Microsoft SQL Server.
+
+
+
+[[database-host-authentication-when-exploring-savings]]
+=== Autenticación del host de la base de datos al explorar ahorros
+
+En algunos casos con permisos limitados, la página de exploración de ahorros no carga datos después de una autenticación correcta.
+
+
+
+[[integration-with-netapp-backup-and-recovery]]
+=== Integración con NetApp Backup and Recovery
+
+Tras añadir hosts a NetApp Backup and Recovery para su protección, a veces falla la detección de bases de datos.
+
+
+
+[[registering-oracle-on-suse-linux-enterprise-server-12]]
+=== Registrar Oracle en SUSE Linux Enterprise Server 12
+
+Al registrar Oracle Database en SUSE Linux Enterprise Server 12, Workload Factory no instala las dependencias de Python. Debes configurar manualmente la versión de Python necesaria. Workload Factory requiere como mínimo la versión 3.6; sin embargo, recomendamos la versión 3.11.
+
+
+
+[[known-limitations-for-eda-workloads]]
+== Limitaciones conocidas para las cargas de trabajo de EDA
+
+
+
+[[operator-permissions-required]]
+=== Permisos de operador necesarios
+
+NetApp Workload Factory for EDA requiere permisos de operador para funcionar correctamente.

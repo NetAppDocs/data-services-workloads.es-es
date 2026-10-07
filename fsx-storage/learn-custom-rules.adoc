@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/learn-custom-rules.html 
+keywords: custom rules, byor, bring your own rules, fsx, ontap, well architected, organizational standards 
+summary: Descubre cómo definir y gestionar tus propias reglas arquitectónicas para garantizar el cumplimiento de las normas de la organización junto con las mejores prácticas de NetApp. 
+---
+= Conoce las reglas personalizadas en NetApp Console
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las reglas personalizadas te permiten definir, comprobar y aplicar tus propios estándares de arquitectura, junto con las mejores prácticas de NetApp, en el panel de control Well-architected.
+
+
+
+[[overview]]
+== Descripción general
+
+El generador de reglas te permite crear reglas personalizadas basadas en las mejores prácticas utilizando un lenguaje sencillo. Estas reglas se comprueban en todos tus recursos.
+
+Las reglas personalizadas te ayudan a garantizar el cumplimiento de las normas, los límites de riesgo y los requisitos operativos de tu organización, aspectos que las reglas genéricas de los proveedores quizá no cubran por completo.
+
+
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, el generador de reglas no estará disponible y no podrás crear reglas personalizadas. link:../admin/manage-genai-features.html["Conoce cómo gestionar las funciones de IA"^].
+
+
+
+[[how-custom-rules-work]]
+== Cómo funcionan las reglas personalizadas
+
+Las reglas personalizadas utilizan un proceso guiado por IA que convierte tus instrucciones en lenguaje natural en reglas claras y estructuradas. La IA actúa como traductor y verificador. Sugiere una regla, explica cómo entendió tu solicitud y te pide tu aprobación antes de guardar o programar la regla.
+
+Este proceso garantiza que:
+
+* La lógica de las reglas está claramente definida y se comprueba que no tenga errores
+* No se ejecuta ningún código de formato libre
+* Puedes ver exactamente qué se evaluará antes de aprobar la regla
+
+
+
+
+[[limitations]]
+== Limitaciones
+
+Las siguientes limitaciones se aplican a las reglas personalizadas:
+
+* No hay soluciones automáticas disponibles. Debes corregir tú mismo los recursos que no cumplan los requisitos usando la guía proporcionada.
+* Cada regla solo puede comprobar un tipo de recurso. Para comprobar varios tipos de recursos, crea reglas independientes.
+* El intervalo de evaluación más corto es de 1 hora para evitar un escaneo excesivo.
+* Las reglas tienen acceso de solo lectura y no pueden realizar cambios en tu entorno.
+
+
+
+
+[[rule-definition-model]]
+== Modelo de definición de reglas
+
+Cada regla personalizada consta de los siguientes componentes:
+
+Nombre de la regla:: Un nombre definido por el usuario para la regla.
+Descripción:: Tu justificación de por qué esta norma es importante para tu organización.
+Tipo de recurso:: El recurso FSx que se va a evaluar (sistema de archivos, volumen o caché). Actualmente, un tipo de recurso por regla.
+Planificador:: Con qué frecuencia se evalúa la regla (mínimo 1 hora, por defecto 24 horas).
+Lógica de condiciones:: Los criterios concretos que hay que comprobar.
+Ámbito de la evaluación:: Qué recursos se evalúan (todos los recursos pertinentes en el ámbito de aplicación).
+Lógica de corrección:: Guía práctica para abordar los recursos no conformes.
+
+
+
+
+[[rule-lifecycle]]
+== Ciclo de vida de una regla
+
+Las reglas personalizadas pasan por los siguientes estados:
+
+Borrador:: Se está creando una regla. No se realiza ninguna evaluación.
+Simulación:: Evaluación única para obtener una vista previa de los recursos que se verían afectados. Se usa para la validación antes de programar.
+Programado (activado):: La regla está activa y se ejecuta según la programación definida.
+Deshabilitado:: La regla está en pausa, pero no se ha eliminado. Se puede volver a activar.
+Eliminado:: La regla se elimina definitivamente.
+
+
+
+
+[[custom-rule-examples]]
+== Ejemplos de reglas personalizadas
+
+Los siguientes ejemplos ilustran reglas personalizadas habituales:
+
+*Protección del volumen de producción*:: «Todos los volúmenes con la etiqueta ‘Prod’ deben tener instalada una política de snapshot»
++
+--
+Esta regla crea automáticamente instantáneas para proteger los volúmenes de producción de acuerdo con los requisitos de la empresa.
+
+--
+*Clasificación por niveles de los volúmenes de archivo*:: "Todos los volúmenes con la etiqueta 'Archive' deben tener una política de almacenamiento por niveles configurada en 'All'"
++
+--
+Esta regla reduce los costes al trasladar automáticamente los datos archivados a un almacenamiento más económico.
+
+--
+*Normas de nomenclatura del sistema de archivos*:: "Todos los sistemas de archivos deben seguir la convención de nomenclatura 'fsx-{environment}-{application}'"
++
+--
+Esta norma valida que los sistemas de archivos se ajusten a las convenciones de nomenclatura de la organización para facilitar la gestión y la asignación de costes.
+
+--
+
+
+
+
+[[what-to-do-next]]
+== Qué hacer a continuación
+
+link:create-custom-rule.html["Crear una regla personalizada"]

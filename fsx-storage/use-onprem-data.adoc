@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-onprem-data.html 
+keywords: use, detect, replicate, remove, on-premises, ONTAP cluster, on-premises cluster, ONTAP 
+summary: Descubre y replica los datos de ONTAP locales en NetApp Workload Factory para que puedan usarse como copia de seguridad en la nube. 
+---
+= Replicar los datos de un clúster ONTAP local en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Descubre y replica los datos de ONTAP locales en NetApp Workload Factory para que puedan usarse como copia de seguridad en la nube.
+
+.Acerca de esta tarea
+Para usar datos de un clúster de ONTAP en las instalaciones, primero tendrás que detectar el clúster de ONTAP en las instalaciones. Después de detectar un clúster de ONTAP en las instalaciones, puedes usar los datos para cualquiera de los siguientes casos de uso.
+
+Casos de uso::
++
+--
+* *Copia de seguridad y migración a la nube*: los datos de volúmenes ONTAP locales replicados en un sistema de archivos FSx for ONTAP pueden usarse como copia de seguridad en la nube.
+* *clasificación por niveles de los datos*: tras la replicación, los datos de volúmenes ONTAP on-premises a los que se accede con poca frecuencia se pueden organizar por niveles desde el nivel de almacenamiento SSD hasta el nivel de almacenamiento del pool de capacidad.
+
+
+--
+
+
+
+
+[[discover-an-on-premises-ontap-cluster]]
+== Descubre un clúster de ONTAP en las propias instalaciones
+
+Descubre un clúster ONTAP local en NetApp Workload Factory para que puedas replicar los datos en un sistema de archivos Amazon FSx for NetApp ONTAP.
+
+.Antes de empezar
+Asegúrate de tener lo siguiente antes de empezar:
+
+* Un sistema de archivos FSx for ONTAP para la replicación.
+* Un enlace activo para asociarlo al clúster local detectado. Si no tienes un enlace, tendrás que link:create-link.html["crear uno"^].
+* Credenciales de usuario de ONTAP con los permisos necesarios.
+* ONTAP on-premises, versión 9.8 y posteriores.
+* Conectividad tal y como se muestra en el siguiente diagrama.
++
+image:screenshot-on-prem-connectivity.png["Captura de pantalla que muestra cómo debe conectarse un clúster de ONTAP on-premises para la ruta de gestión y la ruta de datos a Amazon Web Services Cloud"]
+
+
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú *FSx for ONTAP*, selecciona *On-premises ONTAP*.
+. Selecciona *Discover*.
+. Revisa los requisitos previos y selecciona *Siguiente*.
+. En la página «Discover ONTAP on-premises», proporciona lo siguiente en *Cluster configuration*:
++
+.. *Enlace*: selecciona un enlace. El enlace se asociará al clúster local para crear conectividad entre el clúster y Workload Factory.
++
+Si aún no has creado un enlace, sigue las instrucciones y luego vuelve a esta operación y selecciona el enlace.
+
+.. *Dirección IP del clúster*: indica la dirección IP del clúster ONTAP local que se va a replicar.
+.. *Credenciales de ONTAP*: Proporciona lo siguiente:
++
+*** GovCloud accounts: Introduce ARN con las credenciales ONTAP.
+*** Todas las demás cuentas: Introduce las credenciales de ONTAP para el clúster ONTAP local. Asegúrate de que el usuario tiene los permisos necesarios.
+
+
+
+
+. Selecciona *Discover* para iniciar el proceso de descubrimiento.
+
+
+.Resultado
+Se detectó el clúster ONTAP local y ahora aparece en la pestaña *On-Premises ONTAP*.
+
+Ahora puedes ver los datos de tu clúster de ONTAP local y <<Replicar datos de volumen desde un clúster ONTAP local,replicar los datos a un sistema de archivos FSx for ONTAP>>.
+
+
+
+[[replicate-volume-data-from-an-on-premises-ontap-cluster]]
+== Replicar datos de volumen desde un clúster ONTAP local
+
+Replica los datos de un volumen de un clúster ONTAP local en un sistema de archivos FSx for ONTAP. Tras la replicación, puedes usar los datos para enriquecer las bases de conocimiento de IA.
+
+.Antes de empezar
+* Debes detectar un clúster ONTAP on-premises para replicar los datos de sus volúmenes.
+* Debes disponer de un sistema de archivos FSx for ONTAP disponible que sirva como destino de la replicación.
+* Tanto el clúster ONTAP local como el sistema de archivos FSx for ONTAP que utilices para la relación de replicación deben tener un enlace asociado. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú *FSx for ONTAP*, selecciona *On-premises ONTAP*.
+. Para buscar volúmenes por máquina virtual de almacenamiento, puedes *seleccionar la máquina virtual de almacenamiento* en el menú desplegable.
+. Selecciona uno o varios volúmenes que quieras replicar y a continuación selecciona *Replicar*.
+. En la página «Crear replicación», en el apartado «Destino de la replicación», introduce lo siguiente:
++
+.. *Sistema de archivos FSx para ONTAP*: selecciona las credenciales, la región y el nombre del sistema de archivos FSx para ONTAP para el sistema de archivos FSx para ONTAP de destino.
+.. *Nombre de la máquina virtual de almacenamiento*: selecciona la máquina virtual de almacenamiento del menú desplegable.
+.. *Nombre del volumen*: el nombre del volumen de destino se genera automáticamente con el siguiente formato `{OriginalVolumeName}_copy`. Puedes usar el nombre de volumen generado automáticamente o introducir otro nombre de volumen.
+.. *Organización en niveles de datos*: selecciona la política de organización en niveles para los datos almacenados en el volumen de destino.
++
+*** *Auto*: la política de organización en niveles predeterminada al crear un volumen mediante la interfaz de usuario de Workload Factory FSx for ONTAP. Clasifica todos los datos fríos, incluidos los datos de usuario y las instantáneas, en el nivel de almacenamiento del grupo de capacidad durante un periodo de tiempo específico.
+*** *solo Snapshot*: organiza por niveles solo los datos de Snapshot en el nivel de almacenamiento del grupo de capacidad.
+*** *Ninguno*: mantiene todos los datos de tu volumen en el nivel de almacenamiento primario.
+*** *Todo*: marca todos los datos de usuario y los datos de instantáneas como «inactivos» y los almacena en el nivel de almacenamiento del pool de capacidad.
++
+Ten en cuenta que algunas políticas de organización en niveles tienen asociado un periodo mínimo de enfriamiento que establece el tiempo, o los «días de enfriamiento», durante el cual los datos de usuario de un volumen deben permanecer inactivos para que los datos se consideren «fríos» y se muevan al nivel de almacenamiento del pool de capacidad. El periodo de enfriamiento comienza cuando se escriben datos en el disco.
+
++
+Para obtener más información sobre las políticas de organización en niveles de volumen, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacidad de almacenamiento de volumen"^] en la documentación de AWS FSx for NetApp ONTAP.
+
+
+
+.. *Tasa de transferencia máxima*: selecciona *Limitada* e introduce el límite máximo de transferencia en MiB/s. También puedes seleccionar *Ilimitada*.
++
+Sin un límite, el rendimiento de la red y de las aplicaciones podría disminuir. Como alternativa, recomendamos una tasa de transferencia ilimitada para los sistemas de archivos FSx for ONTAP en el caso de cargas de trabajo críticas, por ejemplo, aquellas que se utilizan principalmente para la recuperación ante desastres.
+
+
+
+. En Configuración de replicación, introduce lo siguiente:
++
+.. *Intervalo de replicación*: selecciona la frecuencia con la que se transfieren las instantáneas del volumen de origen al volumen de destino.
+.. *Retención a largo plazo*: si lo deseas, activa las instantáneas para la retención a largo plazo.
++
+Si activas la retención a largo plazo, selecciona una política existente o crea una nueva para definir las instantáneas que quieres replicar y cuántas conservar.
+
++
+*** Para una política existente, selecciona *Elegir una política existente* y, a continuación, selecciona la política existente en el menú desplegable.
+*** Para una política nueva, selecciona *Crear una nueva política* e introduce lo siguiente:
++
+**** *Nombre de la política*: introduce un nombre para la política.
+**** *Políticas de Snapshot*: en la tabla, selecciona la frecuencia de la política de Snapshot y el número de copias que deseas conservar. Puedes seleccionar más de una política de Snapshot.
+
+
+
+
+
+
+. Selecciona *Crear*.
+
+
+.Resultado
+La relación de replicación aparece en la pestaña *Replication relationships* del sistema de archivos FSx for ONTAP de destino.
+
+
+
+[[remove-an-on-premises-ontap-cluster-from-netapp-workload-factory]]
+== Eliminar un clúster ONTAP local de NetApp Workload Factory
+
+Elimina un clúster de ONTAP en las instalaciones de NetApp Workload Factory cuando sea necesario.
+
+.Antes de empezar
+Debes utilizar link:manage-replication.html["elimina todas las relaciones de replicación existentes"] para todos los volúmenes del clúster ONTAP local antes de eliminar el clúster para que no queden relaciones rotas.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú *FSx for ONTAP*, selecciona *On-premises ONTAP*.
+. Selecciona el clúster ONTAP local que deseas eliminar.
+. Selecciona el menú de acciones y elige *Eliminar de Workload Factory*.
+
+
+.Resultado
+El clúster ONTAP local se elimina de NetApp Workload Factory.

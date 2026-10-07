@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: admin/create-custom-dashboard-fsx.html 
+keywords: create dashboard, custom dashboard, AI dashboard, dashboard creation, personalized dashboard 
+summary: Crea un panel de control personalizado usando indicaciones guiadas por IA para supervisar lo que más importa a tus cargas de trabajo y prioridades operativas. 
+---
+= Crea un panel personalizado en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Crea paneles personalizados describiendo en un lenguaje sencillo lo que quieres supervisar. La IA te guía a lo largo del proceso de configuración para que tus paneles se adapten a tus cargas de trabajo y prioridades.
+
+.Acerca de esta tarea
+Los paneles personalizados utilizan un diálogo guiado por IA para comprender qué es lo que quieres visualizar. Describes tus necesidades de supervisión en lenguaje natural, y el sistema te hace preguntas aclaratorias para asegurarse de que el panel cumpla con tus requisitos.
+
+Una vez creado, puedes actualizar el panel de control para ver los datos actualizados.
+
+Recuerda que los paneles personalizados son de solo lectura por diseño y no pueden hacer cambios en tus configuraciones de almacenamiento o cargas de trabajo.
+
+
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, aparecerá un mensaje y no podrás crear paneles de control. Ponte en contacto con tu administrador o link:manage-genai-features.html["conoce la administración de IA"].
+
+
+
+[[create-a-dashboard]]
+== Crear un panel de control
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. En el menú de NetApp Console, selecciona *Workloads* > *Workloads Overview* > *Custom dashboards*.
++
+Si es tu primer panel de control, verás una pantalla en blanco con indicaciones de ejemplo para ayudarte a empezar. Puedes seleccionar *Copiar indicación* para copiar un ejemplo de indicación en el cuadro de texto del cuadro de diálogo de IA.
+
+. Selecciona *Crear nuevo panel de control*.
+. En el cuadro de diálogo de IA, describe lo que quieres monitorizar.
++
+Descríbelo en un lenguaje sencillo. La IA te hará algunas preguntas para comprender mejor tus necesidades.
+
+. Selecciona image:arrow.png["El icono del menú se usa para empezar a generar paneles de control., width=18"].
+. Responde a las preguntas aclaratorias de la IA.
++
+Es posible que la IA te pida que elijas entre varias opciones para comprender mejor lo que necesitas. Responde a cada pregunta y selecciona *Continuar*, o selecciona *Omitir* para saltarte las preguntas opcionales.
+
+. Después de responder todas las preguntas, selecciona *Continuar* para crear tu panel de control.
+
+
+Se está creando tu panel de control. Puede que tarde unos instantes.
+
+.Resultado
+Tu panel de control personalizado se ha creado y se ha añadido al catálogo de paneles de control. Por defecto, el panel de control es privado y solo tú puedes verlo. Puedes cambiar la visibilidad a pública si quieres compartirlo con otros usuarios en tu cuenta de Workload Factory. link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Descubre cómo cambiar la visibilidad del panel de control"].
+
+Recibirás una notificación cuando tu panel de control esté listo. Si no se puede crear, recibirás una notificación con un enlace para volver a intentarlo. link:configure-notifications.html["Aprende sobre cómo configurar las notificaciones"].
+
+.Qué sigue
+Después de crearla, puedes:
+
+* Cambia la visibilidad del panel de control para compartirlo con tu equipo
+* Actualiza los datos del panel de control para ver la información más reciente
+* Elimina los paneles que ya no necesites
+* Ver los detalles del panel de control, incluyendo quién lo creó y cuándo se actualizó por última vez
+
+
+
+
+[[related-information]]
+== Información relacionada
+
+* link:manage-custom-dashboards-fsx.html["Gestiona tus paneles personalizados"]
+* link:troubleshoot-custom-dashboards-fsx.html["Soluciona problemas en los paneles personalizados"]
+

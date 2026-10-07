@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: admin/learn-custom-dashboards-fsx.html 
+keywords: custom dashboards, dashboards, personalized dashboards, AI dashboards, operational visibility, workload monitoring 
+summary: Crea paneles de control potenciados por IA y personalizados según tus cargas de trabajo y prioridades para mejorar la visibilidad operativa sin verte limitado por vistas predefinidas. 
+---
+= Descubre los paneles personalizados para FSx for ONTAP en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como administrador de la nube y del almacenamiento, los paneles personalizados te ofrecen una visión clara de los sistemas y las cargas de trabajo que gestionas. Te permiten crear y personalizar vistas que se adapten a tu trabajo, tus prioridades y tus objetivos empresariales, en lugar de limitarte a diseños predefinidos.
+
+Los paneles de control personalizados utilizan la inteligencia artificial para crear vistas personalizadas de tu entorno de Workload Factory. Solo tienes que describir en lenguaje sencillo lo que quieres supervisar y el sistema genera automáticamente gráficos visuales según tus necesidades.
+
+Todos los usuarios de tu cuenta de Workload Factory pueden ver todos los paneles personalizados. Esta configuración compartida ayuda a los equipos a colaborar y ver la misma información operativa en toda la organización.
+
+
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, aparecerá un mensaje y no podrás crear paneles de control. Ponte en contacto con tu administrador o link:manage-genai-features.html["conoce la administración de IA"].
+
+
+
+[[why-use-custom-dashboards]]
+== Por qué usar paneles personalizados
+
+Los usuarios de Workload Factory gestionan numerosas cargas de trabajo, entornos y prioridades, pero los paneles de control estándar solo muestran vistas predefinidas. Los paneles de control personalizados ayudan a resolver varios retos operativos:
+
+* *Responde rápidamente a las preguntas clave*: céntrate en las preguntas más importantes o en las lagunas que tengas en tu comprensión en lugar de en las estadísticas generales del sistema.
+* *Supervisa lo que importa ahora*: Realiza un seguimiento de las métricas que se ajusten a tus prioridades actuales, no de un conjunto fijo de indicadores de estado.
+* *Relaciona los datos técnicos con los resultados empresariales*: muestra cómo el rendimiento del sistema afecta las operaciones y los objetivos empresariales.
+* *Evita cambiar de herramienta*: Consulta toda la información relevante en un solo lugar—no hace falta cambiar de herramienta, de página ni de archivos exportados.
+
+
+
+
+[[what-you-can-do-with-custom-dashboards]]
+== Qué puedes hacer con los paneles personalizados
+
+Durante la configuración, el diálogo guiado por IA te ayuda a definir:
+
+* Cargas de trabajo y recursos que hay que supervisar
+* Indicadores clave que son importantes para tu trabajo
+* Intervalos de tiempo y períodos para comparar
+* Vistas por región, carga de trabajo u otras categorías
+* Normas o requisitos que debes controlar y demostrar
+
+
+
+
+[[view-and-share-dashboards]]
+== Ver y compartir paneles de control
+
+Los nuevos paneles son privados por defecto, por lo que solo tú puedes verlos. Puedes hacer público un panel en cualquier momento para compartirlo con tu equipo.
+
+* *Cuadros de mando privados*: Solo tú puedes ver estos cuadros de mando. Úsalos para el seguimiento personal, pruebas o trabajo en curso.
+* *Cuadros de mando públicos*: Todos los usuarios de tu cuenta de Workload Factory pueden ver estos cuadros de mando. Úsalos para compartir vistas de supervisión y mantener a tu equipo alineado con las cargas de trabajo, las prioridades y los objetivos empresariales.
+
+
+Cada tarjeta del panel muestra si el panel es privado o público, así puedes ver rápidamente qué paneles están compartidos.
+
+link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Descubre cómo cambiar la visibilidad del panel de control"].
+
+
+
+[[considerations-and-limitations]]
+== Consideraciones y limitaciones
+
+
+
+[[aws-credentials-and-permissions]]
+=== Credenciales y permisos de AWS
+
+Para crear o ver paneles personalizados, necesitas los permisos correctos de AWS IAM para los recursos que quieres supervisar. Asegúrate de que la cuenta de Workload Factory tenga acceso de lectura a las fuentes de datos que usan los paneles.
+
+Para crear paneles de control, Workload Factory utiliza credenciales de AWS de solo lectura. Estas credenciales solo permiten acciones de lectura, como `fsx:DescribeVolumes` y `fsx:DescribeFileSystems`, para los siguientes servicios: EC2, FSx, CloudWatch, Resource Groups Tagging API, Backup, CloudWatch Logs, KMS y EFS.
+
+link:../fsx-storage/add-credentials.html["Aprende a añadir credenciales de AWS y configurar los permisos de IAM"^].
+
+
+
+[[link-to-fsx-for-ontap]]
+=== Enlace a FSx para ONTAP
+
+Workload Factory requiere un enlace para conectarse a los sistemas de archivos FSx for ONTAP. Un enlace crea una relación de confianza y conectividad entre Workload Factory y uno o varios sistemas de archivos FSx for ONTAP. Esto te permite supervisar y gestionar ciertas funciones del sistema de archivos directamente desde las llamadas a la API de REST de ONTAP que no están disponibles a través de la API de Amazon FSx for ONTAP.
+
+link:../fsx-storage/create-link.html["Aprende a crear un enlace"^].
+
+
+
+[[read-only-design]]
+=== Diseño de solo lectura
+
+Los paneles personalizados son de solo lectura. No pueden modificar tu almacenamiento ni la configuración de las cargas de trabajo. Esto te permite supervisar tu sistema sin modificar nada accidentalmente.
+
+
+
+[[limitations]]
+=== Limitaciones
+
+Actualmente, se aplican las siguientes limitaciones a los paneles personalizados:
+
+* No puedes compartir paneles fuera de tu cuenta de Workload Factory. El uso compartido de paneles se limita a los usuarios de la misma cuenta de Workload Factory.
+
+
+
+
+[[demo-environment]]
+=== Entorno de demostración
+
+Si utilizas una cuenta de demostración de Workload Factory, tienes a tu disposición algunos paneles predefinidos. Estos te ayudan a ver lo que pueden hacer los paneles personalizados. Cada panel muestra una necesidad común de supervisión: el estado de la recuperación ante desastres, la capacidad y los costes en las distintas regiones, y si se están cumpliendo las reglas de protección del almacenamiento.
+
+
+
+[[sample-prompts]]
+=== Ejemplos de prompts
+
+Los siguientes ejemplos muestran cómo describir tus necesidades de monitoreo en un lenguaje sencillo:
+
+* *Supervisión de la recuperación ante desastres*: «Estoy configurando una solución de recuperación ante desastres en AWS para mis sistemas locales. Quiero ver una lista completa de mis recursos locales y el estado de cada uno en el sitio de recuperación ante desastres en la región US East, incluyendo si está configurado, activo y en buen estado».
+* *Capacidad y costes multirregionales*: "Gestiono el almacenamiento en varias regiones de la nube y en diversas aplicaciones. Quiero tener una visión clara de cuánto almacenamiento he asignado, cuánto se está utilizando y cuánto cuesta, con detalles para cada región y cada aplicación."
+* *Cumplimiento de la protección del almacenamiento*: "Estoy configurando una nueva estrategia de protección del almacenamiento basada en las normas de mi organización. Muéstrame todos los sistemas de archivos e indica si cumplen estos requisitos:
++
+** Cargas de trabajo de bases de datos: 12 instantáneas diarias por volumen y 2 instantáneas a prueba de manipulaciones por semana.
+** Recursos compartidos NFS y SMB: 7 instantáneas diarias por volumen y 1 instantánea a prueba de manipulaciones por semana.
+** ARP debe estar habilitado en todos los volúmenes.
+
+
+
+
+
+
+[[next-steps]]
+== Próximos pasos
+
+* link:create-custom-dashboard-fsx.html["Crear un panel de control personalizado"]
+* link:manage-custom-dashboards-fsx.html["Gestiona paneles personalizados"]
+* link:troubleshoot-custom-dashboards-fsx.html["Soluciona problemas en los paneles personalizados"]
+

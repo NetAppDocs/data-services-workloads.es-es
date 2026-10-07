@@ -1,0 +1,120 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sql-database.html 
+keywords: create, database, creation, Microsoft SQL 
+summary: Crea una base de datos de Microsoft SQL con NetApp Workload Factory for Databases. 
+---
+= Crear una base de datos de Microsoft SQL en NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Crear una nueva base de datos de Microsoft SQL te permite gestionar el recurso dentro de NetApp Workload Factory for Databases.
+
+.Acerca de esta tarea
+Al crear la base de datos, se crean dos nuevos volúmenes en el sistema de archivos FSx for ONTAP compuestos por LUN independientes para alojar los archivos de datos y de registro de la base de datos. Los archivos de la nueva base de datos cuentan con Thin-Provisioning y solo ocupan unos pocos MB del tamaño total asignado a la nueva base de datos.
+
+Si quieres segregar el almacenamiento de la base de datos, puedes hacerlo usando un _punto de montaje virtual_. El punto de montaje virtual te permite consolidar las bases de datos en unas pocas unidades comunes del host.
+
+Para crear una base de datos en workload factory, necesitas permisos de _visualización, planificación y análisis_. Como alternativa, puedes copiar o descargar una plantilla de código parcialmente completada para completar la operación fuera de workload factory. link:../fsx-storage/permissions-reference-fsx.html["Más información sobre los permisos de Workload Factory"^] para decidir qué modo quieres usar.
+
+
+NOTE: Los Microsoft SQL Servers que utilizan el protocolo SMB no admiten la creación de bases de datos.
+
+.Antes de empezar
+Cumple los siguientes requisitos previos antes de crear una nueva base de datos.
+
+* *Credenciales y permisos*: Debes tener link:../fsx-storage/add-credentials.html["Credenciales de la cuenta de AWS y permisos de _operaciones y remediación_"^] para crear una nueva base de datos en Workload Factory.
++
+Como alternativa, puedes utilizar Codebox para copiar una plantilla y así desplegar una base de datos fuera de workload factory mediante la API de REST. link:../admin/codebox-automation.html["Más información sobre la automatización de Codebox"^].
+
+* *Host de Windows*: debes tener suficientes letras de unidad disponibles en Microsoft SQL Server para crear nuevas unidades para la nueva base de datos si usas el modo _Quick create_.
+* *Microsoft SQL Server*: debes disponer de un Microsoft SQL Server gestionado en workload factory for Databases para alojar la nueva base de datos.
+* *AWS Systems Manager*: asegúrate de que el `NT Authority\SYSTEM` privilegio de usuario esté habilitado en el host de Microsoft SQL a través de AWS Systems Manager.
+
+
+
+
+[[create-a-database]]
+== Crear una base de datos
+
+Puedes usar los modos de implementación _Quick create_ o _Advanced create_ para completar esta tarea en Workload Factory.
+
+[role="tabbed-block"]
+====
+.Creación rápida
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Bases de datos*.
+. En el menú «Bases de datos», selecciona *Inventario*.
+. En el Inventario, selecciona *Microsoft SQL Server* como tipo de motor de base de datos.
+. Selecciona un servidor de bases de datos con una instancia administrada de SQL server para crear la base de datos.
+. Haz clic en el menú de acciones de la instancia gestionada y luego selecciona *Crear base de datos de usuario*.
+. En la página «Crear base de datos de usuarios», en la sección «Información de la base de datos», introduce los siguientes datos:
++
+.. *Nombre de la base de datos*: introduce el nombre de la base de datos.
+.. *Intercalación*: selecciona una intercalación para la base de datos. Se selecciona la intercalación predeterminada SQL_Latin1_General_CP1_CI_AS" en Microsoft SQL Server.
+
+
+. En Configuración de archivos, introduce lo siguiente:
++
+.. *Modo de configuración de archivos*: selecciona *Creación rápida*.
+.. *Nombres de archivos y ruta de acceso*:
++
+*** *Nombre del archivo de datos*: introduce el nombre del archivo de datos.
+*** *Nombre del archivo de registro*: introduce el nombre del archivo de registro.
+
+
+.. *Tamaños de los archivos*: introduce el tamaño de los datos y el tamaño del archivo de registro de la base de datos.
+
+
+. Haz clic en *Crear*.
++
+O bien, si quieres cambiar ahora alguna de estas opciones predeterminadas, cambia *File settings mode* a *Advanced create*.
+
+
+
+--
+.Creación avanzada
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Bases de datos*.
+. En el menú «Bases de datos», selecciona *Inventario*.
+. En el Inventario, selecciona *Microsoft SQL Server* como tipo de motor de base de datos.
+. Selecciona un servidor de bases de datos con una instancia administrada de SQL server para crear la base de datos.
+. Haz clic en el menú de acciones de la instancia gestionada y luego selecciona *Crear base de datos de usuario*.
+. Selecciona *Crear base de datos de usuario*.
+. En la página «Crear base de datos de usuarios», en la sección «Información de la base de datos», introduce los siguientes datos:
++
+.. *Nombre de la base de datos*: introduce el nombre de la base de datos.
+.. *Intercalación*: selecciona la intercalación para la base de datos. Se selecciona la intercalación predeterminada SQL_Latin1_General_CP1_CI_AS" en Microsoft SQL Server.
+
+
+. En Configuración de archivos, introduce lo siguiente:
++
+.. *Modo de configuración de archivos*: selecciona *Creación avanzada*.
+.. *Nombres de archivos y ruta de acceso*:
++
+... *Archivo de datos*: selecciona una letra de la unidad e introduce el nombre del archivo de datos.
++
+Si lo deseas, marca la casilla *Virtual mount point*.
+
+... *Archivo de registro*: selecciona una letra de la unidad e introduce el nombre del archivo de registro.
++
+Si lo deseas, marca la casilla *Virtual mount point*.
+
+
+
+.. *Tamaños de los archivos*: introduce el tamaño de los datos y el tamaño del archivo de registro de la base de datos.
+
+
+. Haz clic en *Crear*.
+
+
+--
+====
+Si has creado el host de la base de datos, puedes comprobar el progreso del trabajo en la pestaña *Job monitoring*.

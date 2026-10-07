@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/change-tiering-policy.html 
+keywords: tiering policy, change tier, change tiers, tier policy update 
+summary: Cambia la política de organización en niveles en NetApp Workload Factory para reasignar los datos del nivel de almacenamiento primario de alto rendimiento al nivel de almacenamiento del pool de capacidad secundario. 
+---
+= Cambiar la política de almacenamiento por niveles de un volumen en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En NetApp Workload Factory, puedes modificar la política de jerarquización para reasignar automáticamente los datos del nivel de almacenamiento primario de alto rendimiento al nivel de almacenamiento del pool de capacidad secundario.
+
+.Acerca de esta tarea
+Puedes modificar la política de almacenamiento por niveles de un volumen en cualquier momento. La política de almacenamiento por niveles se define para cada volumen.
+
+La decisión sobre dónde se almacenan tus datos tiene repercusiones en el ahorro de costes.
+
+FSx para ONTAP cuenta con dos niveles para el almacenamiento de datos de volúmenes:
+
+* *Nivel de almacenamiento SSD*: este nivel de almacenamiento primario es para los datos a los que accedes con más frecuencia, también conocidos como datos _activos_. Almacenar datos en el nivel de almacenamiento primario es más caro que en el almacenamiento secundario.
+* *Nivel de almacenamiento de pool de capacidad*: este nivel de almacenamiento secundario es para datos archivados o datos a los que se accede con poca frecuencia, también conocidos como datos _fríos_.
+
+
+Consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-storage-capacity.html#storage-tiers["Gestión de la capacidad de almacenamiento"^] en la documentación de AWS para FSx for NetApp ONTAP para obtener más información sobre los niveles de almacenamiento.
+
+.Antes de empezar
+Revisa las políticas de clasificación por niveles disponibles antes de cambiar la política de clasificación por niveles.
+
+* *Balanced (Auto)*: política predeterminada de organización en niveles al crear un volumen mediante la interfaz de usuario. Mantiene los datos a los que se accede con frecuencia en el nivel de almacenamiento SSD y organiza en niveles los datos a los que se accede con poca frecuencia y las instantáneas en el nivel de almacenamiento del pool de capacidad una vez finalizado el periodo de enfriamiento. Recomendado para cargas de trabajo primarias generales.
+* *Optimización de costes (Todo)*: clasifica todas las instantáneas y los datos en el nivel de almacenamiento del pool de capacidad. Recomendado para destinos secundarios.
+* *Rendimiento optimizado (solo Snapshots)*: solo se organizan en niveles los datos de Snapshot en el nivel de almacenamiento del pool de capacidad. Recomendado para cargas de trabajo de baja latencia, como las bases de datos de misión crítica.
+* *Ninguno*: mantiene los datos del volumen en el nivel de almacenamiento SSD, lo que impide que se muevan al nivel de almacenamiento del pool de capacidad.
+
+
+Ten en cuenta que algunas políticas de organización en niveles tienen asociado un periodo mínimo de enfriamiento que establece el tiempo, o los «días de enfriamiento», durante el cual los datos de usuario de un volumen deben permanecer inactivos para que los datos se consideren «fríos» y se muevan al nivel de almacenamiento del pool de capacidad. El periodo de enfriamiento comienza cuando se escriben datos en el disco.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Volumes explorer* > *FSx for ONTAP*.
+. Selecciona el menú de acciones del volumen para el que deseas cambiar la política de almacenamiento por niveles.
+. Selecciona *Acciones avanzadas* y, a continuación, *Cambiar política de organización en niveles*.
+. En la página «Modificar política de almacenamiento por niveles», selecciona la opción para copiar la política de almacenamiento por niveles del volumen de origen o elige una de las siguientes políticas de almacenamiento por niveles:
++
+** *Equilibrado (Automático)*: introduce el número de días de refrigeración.
+** *Optimizado en costes (Todos)*
+** *Optimizado para el rendimiento (solo Snapshots)*: introduce el número de días de enfriamiento.
+** *Ninguno*
+
+
+. Selecciona *Aplicar*.
+

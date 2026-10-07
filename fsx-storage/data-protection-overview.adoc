@@ -1,0 +1,90 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/data-protection-overview.html 
+keywords: overview 
+summary: FSx for ONTAP admite snapshots, NetApp Autonomous Ransomware with AI, la replicación de volúmenes y los backups en NetApp Workload Factory. 
+---
+= Tipos de protección de datos en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FSx for ONTAP admite snapshots, NetApp Autonomous Ransomware Protection with AI, replicación y backups para la protección de datos. Te recomendamos que utilices una combinación de tipos de protección de datos para prepararte ante lo inevitable y salvaguardar tus datos.
+
+
+
+[[types-of-data-protection]]
+== Tipos de protección de datos
+
+La protección de datos para tus cargas de trabajo te ayuda a garantizar que puedas recuperarte de cualquier pérdida de datos en cualquier momento. Infórmate sobre los tipos de protección de datos antes de seleccionar las funciones que vas a utilizar.
+
+.Instantáneas
+Una instantánea crea una imagen de solo lectura de un momento específico de un volumen dentro del volumen de origen como una copia de instantánea. Puedes usar la copia de instantánea para recuperar archivos individuales o para restaurar todo el contenido de un volumen. Las instantáneas son la base de todos los métodos de backup. La copia de instantánea que se crea en tu volumen se usa para mantener el volumen replicado y el archivo de backup sincronizados con los cambios realizados en el volumen de origen.
+
+.NetApp Protección autónoma contra el ransomware con IA
+NetApp Autonomous Ransomware Protection with AI (ARP/AI) usa análisis de cargas de trabajo en entornos NAS (NFS/SMB) para detectar y alertar sobre actividad anómala que podría ser un ataque de ransomware. Cuando se sospecha un ataque, ARP/AI también crea nuevos snapshots inmutables, además de la protección existente que proporcionan los snapshots programados.
+
+.Replicación
+La replicación crea una copia secundaria de tus datos en otro sistema de archivos FSx for ONTAP y actualiza continuamente los datos secundarios. Tus datos se mantienen actualizados y están disponibles siempre que los necesites, por ejemplo, para la recuperación ante desastres.
+
+Puedes optar por crear tanto volúmenes replicados en otro sistema de archivos FSx for ONTAP como archivos de backup en la nube. O puedes optar por crear solo volúmenes replicados o archivos de backup - tú decides.
+
+.Copias de seguridad
+Puedes crear copias de seguridad de tus datos en la nube con fines de protección y conservación a largo plazo. Si es necesario, puedes restaurar un volumen, una carpeta o archivos individuales desde la copia de seguridad en el mismo sistema de archivos de trabajo o en uno diferente.
+
+El siguiente diagrama muestra una representación visual de la protección de datos para el almacenamiento de FSx for ONTAP mediante snapshots, replicación entre regiones y backup en almacenamiento de objetos.
+
+image:diagram-fsx-data-protection.png["La captura de pantalla muestra la protección de datos del almacenamiento FSx for ONTAP mediante instantáneas, replicación entre regiones y copias de seguridad en almacenamiento de objetos."]
+
+
+
+[[best-practices-for-protecting-your-workload-data]]
+== Buenas prácticas para proteger los datos de tus cargas de trabajo
+
+FSx for ONTAP ofrece múltiples opciones de protección de datos que se pueden combinar para alcanzar los objetivos de punto de recuperación y de tiempo de recuperación que elijas. Para obtener la mejor protección posible, te recomendamos que utilices tanto instantáneas de volumen como copias de seguridad de volumen.
+
+Un objetivo de punto de recuperación (RPO) describe la antigüedad máxima que se garantiza que tendrá la última copia de tus datos, lo cual depende de la frecuencia con la que se realicen las copias. Un objetivo de tiempo de recuperación (RTO) define cuánto tiempo se tarda en restaurar tus datos.
+
+
+
+[[protect-your-workload-data-with-snapshots]]
+== Protege los datos de tus cargas de trabajo con instantáneas
+
+Las instantáneas son versiones virtuales de un volumen en un momento específico que se crean de forma programada. Puedes acceder a las instantáneas mediante los comandos estándar del sistema de archivos. Las instantáneas ofrecen un RPO de tan solo una hora. El RTO depende de la cantidad de datos que se deban restaurar y está limitado principalmente por el límite de rendimiento del volumen. Las instantáneas también permiten a los usuarios restaurar archivos y directorios específicos, lo que reduce aún más el RTO. Las instantáneas solo consumen espacio adicional en el volumen para los cambios realizados en este.
+
+
+
+[[protect-your-workload-data-with-netapp-autonomous-ransomware-protection-with-ai]]
+== Protege los datos de tus cargas de trabajo con NetApp Autonomous Ransomware Protection with AI
+
+NetApp Autonomous Ransomware Protection with AI (ARP/AI) actúa como una importante capa adicional de defensa si el software antivirus no ha logrado detectar una intrusión. Al configurar una política de ARP/AI, la habilitas para todas las máquinas virtuales de almacenamiento y para todos los volúmenes, tanto los existentes como los recién creados. Una vez habilitada, ARP/AI detecta y protege todos los volúmenes y las máquinas virtuales de almacenamiento. Si una extensión de archivo se marca como anómala, deberías evaluar la alerta.
+
+
+
+[[protect-your-workload-data-with-volume-replication]]
+== Protege los datos de tus cargas de trabajo mediante la replicación de volúmenes
+
+La replicación de volúmenes crea una copia de los datos más recientes de un volumen, incluidas todas sus instantáneas, en una región diferente. Si no puedes permitirte unos RTO de varias horas para una operación de restauración completa de un volumen a partir de un backup de volumen, considera realizar una replicación de volumen. Aunque la replicación de volumen garantiza que los datos recientes estén disponibles en otra región para que los uses, tienes que configurar tus clientes para que utilicen el volumen de esa otra región.
+
+
+
+[[protect-your-workload-data-with-backups]]
+== Protege los datos de tus cargas de trabajo con copias de seguridad
+
+Las copias de seguridad de volumen proporcionan copias independientes de un momento específico de tu volumen. Se pueden utilizar para almacenar copias de seguridad antiguas y proporcionar la segunda copia necesaria de tus datos. Las programaciones de copias de seguridad diarias, semanales y mensuales permiten RPO a partir de un día. Las copias de seguridad de volúmenes solo se pueden restaurar en su totalidad. Crear un volumen a partir de una copia de seguridad (RTO) puede tardar desde unas horas hasta varios días, dependiendo del tamaño de la copia de seguridad.
+
+
+
+[[recommendations-for-protecting-your-workload-data]]
+== Recomendaciones para proteger los datos de tus cargas de trabajo
+
+Ten en cuenta las siguientes recomendaciones para proteger los datos de tu carga de trabajo.
+
+* Utiliza la replicación de volúmenes para la recuperación ante desastres: si tu aplicación requiere un RTO bajo, plantéate utilizar la replicación de volúmenes para replicar tus datos a otra región.
+* Utiliza las copias de seguridad de volumen junto con las instantáneas: el uso combinado de ambas funciones garantiza que puedas recuperar tus archivos a partir de las instantáneas y realizar restauraciones completas en caso de pérdida del volumen mediante las copias de seguridad.
+* Define una política de backup de un volumen: asegúrate de que la política de backup cumpla con los requisitos de tu empresa en cuanto a la antigüedad y la frecuencia de las copias de seguridad. Recomendamos mantener un mínimo de dos copias de seguridad diarias para cada volumen.
+* Define una programación de snapshots: es menos probable que las snapshots más antiguas se utilicen para restaurar datos. Te recomendamos que definas una programación de snapshots que tenga en cuenta el menor beneficio de conservar snapshots más antiguas frente al coste de la capacidad adicional para snapshots.
+* Activa una política de ARP/AI para tu sistema de archivos o para volúmenes concretos para añadir una capa adicional de protección a tus datos frente a ataques de ransomware.
+

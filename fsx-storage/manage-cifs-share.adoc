@@ -1,0 +1,103 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-cifs-share.html 
+keywords: cifs, smb, SMB, CIFS, cifs share, change, update, modify, delete, create 
+summary: La gestión del recurso compartido SMB o CIFS de un volumen en Workload Factory incluye la creación, la determinación del acceso de usuarios y grupos y la eliminación. 
+---
+= Gestiona el recurso compartido SMB/CIFS de un volumen en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestionar un recurso compartido SMB/CIFS de un volumen en Workload Factory incluye crear el recurso compartido SMB/CIFS, determinar qué usuarios y grupos tendrán acceso y qué nivel de permisos tendrán, y eliminar el recurso compartido SMB/CIFS.
+
+.Antes de empezar
+Antes de empezar, haz lo siguiente:
+
+* Para gestionar los recursos compartidos SMB/CIFS, debes asociar un enlace. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+* Determina a qué usuarios o grupos vas a dar acceso y qué nivel de permisos les vas a conceder.
+
+
+
+
+[[create-an-smbcifs-share-for-a-volume]]
+== Crear un recurso compartido SMB/CIFS para un volumen
+
+Sigue estos pasos para crear un recurso compartido SMB/CIFS para un volumen.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen para cambiar el recurso compartido SMB.
+. Selecciona *Acciones avanzadas* y luego *Gestionar recursos compartidos SMB/CIFS*.
+. En la página «Gestionar recursos compartidos SMB/CIFS», selecciona *Crear recurso compartido SMB/CIFS*.
+. En el cuadro de diálogo «Crear recurso compartido SMB/CIFS», introduce los siguientes datos:
++
+.. *Nombre*: introduce el nombre del recurso compartido SMB/CIFS.
+.. *Ruta*: define la ruta utilizando el nombre predeterminado del volumen o indica un recurso compartido a un directorio interno.
++
+Las entradas de ruta válidas para el nombre del volumen, por ejemplo "avocado", son las siguientes:
+
++
+*** /avocado
+*** /avocado/folder
+*** /avocado/folder/subfolder
+*** /avocado/file-name
++
+Las entradas de ruta válidas para el nombre del recurso compartido, por ejemplo «Server», son las siguientes:
+
+*** \\Server
+*** \\Server\Projects
+*** \\Server\Projects\Shared resources
+
+
+.. *Permisos*: selecciona «Control total», «Lectura/escritura», «Lectura» o «Sin acceso» y, a continuación, introduce los usuarios o grupos separados por un punto y coma ( ; ). Los nombres de usuarios o grupos distinguen mayúsculas de minúsculas, y el dominio del usuario debe incluirse con el formato "domain\username".
+
+
+. Selecciona *Crear*.
+
+
+
+
+[[change-an-smbcifs-share-for-a-volume]]
+== Modificar un recurso compartido SMB/CIFS para un volumen
+
+Sigue estos pasos para modificar la configuración del recurso compartido SMB/CIFS de un volumen.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En la pestaña *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos que contiene el volumen que deseas actualizar y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Volúmenes*.
+. En la pestaña Volumes, selecciona el menú de acciones del volumen para el que deseas cambiar el recurso compartido SMB.
+. Selecciona *Acciones avanzadas* y luego *Gestionar recursos compartidos SMB/CIFS*.
+. En la página Gestionar recursos compartidos SMB/CIFS, selecciona *Ver y editar*.
+. Modifica los permisos de acceso SMB/CIFS, o los usuarios o grupos a los que quieres dar permisos.
++
+Los cambios podrían provocar que los usuarios o grupos actuales pierdan el acceso al recurso compartido SMB/CIFS.
+
+. Selecciona *Aplicar* para guardar los cambios.
+
+
+
+
+[[delete-an-smbcifs-share-for-a-volume]]
+== Eliminar un recurso compartido SMB/CIFS de un volumen
+
+Sigue estos pasos para eliminar un recurso compartido SMB/CIFS de un volumen.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En la pestaña *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos que contiene el volumen que deseas actualizar y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Volúmenes*.
+. En la pestaña Volumes, selecciona el menú de acciones del volumen para el que deseas cambiar el recurso compartido SMB.
+. Selecciona *Acciones avanzadas* y luego *Gestionar recursos compartidos SMB/CIFS*.
+. En la página Gestionar recursos compartidos SMB/CIFS, selecciona el menú de acciones del recurso compartido SMB/CIFS y, a continuación, selecciona *Eliminar*.
++
+Al eliminar el recurso compartido SMB/CIFS, deja de estar disponible y ya no es accesible para ningún usuario que quiera montarlo.
+
+. En el cuadro de diálogo Eliminar recurso compartido SMB/CIFS, selecciona *Eliminar* para confirmar la eliminación.
+

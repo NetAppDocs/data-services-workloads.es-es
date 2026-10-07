@@ -1,0 +1,135 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-use-project-dashboard.html 
+keywords: dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, volume details, top volumes, capacity utilization, throughput utilization, IOPS utilization, filter dashboard 
+summary: Usa el panel de control de proyectos para supervisar el uso del almacenamiento, filtrar datos por proyectos o equipos y analizar el rendimiento del volumen para optimizar la asignación de recursos. 
+---
+= Usa el panel de proyectos en Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utiliza el panel de control de proyectos para realizar un seguimiento del uso del almacenamiento en tus sistemas de archivos y volúmenes de FSx for ONTAP. Filtra los datos por proyecto, equipo o aplicación. Consulta el rendimiento tanto global como por volumen para planificar mejor la capacidad y utilizar los recursos de almacenamiento de forma más eficiente.
+
+
+
+[[before-you-begin]]
+== Antes de empezar
+
+Deberías tener link:task-configure-project-dashboard.html["filtros personalizados configurados"] para el panel de control de Projects. Si no has configurado filtros personalizados, aún puedes usar los filtros predeterminados (sistema de archivos, tipo de volumen e intervalo de tiempo).
+
+
+
+[[filter-the-dashboard]]
+== Filtra el panel de control
+
+El filtrado te permite centrarte en grupos específicos de recursos de almacenamiento. Esto facilita detectar tendencias, encontrar problemas y crear informes para los stakeholders. Al usar varios filtros juntos, puedes responder a preguntas concretas como: “¿Cuánto almacenamiento está usando el equipo del proyecto ASIC?” o “¿Qué volúmenes en la región US-West tienen el mayor número de IOPS?”
+
+.Acerca de esta tarea
+Puedes filtrar la información mostrada en el panel de control usando una combinación de filtros predeterminados y cualquier filtro personalizado que hayas configurado.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *EDA*.
+. Selecciona *Proyectos*.
+. Selecciona los filtros que quieres aplicar entre las opciones disponibles:
++
+** Filtros predeterminados (sistema de archivos, tipo de volumen, intervalo de tiempo)
+** Cualquier filtro personalizado que hayas configurado
+
+
+. Selecciona el icono de actualización para actualizar la información del panel según los filtros que elijas.
+. Para ver una explicación de la información que se muestra en una tarjeta, selecciona el icono de información de esa tarjeta.
+
+
+
+
+[[view-volume-details]]
+== Ver detalles del volumen
+
+Analizar tanto el rendimiento del volumen total como el de los volúmenes individuales te ayuda a planificar la capacidad y mejorar el rendimiento. La vista Total muestra las tendencias generales. La vista Volumen te ayuda a encontrar volúmenes específicos que puedan necesitar atención, ajustes o más recursos.
+
+
+
+[[view-aggregated-volume-metrics]]
+=== Ver métricas de volumen agregadas
+
+La vista Total muestra las métricas combinadas de todos los volúmenes que se ajustan a tus filtros.
+
+.Pasos
+. Abre la pestaña **Projects** y asegúrate de que la pestaña **Total** está seleccionada. Esta es la vista predeterminada.
+. Revisa las métricas mostradas:
++
+** Capacidad combinada de todos los volúmenes
+** IOPS agregadas
+** Rendimiento agregado
+
+
+. Utiliza esta vista para ver las tendencias y planificar cuánta capacidad necesitarás en el futuro.
+
+
+
+
+[[view-individual-volume-performance]]
+=== Ver el rendimiento de cada volumen
+
+La vista «Volumen» muestra cómo funciona cada volumen a lo largo del tiempo. Destaca los 10 volúmenes principales para cada métrica.
+
+.Pasos
+. En la pestaña **Projects**, selecciona la pestaña **Volume**.
+. Revisa las métricas de volumen:
++
+** *Volumen de capacidad utilizada*: Muestra los volúmenes con mayor capacidad utilizada actualmente
+** *IOPS*: Muestra los volúmenes con el mayor promedio de IOPS durante el periodo de tiempo seleccionado
+** *Rendimiento*: muestra los volúmenes con el mayor rendimiento medio durante el periodo de tiempo seleccionado
++
+
+NOTE: Si tienes más de 10 volúmenes, el resto no aparecerá en la vista detallada.
+
+
+
+. Pasa el ratón por encima de cualquier línea de volumen en los gráficos para ver información detallada:
++
+** *Capacidad utilizada del volumen*: Nombre del volumen, capacidad utilizada en ese momento y capacidad asignada
+** *IOPS*: Nombre del volumen, IOPS medias para el intervalo de tiempo e IOPS máximas para el intervalo de tiempo
+** *Rendimiento*: Nombre del volumen, rendimiento medio para el intervalo de tiempo y rendimiento máximo para el intervalo de tiempo
+
+
+. Utiliza la leyenda para identificar cada volumen. Los mismos volúmenes usan los mismos colores en todas las métricas para que puedas hacerles seguimiento fácilmente.
+
+
+.Resultado
+Utiliza estos datos para:
+
+* Analiza los patrones de uso
+* Detecta posibles cuellos de botella
+* Busca los volúmenes que quizá necesiten ser redimensionados
+* Comprueba qué proyectos o cargas de trabajo consumen más recursos
+
+
+
+
+[[best-practices]]
+== Mejores prácticas
+
+Ten en cuenta estas recomendaciones cuando uses el panel de control de Projects:
+
+* Consulta el panel de control con regularidad para detectar patrones antes de que se conviertan en problemas.
+* Utiliza varios filtros a la vez para responder a preguntas concretas sobre cómo se están utilizando los recursos.
+* Analiza ambas vistas: utiliza Total para planificar la capacidad y Volumen para encontrar y solucionar problemas.
+* Modifica el intervalo de tiempo para comprobar si los cambios son normales o forman parte de una tendencia al alza.
+* Registra los niveles normales de rendimiento para que luego sea más fácil detectar comportamientos inusuales.
+* Utiliza la información que obtengas de los datos para ajustar los recursos, modificar el tamaño de los volúmenes o mejorar el rendimiento antes de que las cargas de trabajo se vean afectadas.
+
+
+
+
+[[related-information]]
+== Información relacionada
+
+* link:learn-project-dashboard.html["Conoce el panel de control Projects"]
+* link:task-configure-project-dashboard.html["Configura el panel de control de proyectos"]
+* link:learn-latency-monitoring.html["Conoce el monitoreo de latencia"]
+

@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: oci/permissions-oci.html 
+keywords: Oracle Cloud Infrastructure NetApp Storage Service,oci nss, permissions, actions 
+summary: Para usar las funciones y los servicios de NetApp Workload Factory, deberás proporcionar permisos para que Workload Factory pueda realizar operaciones en tu entorno en la nube. 
+---
+= Permisos del servicio de almacenamiento OCI NetApp para NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Consulta los permisos necesarios para gestionar los recursos de Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS) con NetApp Workload Factory.
+
+
+
+[[how-workload-factory-uses-oci-netapp-storage-service-permissions]]
+== Cómo utiliza Workload Factory los permisos del servicio de almacenamiento de OCI NetApp
+
+Cuando creas una política entre tenencias que permite que la identidad de Workload Factory entre en tu tenencia, Workload Factory llama a las API de OCI como esa identidad de NetApp, y OCI comprueba cada solicitud con los permisos que concediste.
+
+No compartes las contraseñas de los usuarios ni las claves de API. Solo hay acceso mientras tu política esté vigente.
+
+
+
+[[cross-tenancy-trust]]
+== Confianza entre tenencias
+
+NetApp gestiona el `workload-factory-OCI-SN` grupo en un tenancy de OCI propiedad de NetApp. Estableces una política entre tenancys en el compartimento raíz del tenancy que concede a este grupo un conjunto limitado y explícito de permisos en tu tenancy. Cada llamada a la API de OCI se evalúa con respecto a este contrato en cada solicitud; puedes auditarla y revocarla en cualquier momento.
+
+
+
+[[oci-netapp-storage-service-tenancy]]
+=== Tenencia de OCI NetApp Storage Service
+
+La tenencia predeterminada para OCI NSS es el compartimento raíz de tu tenencia de OCI.
+
+Si quieres, cuando necesites aplicar el principio de «mínimo privilegio», puedes sustituir «in tenancy» por «in compartment» <name> en cada línea.
+
+
+
+[[iam-policies-for-oci-nss]]
+== Políticas de IAM para OCI NSS
+
+Workload Factory accede a tu tenancy de Oracle Cloud Infrastructure (OCI) solo después de que agregues una política entre tenancies que admita el servicio Workload Factory.
+
+Crea esa política en el compartimento raíz de tu tenancy. La política enumera los permisos exactos que Workload Factory tiene permitido usar. Cada solicitud de API se comprueba con ella. Puedes revisar la política en OCI Console y revocarla en cualquier momento para detener el acceso.
+
+Está disponible la siguiente política de permisos.
+
+* *Ver, planificar y analizar*: ve los recursos de OCI NetApp Storage Service, aprende sobre el estado del sistema, obtén el análisis well-architected para tus sistemas y explora los ahorros.
+
+
+Consulta las políticas obligatorias:
+
+.Políticas de permisos para OCI NetApp Storage Service
+[%collapsible]
+====
+[role="tabbed-block"]
+=====
+.Visualiza, planifica y analiza
+--
+[source, text]
+----
+Define tenancy NetAppWF as ocid1.tenancy.oc1..<>
+Define group NetAppOpsWF as ocid1.group.oc1..<>
+Admit group NetAppOpsWF of tenancy NetAppWF to inspect tenancies in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read compartments in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read instance-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read metrics in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read log-content in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to use virtual-network-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read file-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to manage functions-family in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read log-groups in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read netapp-storage-pool in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read netapp-svm in tenancy
+Admit group NetAppOpsWF of tenancy NetAppWF to read netapp-work-request in tenancy
+----
+--
+=====
+====

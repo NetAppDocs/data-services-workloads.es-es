@@ -1,0 +1,147 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/explore-planning-center.html 
+keywords: vm workloads, netapp Workload Factory 
+summary: Puedes usar el centro de planificación de VMware para gestionar los datos de inventario cargados y los planes de migración que has creado. 
+---
+= Explora el centro de planificación de VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El centro de planificación de VMware te permite cargar nuevos datos de inventario de máquinas virtuales y crear nuevos planes de migración, así como gestionar los datos de inventario de máquinas virtuales y los planes de migración que ya hayas guardado con NetApp Workload Factory.
+
+
+
+[[manage-vm-inventory-data]]
+== Gestionar los datos del inventario de máquinas virtuales
+
+Utiliza el centro de planificación para crear y gestionar los datos de inventario de VM.
+
+
+
+[[upload-vm-inventory-data]]
+=== Subir datos del inventario de VM
+
+Puedes subir los datos del inventario de VM cuando estés listo para usar Workload Factory con el fin de explorar opciones de migración a entornos de Amazon AWS. Consulta link:upload-vm-inventory.html["Subir datos del inventario de VM"] para obtener instrucciones.
+
+
+
+[[rename-a-dataset]]
+=== Cambiar el nombre de un conjunto de datos
+
+Puedes cambiar el nombre de un conjunto de datos guardado.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *VMware*.
++
+Se muestra el centro de planificación.
+
+. Selecciona el menú Acciones (...) del conjunto de datos que quieres renombrar y selecciona *Renombrar*.
+. Introduce un nuevo nombre para el conjunto de datos y selecciona *Guardar*.
+
+
+
+
+[[delete-a-dataset]]
+=== Eliminar un conjunto de datos
+
+Cuando ya no necesites un conjunto de datos, puedes eliminarlo en cualquier momento.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *VMware*.
++
+Se muestra el centro de planificación.
+
+. Selecciona el menú «Acciones» (...) del conjunto de datos que quieras eliminar y selecciona *Eliminar*.
+. Selecciona *Delete* para confirmar la acción.
+
+
+
+
+[[manage-migration-plans]]
+== Gestiona los planes de migración
+
+Utiliza el centro de migración para crear y gestionar planes de migración.
+
+
+
+[[provision-a-migration-plan]]
+=== Elaborar un plan de migración
+
+Puedes seleccionar un plan de migración y aprovisionarlo para que las máquinas virtuales se migren al entorno de Amazon AWS que elijas.
+
+.Pasos
+. Inicia sesión en Workload Factory usando una de las https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias en la consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se usa para navegar a cargas de trabajo como almacenamiento, eda, ai, bases de datos, vmware y administración."] y luego selecciona *VMware*.
++
+Se muestra el centro de planificación.
+
+. Selecciona *Planes de migración*.
+. Selecciona el menú Actions (...) del plan de migración que quieras aprovisionar y selecciona *Provision*.
+. En función del plan de migración, consulta las instrucciones para implementar el sistema de archivos:
++
+** link:deploy-fsx-file-system.html["Implementa el sistema de archivos para los planes de Amazon VMware Cloud"]
+** link:deploy-fsx-file-system-native.html["Implementar el sistema de archivos para los planes de Amazon EC2"]
+** link:deploy-fsx-file-system-evs.html["Implementa el sistema de archivos para los planes de Amazon Elastic VMware Service"]
+
+
+
+
+
+
+[[edit-the-comment-for-a-migration-plan]]
+=== Editar el comentario de un plan de migración
+
+Si necesitas cambiar los detalles de un comentario de un plan de migración, edita el comentario desde el centro de planificación.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *VMware*.
++
+Se muestra el centro de planificación.
+
+. Selecciona *Planes de migración*.
+. Selecciona el menú «Acciones» (...) del plan de migración que quieras editar y selecciona *Editar comentario*.
+. Escribe un comentario y selecciona *Guardar*.
+
+
+
+
+[[create-a-pdf-or-csv-report-of-a-migration-plan]]
+=== Crear un informe en formato PDF o CSV de un plan de migración
+
+Crea un informe en formato PDF o CSV con los detalles de un plan de migración.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *VMware*.
++
+Se muestra el centro de planificación.
+
+. Selecciona *Planes de migración*.
+. Selecciona el menú «Acciones» (...) del plan de migración para el que quieres crear un informe en formato PDF o CSV, y selecciona *Descargar plan (PDF)* o *Descargar informe de máquinas virtuales (CSV)*.
+. Introduce un nombre para el informe y selecciona *Guardar*.
+
+
+
+
+[[delete-a-migration-plan]]
+=== Eliminar un plan de migración
+
+Cuando un plan de migración ya no sea necesario, puedes eliminarlo en cualquier momento.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *VMware*.
++
+Se muestra el centro de planificación.
+
+. Selecciona *Planes de migración*.
+. Selecciona el menú «Acciones» (...) del plan de migración que quieres eliminar y selecciona *Eliminar*.
+. Confirma la acción seleccionando *Suprimir*.
+

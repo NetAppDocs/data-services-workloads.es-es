@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/create-block-device.html 
+keywords: create block device, create lun, iscsi protocol 
+summary: 'Crea dispositivos de bloque para satisfacer los requisitos de tus aplicaciones de línea de negocio (LOB).' 
+---
+= Crear un dispositivo de bloques para un sistema de archivos en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Crea dispositivos de bloque para satisfacer los requisitos de tus aplicaciones de línea de negocio (LOB). Puedes crear dispositivos de bloque en un volumen ya existente, crear un nuevo volumen para el nuevo dispositivo de bloque o crear un nuevo volumen a partir de una instantánea para el nuevo dispositivo de bloque.
+
+.Acerca de esta tarea
+Solo se admiten volúmenes FlexVol para dispositivos de bloque en NetApp Workload Factory. Puedes crear dispositivos de bloque utilizando el protocolo iSCSI.
+
+El tamaño del bloque debe ser inferior al tamaño disponible del volumen FlexVol.
+
+.Antes de empezar
+* Debes asociar un enlace para crear dispositivos de bloque. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de asociar el enlace, vuelve a esta operación.
+
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En FSx for ONTAP, selecciona el sistema de archivos para el que quieres crear un dispositivo de bloque y, a continuación, selecciona la pestaña *Block devices*.
+. Selecciona *Crear dispositivo de bloque*.
+. En *Detalles del volumen*, haz lo siguiente:
++
+.. *Nombre del volumen*: selecciona una de las siguientes opciones.
++
+*** Crea un nuevo volumen e introduce el nombre del volumen.
+*** Selecciona un volumen existente.
+*** Crear a partir de una instantánea de volumen. Selecciona el nombre del volumen de origen y el nombre de la instantánea. Solo están disponibles los volúmenes sin dispositivos de bloques.
+
+
+.. *Nombre del agregado*: Selecciona el agregado para alojar el nuevo volumen.
+.. *Máquina virtual de almacenamiento*: selecciona una máquina virtual de almacenamiento.
+.. *Estilo de volumen*: el estilo de volumen predeterminado es *FlexVol*.
+.. *Tamaño del volumen*: introduce el tamaño del volumen y selecciona la unidad. El tamaño máximo por volumen de FlexVol es de 100 TiB.
+.. *Crecimiento automático de volúmenes*: si lo deseas, activa el crecimiento automático de volúmenes para que el volumen aumente de tamaño automáticamente cuando alcance su capacidad. El tamaño máximo de crecimiento es de 300 TiB.
+.. *Etiquetas*: si lo deseas, añade etiquetas para organizar y clasificar mejor tu dispositivo de bloque.
+
+
+. En *Detalles del dispositivo de bloque*, haz lo siguiente:
++
+.. *Nombre del dispositivo de bloque*: introduce un nombre para el dispositivo de bloque.
+.. *Tamaño del dispositivo de bloque*: introduce el tamaño del dispositivo de bloque y selecciona la unidad. El tamaño del dispositivo de bloque debe ser inferior al tamaño del volumen disponible.
+
+
+. En la sección *Acceso*, haz lo siguiente:
++
+.. *Configuración de iSCSI*: selecciona una de las siguientes opciones.
++
+*** *Crear un nuevo grupo de iniciadores*: indica el sistema operativo del host, el nombre del grupo de iniciadores y añade uno o varios iniciadores de host con nombre cualificado iSCSI (IQN).
+*** *Asignar un grupo de iniciadores existente*: selecciona un grupo de iniciadores existente, indica el sistema operativo del host y selecciona uno o varios iniciadores de host con nombre calificado iSCSI (IQN).
+
+
+
+
+. En la sección *Eficiencia y protección*, haz lo siguiente:
++
+.. *Eficiencia de almacenamiento*: activada por defecto. Selecciona para desactivar la función.
++
+ONTAP logra la eficiencia del almacenamiento mediante funciones de deduplicación y compresión. La deduplicación elimina los bloques de datos duplicados. La compresión de datos comprime los bloques de datos para reducir la cantidad de almacenamiento físico necesario.
+
+.. *Política de SnapVault*: selecciona la política de SnapVault para especificar la frecuencia y el periodo de retención de las instantáneas.
++
+A continuación se indican las políticas predeterminadas de AWS. Para mostrar las políticas de snapshot existentes, debes link:create-link.html["asociar un enlace"^].
+
++
+`default`:: Esta política crea automáticamente instantáneas según el siguiente calendario, y las copias de instantáneas más antiguas se eliminan para dejar espacio a las más recientes:
++
+--
+*** Un máximo de seis instantáneas por hora, tomadas a los cinco minutos de cada hora.
+*** Un máximo de dos instantáneas diarias tomadas de lunes a sábado 10 minutos después de la medianoche.
+*** Un máximo de dos instantáneas semanales tomadas todos los domingos 15 minutos después de la medianoche.
++
+
+NOTE: Las horas de las instantáneas se basan en la zona horaria del sistema de archivos, que por defecto es el Tiempo Universal Coordinado (UTC). Para obtener información sobre cómo cambiar la zona horaria, consulta link:https://library.netapp.com/ecmdocs/ECMP1155684/html/GUID-E26E4C94-DF74-4E31-A6E8-1D2D2287A9A1.html["Cómo visualizar y configurar la zona horaria del sistema"^] en la documentación de soporte de NetApp.
+
+
+
+--
+`default-1weekly`:: Esta política funciona de la misma manera que la `default` política, salvo que solo conserva una instantánea de la programación semanal.
+`none`:: Esta política no realiza ninguna instantánea. Puedes asignar esta política a los volúmenes para evitar que se realicen instantáneas automáticas.
+
+
+.. *Política de organización en niveles*: selecciona la política de organización en niveles para los datos almacenados en el volumen.
++
+_Equilibrado (Automático)_ es la política de almacenamiento por niveles predeterminada al crear un volumen mediante la consola de Workload Factory. Para obtener más información sobre las políticas de almacenamiento por niveles de volúmenes, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacidad de almacenamiento de volumen"^] en la documentación de AWS FSx for NetApp ONTAP. Ten en cuenta que Workload Factory usa nombres basados en casos de uso en la consola de Workload Factory para las políticas de almacenamiento por niveles e incluye los nombres de las políticas de almacenamiento por niveles de FSx for ONTAP entre paréntesis.
+
+.. *ARP/AI*: NetApp la protección autónoma contra ransomware con IA (ARP/AI) está activada de forma predeterminada cuando se asocia un enlace con el sistema de archivos. link:ransomware-protection.html["Más información sobre ARP/AI"]. Acepta la declaración para continuar.
++
+Si la función no está disponible, se debe a una de las siguientes razones:
+
++
+*** Un enlace no está asociado al sistema de archivos. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+*** Los volúmenes con archivos inmutables y los volúmenes con el protocolo NVMe no son compatibles con ARP/AI.
+*** El sistema de archivos ya cuenta con una política ARP/AI.
+
+
+
+
+. Selecciona *Crear*.
+
+
+.Información relacionada
+link:manage-block-storage.html["Administra el almacenamiento de bloques para un sistema de archivos FSx for ONTAP"]

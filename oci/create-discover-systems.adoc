@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: oci/create-discover-systems.html 
+keywords: Amazon FSx for NetApp ONTAP, fsx, volumes, create system, delete system, access key, secret key, region, availability zones, discover, storage capacity, iops, throughput, security group, security, NetApp Console, Oracle Cloud Infrastructure NetApp Storage Service 
+summary: Crea o descubre sistemas de almacenamiento en la nube para añadir y gestionar volúmenes y servicios de datos adicionales desde NetApp Console. 
+---
+= Crea o descubre sistemas de Oracle Cloud Infrastructure NetApp Storage Service en NetApp Console
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Descubre los sistemas de Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS) y gestiona volúmenes y servicios de datos adicionales desde NetApp Console.
+
+
+
+[[discover-an-existing-cloud-storage-system]]
+== Descubre un sistema de almacenamiento en la nube existente
+
+Descubre tus sistemas de almacenamiento en la página «Discoverable systems».
+
+.Antes de empezar
+Introduce tus credenciales para tu entorno OCI NSS en Workload Factory.
+
+.Acerca de esta tarea
+Solo puedes detectar un sistema de almacenamiento en la nube una vez dentro de una cuenta y asociarlo a un espacio de trabajo. Más adelante, puedes eliminar el sistema de almacenamiento y volver a asociarlo a otro espacio de trabajo.
+
+.Pasos
+. En el menú de NetApp Console, selecciona *Storage*, luego *Management* y, a continuación, *Discoverable systems*.
+. Se muestra el número de sistemas de almacenamiento en la nube detectados. Selecciona *Discover*.
+. Selecciona uno o varios sistemas de almacenamiento y selecciona *Discover* para añadirlos a la página Systems.
+
+
+[NOTE]
+====
+* Si seleccionas un sistema de almacenamiento sin nombre, aparecerá un mensaje pidiéndote que introduzcas un nombre para el sistema.
+* Si seleccionas un sistema de almacenamiento que no tiene las credenciales necesarias para gestionarlo desde Console, recibirás un mensaje para que selecciones credenciales con los permisos necesarios.
+
+
+====
+.Resultado
+La consola muestra tu sistema detectado en la página Systems. Puedes gestionar tus sistemas de almacenamiento de varias formas, por ejemplo, desde Workloads en la NetApp Console y usando ONTAP System Manager o las herramientas de gestión de almacenamiento de tu proveedor de nube.

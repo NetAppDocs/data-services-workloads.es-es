@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, enhancements, fixes' 
+summary: Descubre las novedades de Workload Factory en la NetApp Console, como actualizaciones y mejoras para la gestión de cargas de trabajo, la administración de servicios, las funciones de almacenamiento, los permisos y mucho más. 
+---
+= Novedades de Workload Factory en NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Descubre las novedades de Workload Factory en la NetApp Console, como actualizaciones y mejoras para la gestión de cargas de trabajo, la administración de servicios, las funciones de almacenamiento, los permisos y mucho más.
+
+
+
+[[30-september-2026]]
+== 30 de septiembre de 2026
+
+
+
+[[initial-release-of-oracle-cloud-infrastructure-netapp-storage-service-for-workload-factory]]
+=== Lanzamiento inicial de Oracle Cloud Infrastructure NetApp Storage Service for Workload Factory
+
+La versión inicial de OCI NetApp Storage Service (OCI NSS) para Workload Factory ofrece funciones de incorporación, detección de sistemas, gestión de credenciales y creación y asociación de enlaces. Para solicitar acceso a OCI NSS, abre un ticket de soporte con Oracle.
+
+
+
+[[workload-factory-documentation-for-netapp-console-users]]
+=== Documentación de Workload Factory para usuarios de NetApp Console
+
+Puedes encontrar documentación detallada sobre Workload Factory en NetApp Console, incluidas guías sobre la incorporación, la detección de sistemas, la gestión de credenciales y la creación y asociación de enlaces.

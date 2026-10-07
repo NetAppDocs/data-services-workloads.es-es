@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: oci/learn-about-oci.html 
+keywords: Oracle Cloud Infrastructure NetApp Storage Service, OCI NetApp Storage Service, Oracle Cloud storage, storage, oci nss 
+summary: OCI NetApp Storage Service es un servicio completamente gestionado que permite a los clientes crear y gestionar pools de almacenamiento como backend de almacenamiento para tus cargas de trabajo dentro de Workload Factory. 
+---
+= Más información sobre OCI NetApp Storage Service en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS) es un servicio de almacenamiento de datos basado en cloud y totalmente gestionado que ofrece capacidades avanzadas de gestión de datos y un rendimiento altamente escalable. OCI NSS te permite crear y gestionar pools de almacenamiento como backend de almacenamiento para todas tus cargas de trabajo dentro de NetApp Workload Factory.
+
+OCI NSS ofrece las mismas funciones, el mismo rendimiento y las mismas capacidades administrativas que los clientes NetApp utilizan actualmente en sus instalaciones, con la simplicidad, la agilidad, la seguridad y la escalabilidad de un servicio nativo de Oracle Cloud.
+
+OCI NSS es el componente de _almacenamiento_ en Workload Factory.
+
+
+
+[[features]]
+== Funciones
+
+OCI NSS ofrece las siguientes características:
+
+* *Servicio totalmente gestionado*: ofrece un servicio totalmente gestionado integrado con la consola de Workload Factory.
+* *Alta disponibilidad*: ofrece alta disponibilidad para cada pool de almacenamiento OCI NSS y admite implementaciones de zona de disponibilidad única y múltiple.
+* *Instantáneas automáticas*: protege los datos mediante instantáneas automáticas y eficientes, que son copias de solo lectura de un momento específico, casi instantáneas y con gestión eficiente del espacio, del grupo de almacenamiento o de los volúmenes.
+* *Replicación de volúmenes*: ofrece recuperación ante desastres mediante la replicación entre regiones en Oracle Cloud Infrastructure.
+* *Copias de seguridad eficientes*: añade una capa adicional de protección mediante una copia de los datos en otra región para casos de emergencia.
+* *Clonación rápida*: acelera el desarrollo de aplicaciones gracias a la clonación rápida.
+* *Compatibilidad con múltiples protocolos*: es compatible con los protocolos NFS (Network File System), SMB (Server Message Block) e iSCSI (Internet Small Computer Systems Interface).
+* *Alto rendimiento*: ofrece un alto rendimiento para garantizar bajas latencias en las cargas de trabajo que se ejecutan sobre los sistemas de archivos OCI NSS.
+* *Caché en memoria y caché NVMe*: incluye una caché en memoria y una caché NVMe únicas, que potencian el rendimiento de los datos a los que se accede con frecuencia.
+* *Cientos de miles de IOPS*: ofrece cientos de miles de IOPS con discos SSD, lo que garantiza que tu almacenamiento y tus cargas de trabajo obtengan resultados en el momento oportuno.
+* *Thin Provisioning*: permite aprovisionar capacidad por adelantado, lo que supone un ahorro de costes hasta que se necesite más capacidad.
+* *Deduplicación y compresión de datos*: elimina los datos duplicados y comprime los datos para reducir la cantidad de almacenamiento físico necesaria para los sistemas de archivos OCI NSS, lo que se traduce en un ahorro de costes.
+* *Clasificación por niveles de datos*: permite reducir los costes de almacenamiento moviendo los datos a los que se accede con menos frecuencia del nivel de almacenamiento SSD principal, de alto rendimiento, al nivel de almacenamiento secundario del pool de capacidad.
+
+
+
+
+[[tools-to-use-netapp-workload-factory]]
+== Herramientas para usar NetApp Workload Factory
+
+Puedes utilizar NetApp Workload Factory con las siguientes herramientas:
+
+* *NetApp Console*: NetApp Console ofrece una experiencia de interfaz híbrida para que puedas usar Workload Factory junto con otros servicios de datos de NetApp.
+* *Ask Me*: utiliza el asistente de IA Ask Me para hacer preguntas y obtener más información sobre Workload Factory sin salir de la consola de Workload Factory. Accede a Ask Me desde la interfaz de usuario de Workload Factory.
+* *CloudShell CLI*: Workload Factory incluye una CLI de CloudShell para gestionar y operar entornos de AWS y NetApp entre cuentas desde una única CLI basada en navegador. Accede a CloudShell desde la barra superior de la consola de Workload Factory.
+* *API de REST*: utiliza las API de REST de Workload Factory para implementar y gestionar tus sistemas y recursos de OCI NSS.
+* *Oracle Cloud Infrastructure (OCI) Resource Manager*: utiliza OCI Resource Manager para llevar a cabo las acciones que hayas definido en la consola de Workload Factory con el fin de modelar, aprovisionar y gestionar recursos de OCI y de terceros desde la pila de Resource Manager de tu cuenta de OCI.
+* *NetApp Terraform provider*: utiliza Terraform para crear y gestionar los flujos de trabajo de infraestructura generados en la consola de Workload Factory.
+
+
+
+
+[[getting-help]]
+== Cómo obtener ayuda
+
+Si tienes preguntas generales sobre Workload Factory o sobre las aplicaciones y servicios de Workload Factory, consulta link:../get-help.html["Obtén ayuda con OCI NSS para Workload Factory"].

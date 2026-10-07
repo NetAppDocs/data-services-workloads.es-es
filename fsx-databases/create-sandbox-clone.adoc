@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-sandbox-clone.html 
+keywords: create, clone, sandbox 
+summary: Crea un clon de entorno de pruebas en NetApp Workload Factory for Databases. 
+---
+= Crear un clon de sandbox en NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Crear un clon de entorno de pruebas de una base de datos en NetApp Workload Factory for Databases te permite usar el clon para desarrollo, pruebas, integración, análisis, formación, control de calidad y mucho más sin alterar la base de datos de origen.
+
+.Acerca de esta tarea
+Se crea un clon de entorno de pruebas a partir de la instantánea más reciente de la base de datos de origen. Puede clonarse en el mismo Microsoft SQL Server que la base de datos de origen o en otro Microsoft SQL Server siempre y cuando ambos compartan el mismo sistema de archivos FSx for ONTAP.
+
+.Antes de empezar
+Asegúrate de cumplir los siguientes requisitos previos antes de crear un clon del entorno de pruebas.
+
+* *Credenciales y permisos*: Debes tener link:../fsx-storage/add-credentials.html["Credenciales de la cuenta de AWS y permisos de _operaciones y remediación_"^] para crear un clon de entorno de pruebas en Workload Factory.
++
+Como alternativa, puedes usar Codebox para copiar una plantilla completada parcialmente o crear una plantilla completa para que puedas crear el clon de sandbox fuera de Workload Factory mediante la API de REST. link:../admin/codebox-automation.html["Más información sobre la automatización de Codebox"^].
+
+* *Microsoft SQL Server*: debes disponer de un servidor Microsoft SQL Server gestionado en Workload Factory for Databases para alojar el nuevo clon de entorno de pruebas.
+* *AWS Systems Manager*: asegúrate de que el `NT Authority\SYSTEM` privilegio de usuario esté habilitado en el host de Microsoft SQL a través de AWS Systems Manager.
+* *Base de datos de origen*: necesitas disponer de una base de datos de origen para realizar la clonación.
+
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Bases de datos*.
+. En Databases, selecciona la pestaña *Sandboxes*.
+. En la pestaña «Sandboxes», selecciona *Crear nuevo sandbox*.
+. En la página «Crear nuevo entorno de pruebas», en el apartado «Origen de la base de datos», introduce lo siguiente:
++
+.. *Host de la base de datos de origen*: selecciona el host de la base de datos de origen.
+.. *Instancia de base de datos de origen*: selecciona la instancia de base de datos de origen.
+.. *Base de datos de origen*: selecciona la base de datos de origen desde la que deseas clonar.
+
+
+. En el apartado «Base de datos de destino», introduce lo siguiente:
++
+.. *Host de base de datos de destino*: selecciona un host de base de datos de destino para el clon del entorno de pruebas que esté en la misma VPC y tenga el mismo sistema de archivos FSx for ONTAP que el host de origen.
+.. *Instancia de base de datos de destino*: selecciona la instancia de base de datos de destino para el clon del entorno de pruebas.
+.. *Base de datos de destino*: introduce un nombre para el clon del entorno de pruebas.
+
+
+. *Montar*: al clonar una base de datos SQL que contiene varios archivos de datos y/o de registro, Workload Factory clona todos los archivos bajo la letra de unidad asignada automáticamente o definida.
++
+Selecciona una de las siguientes opciones:
+
++
+.. *Asignar automáticamente el punto de montaje*
+.. *Definir la ruta del punto de montaje*
++
+Introduce los siguientes datos para definir la ruta del punto de montaje:
+
++
+*** Introduce la letra de la unidad correspondiente a la ruta del archivo de datos.
+*** Introduce la letra de la unidad para la ruta del archivo de registro.
+
+
+
+
+. *Definir etiqueta*: selecciona una etiqueta para definir el clon del entorno de pruebas.
+. Haz clic en *Crear*.
+
+
+Para comprobar el progreso del trabajo, ve a la pestaña *Supervisión de trabajos*.

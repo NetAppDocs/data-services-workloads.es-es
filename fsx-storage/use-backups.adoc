@@ -1,0 +1,95 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-backups.html 
+keywords: create backup, volume backup, back up a volume, FSx for ONTAP backup, manual backup, restore from a backup, restore volume 
+summary: Protege los datos de tus volúmenes contra el borrado accidental, la corrupción y otros incidentes de pérdida de datos creando y restaurando copias de seguridad en NetApp Workload Factory. 
+---
+= Utiliza copias de seguridad para proteger los datos en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Protege los datos de tus volúmenes contra el borrado accidental, la corrupción y otros incidentes de pérdida de datos creando y restaurando copias de seguridad en NetApp Workload Factory. Puedes configurar una programación de copias de seguridad, crear una copia de seguridad bajo demanda de un volumen al margen de tus copias de seguridad programadas habitualmente y restaurar un volumen a partir de una copia de seguridad existente en cualquier sistema de archivos FSx for ONTAP de tu cuenta de AWS.
+
+
+
+[[create-an-on-demand-backup-of-a-volume]]
+== Crear una copia de seguridad bajo demanda de un volumen
+
+Crea una copia de seguridad manual de un volumen fuera de las copias de seguridad programadas regularmente en NetApp Workload Factory.
+
+.Acerca de esta tarea
+Las copias de seguridad de volúmenes son por volumen, así que cada copia de seguridad contiene solo los datos de un volumen en particular.
+
+Las copias de seguridad de volumen son incrementales, lo que significa que solo se guardan los datos del volumen que han cambiado después de tu copia de seguridad más reciente. Esto minimiza el tiempo necesario para crear la copia de seguridad y el almacenamiento requerido para la copia, lo que ahorra en costos de almacenamiento al no duplicar datos.
+
+.Antes de empezar
+Para realizar copias de seguridad de tus volúmenes, tanto el volumen como el sistema de archivos deben disponer de suficiente capacidad de almacenamiento SSD disponible para almacenar la instantánea de copia de seguridad. Al crear una instantánea de copia de seguridad, la capacidad de almacenamiento adicional que consume dicha instantánea no debe hacer que el volumen supere el 98 % de utilización del almacenamiento SSD. Si esto ocurre, la copia de seguridad fallará.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen del que deseas realizar una copia de seguridad.
+. Selecciona *Acciones de protección de datos*, *Copias de seguridad de volumen* y luego *Copia de seguridad manual*.
+. En el cuadro de diálogo «Copia de seguridad manual», introduce un nombre para la copia de seguridad.
+. Selecciona *Copia de seguridad*.
+
+
+
+
+[[manage-the-backup-schedule-for-an-fsx-for-ontap-file-system]]
+== Gestiona la programación de copias de seguridad de un sistema de archivos FSx for ONTAP
+
+Gestionar la programación de copias de seguridad de un sistema de archivos FSx for ONTAP en NetApp Workload Factory.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos para el que quieres actualizar la programación de copias de seguridad y, a continuación, selecciona *Manage*.
+. En Información, selecciona el icono del lápiz junto a *Copias de seguridad de volúmenes*. El icono del lápiz aparece junto a la flecha desplegable cuando el ratón pasa por encima de la fila *Copias de seguridad de volúmenes*.
+. En el cuadro de diálogo *Copias de seguridad de volúmenes*, proporciona lo siguiente:
++
+.. *Copias de seguridad automáticas diarias*: activa o desactiva la función. Si desactivas la función, selecciona *Aplicar*. Si activas la función, completa los siguientes pasos.
+.. *Período de conservación de las copias de seguridad automáticas*: introduce el número de días durante los que se conservarán las copias de seguridad automáticas.
+.. *Ventana de copia de seguridad automática diaria*: selecciona *Sin preferencia* (se seleccionará por ti una hora de inicio diaria para la copia de seguridad) o *Seleccionar hora de inicio para las copias de seguridad diarias* y especifica una hora de inicio.
+.. *Ventana de mantenimiento semanal*: selecciona *Sin preferencia* (el sistema te asignará automáticamente una hora de inicio para la ventana de mantenimiento semanal) o *Seleccionar hora de inicio para una ventana de mantenimiento semanal de 30 minutos* y especifica una hora de inicio.
+
+
+. Selecciona *Aplicar*.
+
+
+
+
+[[restore-a-volume-from-a-backup-in-netapp-workload-factory]]
+== Restaura un volumen desde una copia de seguridad en NetApp Workload Factory
+
+En NetApp Workload Factory, puedes restaurar un volumen desde una copia de seguridad a cualquier sistema de archivos FSx for ONTAP de tu cuenta de AWS.
+
+Workload Factory determina si tienes suficiente capacidad para la restauración y puede añadir automáticamente capacidad al nivel de almacenamiento SSD si no la tienes.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen que deseas restaurar desde una copia de seguridad.
+. Selecciona *Acciones de protección de datos*, *Copias de seguridad de volúmenes* y luego *Restaurar a partir de una copia de seguridad*.
+. En el cuadro de diálogo «Restaurar desde una copia de seguridad», introduce lo siguiente:
++
+.. *Sistema de archivos de destino*: selecciona el sistema de archivos de destino en el menú desplegable.
+.. *Máquina virtual de almacenamiento de destino*: selecciona la máquina virtual de almacenamiento de destino en el menú desplegable.
+.. *Nombre de la copia de seguridad*: selecciona el nombre de la copia de seguridad del menú desplegable.
+.. *Nombre del volumen restaurado*: introduce el nombre del volumen restaurado.
+
+
+. Comprueba la capacidad del sistema de archivos para la operación de restauración.
++
+Cuando la capacidad del sistema de archivos es limitada, pueden producirse las siguientes situaciones:
+
++
+** La restauración puede hacer que la capacidad utilizada supere el umbral que hayas especificado. Puedes completar la operación de restauración. Considera link:adjust-file-system-capacity.html["añadir manualmente capacidad del nivel de almacenamiento SSD"] o seleccionar Workload Factory para añadir automáticamente capacidad del nivel de almacenamiento SSD.
+** La restauración requiere capacidad adicional de SSD. Para continuar, debes seleccionar que Workload Factory añada automáticamente capacidad al nivel de almacenamiento SSD.
+
+
+. Selecciona *Restaurar*.
+

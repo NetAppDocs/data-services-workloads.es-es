@@ -1,0 +1,101 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-volume-settings.html 
+keywords: volume tags, edit volume tags, edit tags, enable immutable files, disable immutable files, lock files, unlock files, storage efficiency change, update storage efficiency 
+summary: Las etiquetas pueden ayudarte a clasificar tus recursos. Puedes añadir, editar y eliminar etiquetas de volumen en cualquier momento en los volúmenes de FSx for ONTAP. 
+---
+= Gestiona la configuración de volúmenes en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Personaliza la configuración de volúmenes de FSx para ONTAP en NetApp Workload Factory para adaptarla a las necesidades de tu organización. Puedes gestionar las etiquetas de los volúmenes para clasificar los recursos, actualizar la configuración de eficiencia del almacenamiento para optimizar el espacio y el ahorro de costes, y gestionar la configuración de archivos inmutables para controlar la retención de datos y protegerlos frente a cambios no autorizados.
+
+
+
+[[manage-volume-tags]]
+== Gestionar etiquetas de volumen
+
+Las etiquetas pueden ayudarte a clasificar tus recursos. Puedes añadir, editar y eliminar etiquetas de volumen en cualquier momento para los volúmenes de FSx for ONTAP en NetApp Workload Factory.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen para modificar las etiquetas.
+. Selecciona *Acciones básicas* y luego *Editar etiquetas de volumen*.
+. En la página «Editar etiquetas del volumen», puedes añadir, editar o eliminar etiquetas.
++
+El número máximo de etiquetas que puedes aplicar a un volumen es 50.
+
+. Selecciona *Aplicar*.
+
+
+
+
+[[update-volume-storage-efficiency]]
+== Actualizar la eficiencia de almacenamiento por volumen
+
+Actualiza la configuración de eficiencia de almacenamiento después de la creación del volumen.
+
+La función de eficiencia del almacenamiento incluye la deduplicación, la compresión de datos y la compactación de datos para lograr un ahorro óptimo de espacio en un FlexVol volume. La deduplicación elimina los bloques de datos duplicados. La compresión de datos comprime los bloques de datos para reducir la cantidad de almacenamiento físico necesaria. La compactación de datos almacena más datos en menos espacio para aumentar la eficiencia del almacenamiento.
+
+Si al crear un volumen decidiste no activar la eficiencia de almacenamiento, puedes activar esta opción en cualquier momento para obtener un posible ahorro de espacio y costes.
+
+Los volúmenes usan aprovisionamiento ligero tanto si activas como si desactivas la eficiencia del almacenamiento.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen para el que quieras actualizar la configuración de eficiencia de almacenamiento.
+. Selecciona *Acciones avanzadas* y luego *Configurar la eficiencia de almacenamiento*.
+. Elige si quieres activar o desactivar la eficiencia de almacenamiento del volumen.
+. Selecciona *Aplicar* para guardar el cambio.
+
+
+
+
+[[manage-immutable-files-for-a-volume-in-netapp-workload-factory]]
+== Gestiona archivos inmutables para un volumen en NetApp Workload Factory
+
+Puedes actualizar ciertos ajustes de archivos inmutables de un volumen cuando la función está activada, como la política de retención y los períodos de retención, el período de autocommit y el modo de anexado del volumen.
+
+Ten en cuenta que solo puedes habilitar los archivos inmutables durante link:create-volume.html["creación de un volumen"].
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen que deseas actualizar.
+. Selecciona *Acciones de protección de datos* y, a continuación, *Gestionar archivos inmutables*.
+. En la página «Gestionar archivos inmutables», puedes actualizar lo siguiente:
++
+** *Período de retención*: selecciona *Sin especificar* o *Especificar período*.
++
+*** *Sin especificar*: el plazo mínimo por defecto es «0» años y el plazo máximo por defecto es «30 años».
+*** *Especificar periodo*: opción para definir la política de retención, los periodos mínimo y máximo, la función de autocommit y la función de modo append del volumen. Indica los siguientes datos:
++
+**** *Política de retención*: este plazo debe ser mayor o igual que el plazo mínimo de retención y menor o igual que el plazo máximo de retención.
+**** *Períodos mínimos y máximos*: establece los períodos mínimos y máximos para que los archivos de este volumen pasen a un estado WORM inmutable.
+
+
+
+
+** *Autocommit*: activa o desactiva la función que permite guardar automáticamente en WORM los archivos que no se hayan modificado durante el periodo de Autocommit.
+** *Eliminación con privilegios*: activa o desactiva la función. Al activar la función, un administrador de SnapLock puede eliminar un volumen WORM que aún no ha caducado. Esta función solo es compatible con el modo de retención Enterprise.
+** *Modo de anexión de volumen*: activa o desactiva la función. Al activar el modo de anexión de volumen, podrás añadir nuevo contenido a los archivos WORM.
+
+
+. Haz clic en *Aplicar*.
+
+
+
+
+[[related-information]]
+== Información relacionada
+
+* link:create-volume.html["Crear un volumen en Workload Factory"]
+* link:manage-volume-capacity.html["Gestiona la capacidad de volumen en Workload Factory"]
+* link:change-tiering-policy.html["Cambiar la política de organización en niveles del volumen en Workload Factory"]
+* link:manage-s3-access-points.html["Gestionar los puntos de acceso de S3 en Workload Factory"]
+

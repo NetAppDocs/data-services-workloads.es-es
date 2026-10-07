@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: setup/learn-about-permissions.html 
+keywords: permissions, actions 
+summary: Para usar las funciones y los servicios de NetApp Workload Factory, deberás proporcionar permisos para que Workload Factory pueda realizar operaciones en tu entorno en la nube. 
+---
+= Permisos para NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para usar las funciones y los servicios de NetApp Workload Factory, deberás proporcionar permisos para que Workload Factory pueda realizar operaciones en tu entorno en la nube.
+
+
+
+[[why-use-permissions]]
+== Por qué usar permisos
+
+Cuando otorgas permisos, Workload Factory asocia una política a la instancia con permisos para gestionar recursos y procesos dentro de tu cuenta del proveedor de servicios en la nube. Esto permite a Workload Factory ejecutar diversas operaciones desde el descubrimiento de tus entornos de almacenamiento hasta la implementación de recursos en la nube como volúmenes en la gestión del almacenamiento.
+
+Por ejemplo, para las cargas de trabajo de bases de datos de FSx for ONTAP, cuando Workload Factory recibe los permisos necesarios, analiza todas las instancias de EC2 de una cuenta y una región determinadas, y filtra todas las máquinas basadas en Windows. Si AWS Systems Manager (SSM) Agent está instalado y en ejecución en el host, y la red de System Manager está configurada correctamente, Workload Factory puede acceder a la máquina Windows y comprobar si el software de SQL Server está instalado o no.
+
+
+
+[[how-permissions-are-used]]
+== Cómo se usan los permisos
+
+Workload Factory utiliza permisos para realizar determinadas tareas. Los permisos se agrupan en un conjunto de políticas de permisos. Las políticas de permisos aparecen en link:../admin/codebox-automation.html["el Codebox"] y son JSON que se puede copiar. Cada proveedor de nube tiene su propio conjunto de políticas de permisos adaptadas a los requisitos y capacidades específicos de ese entorno de nube. Esta documentación proporciona referencias de permisos para cada proveedor de nube.
+
+
+
+[[permission-references-by-cloud-provider]]
+=== Referencias de permisos por proveedor de nube
+
+Consulta las siguientes páginas para conocer los requisitos de permisos de tu proveedor de servicios en la nube:
+
+* link:../fsx-storage/permissions-reference-fsx.html["Amazon FSx for NetApp ONTAP"]
+* link:../oci/permissions-oci.html["OCI NetApp Storage Service"]
+

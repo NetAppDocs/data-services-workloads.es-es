@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-custom-rules.html 
+keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
+summary: Ver, activar, desactivar y eliminar reglas arquitectónicas personalizadas del catálogo de reglas. 
+---
+= Gestiona reglas personalizadas para NetApp Workload Factory
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+El catálogo de reglas es el lugar donde puedes gestionar todas tus reglas personalizadas. Puedes consultar los detalles de cada regla, comprobar sus resultados y activarla o desactivarla.
+
+
+
+[[view-the-rules-catalog]]
+== Ver el catálogo de reglas
+
+El catálogo de reglas muestra todas las reglas que has creado, su estado, su programación y los últimos resultados.
+
+.Pasos
+. Inicia sesión usando una de las link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias en la consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y luego selecciona *Generador de reglas*.
+. Haz clic en *Ver tus reglas* para abrir el catálogo de reglas.
+
+
+
+
+[[view-rule-results]]
+== Ver los resultados de la regla
+
+Los resultados muestran qué recursos cumplen tu norma y cuáles no.
+
+.Pasos
+. En el catálogo de reglas, haz clic en la regla que quieras revisar.
+. Selecciona la pestaña *All runs results*.
+. Selecciona **Ver detalles** para ver los resultados de cada ejecución.
+
+
+Si la comprobación ha fallado en algunos elementos, lee el mensaje de error para ver por qué. Las causas más habituales son problemas de conexión, falta de permisos o un enlace que no se ha configurado.
+
+
+
+[[edit-a-custom-rule]]
+== Editar una regla personalizada
+
+Puedes modificar la lógica, la programación u otros ajustes de una regla en cualquier momento. Cuando editas una regla, el generador de reglas se abre con los ajustes actuales de la regla.
+
+.Pasos
+. En el catálogo de reglas, haz clic en la regla que quieras editar.
+. Haz clic en *Editar*.
++
+La regla cambia al modo de borrador y se abre el generador de reglas.
+
+. Edita el mensaje de la regla o usa la conversación para mejorar la regla.
+. Revisa la interpretación actualizada de la IA y la definición de la regla.
++
+El sistema muestra qué ha cambiado con respecto a la regla actual, incluida cualquier llamada a la API o lógica.
+
+. Haz una de las siguientes acciones en función de los cambios realizados:
++
+** Si has hecho cambios menores, haz clic en *Guardar* para actualizar la regla.
+** Si hiciste cambios importantes, haz clic en *Validar regla* para comprobarlos y, a continuación, haz clic en *Programar* para guardar y programar la regla, o haz clic en *Guardar como borrador* para guardarla sin programarla.
+** Para descartar los cambios, haz clic en *Volver a la versión anterior*. La regla vuelve a su definición original y sale del modo de edición.
+
+
+

@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/launch-migration-advisor-evs-manual.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works, migration, manual, specification, deploy, deployment, plan 
+summary: Inicia sesión en NetApp Workload Factory para acceder al centro de planificación de VMware. Puedes crear manualmente un plan de implementación para EVS. 
+---
+= Crear manualmente un plan de implementación para Amazon EVS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Inicia sesión en NetApp Workload Factory para acceder al centro de planificación de VMware. Desde allí, puedes crear manualmente un plan de implementación o un plan de migración para Amazon EVS adaptado a tus necesidades.
+
+Puedes especificar manualmente tus requisitos para las máquinas virtuales en Amazon Elastic VMware Service y usar sistemas de archivos personalizados de Amazon FSx for NetApp ONTAP como almacenes de datos externos.
+
+
+
+[[requirements]]
+== Requisitos
+
+* Debes disponer de un nombre de usuario y una contraseña para acceder a Workload Factory. Si no tienes acceso, crea una cuenta ahora. Consulta las instrucciones link:quick-start-vmware.html["aquí"].
+* Debes tener una suscripción a Amazon Elastic VMware Service.
+
+
+
+
+[[steps]]
+== Pasos
+
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *VMware*.
++
+Se muestra el centro de planificación.
+
+. Selecciona *Crear plan de EVS manualmente*.
+. Introduce los requisitos para tu entorno de VM.
++
+[NOTE]
+====
+Ten en cuenta los siguientes requisitos y recomendaciones de rendimiento para la migración de máquinas virtuales:
+
+** Por motivos de rendimiento, se recomienda una capacidad de almacenamiento mínima de 10TiB para el inventario de VM.
+** Se requiere un rendimiento mínimo para los datastores de Amazon Elastic VMware Service, en función del número de IOPS que especifiques para esta implementación.
+** En función de la configuración del sistema de archivos FSx for ONTAP, se requiere un número mínimo de almacenes de datos externos para que el entorno de Amazon Elastic VMware Service alcance un rendimiento óptimo.
+
+
+====
+. Cuando estés listo, selecciona *Review plan* para revisar el plan de migración.
+. Revisa el plan. Despliega cada sección para ver los detalles del plan.
++
+De forma predeterminada, Workload Factory guarda el plan de migración en el centro de planificación. Puedes desmarcar esta opción en la parte superior de la página.
+
+. Si lo deseas, puedes exportar el plan de migración como un archivo PDF o CSV seleccionando *Manage plan* en la esquina superior derecha de la página y, a continuación, seleccionando *Download a report (.pdf)* o *Download VM storage deployment (.csv)*.
++
+El archivo .csv genera un mapa de todas las máquinas virtuales incluidas en el plan de migración, junto con los volúmenes de almacenamiento que tienen asignados.
+
+. Cuando estés listo para aprovisionar el plan de implementación, selecciona *Provision*.
+
+
+link:deploy-fsx-file-system-evs.html["Implementa las cargas de trabajo de VMware recomendadas para el sistema de archivos FSx for ONTAP"].

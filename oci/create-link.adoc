@@ -1,0 +1,255 @@
+---
+sidebar: sidebar 
+permalink: oci/create-link.html 
+keywords: connect, connection, link, associate link, create link, authenticate link, oci nss 
+summary: Puedes crear y asociar enlaces para proporcionar una relación de confianza y conectividad entre una cuenta de NetApp Workload Factory y un sistema de almacenamiento de Oracle Cloud Infrastructure NetApp Storage Service. 
+---
+= Conéctate a un sistema de almacenamiento de Oracle Cloud Infrastructure NetApp Storage Service mediante un enlace
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para realizar operaciones avanzadas de gestión del almacenamiento, configura una conexión entre tu cuenta de NetApp Workload Factory y un sistema Oracle Cloud Infrastructure NetApp Storage Service (OCI NSS). Este proceso implica crear y asociar un enlace con tu sistema de almacenamiento. La asociación de enlaces te permite supervisar y gestionar determinadas funciones directamente desde el sistema OCI NSS que no están disponibles a través de las API de OCI.
+
+link:../setup/links-overview.html["Más información sobre los enlaces"].
+
+
+
+[[about-this-task]]
+== Acerca de esta tarea
+
+Un _enlace_ en Workload Factory es una aplicación de OCI Functions en tu tenancy. Workload Factory lo usa para comunicarse con el sistema ONTAP en un grupo de almacenamiento OCI NSS (HTTPS 443 y SSH 22).
+
+Los enlaces utilizan OCI Functions para ejecutar código en respuesta a eventos y gestionar automáticamente los recursos informáticos que requiere ese código. Los enlaces que crees forman parte de tu cuenta de NetApp y están asociados a una cuenta de Oracle Cloud Infrastructure.
+
+Implementas el enlace, o la función, con Terraform y, a continuación, registras el OCID de la función en Workload Factory.
+
+Esta pila se ejecuta en tu tenencia con tu usuario de OCI. No se trata de la política de credenciales entre tenencias. Esa política debe ubicarse en la raíz de la tenencia cuando añadas credenciales; no es necesario crearla de nuevo para establecer un enlace.
+
+
+
+[[what-terraform-creates]]
+=== Lo que crea Terraform
+
+[cols="1,1"]
+|===
+| Recurso | Nombre de ejemplo 
+
+
+| Aplicación de funciones | `netapp-wf-app-<suffix>` 
+
+
+| Función | `netapp-wf-function-<suffix>` 
+
+
+| Grupo de registros + registro de invocación de Functions | `netapp-wf-link-logs-<suffix>` 
+
+
+| Grupo dinámico + política vault-read | Solo si activas la *autenticación local de OCI Vault* (`netapp-functions-dg`, compartida en la tenencia) 
+|===
+
+
+[[create-a-new-link]]
+== Crear un nuevo enlace
+
+Puedes crear un enlace en tu cuenta al definir un sistema OCI NSS. Usas el enlace para ese sistema de almacenamiento y también puedes usarlo para otros sistemas OCI NSS. También puedes asociar un enlace a un sistema de almacenamiento más adelante.
+
+Los enlaces requieren autenticación. Puedes autenticar los enlaces utilizando las credenciales almacenadas en el servicio de credenciales de Workload Factory o con tus credenciales almacenadas en OCI Vault. Solo se admite un método de autenticación por enlace. Por ejemplo, si seleccionas la autenticación del enlace con OCI Vault, no podrás cambiar el método de autenticación posteriormente.
+
+
+NOTE: OCI Vault no es compatible al usar un agente de Console.
+
+.Antes de empezar
+* Has añadido credenciales de Workload Factory para el tenant.
+* Puedes iniciar sesión en la consola de OCI para la tenancy y la región donde se encuentra el pool de almacenamiento.
+* Redes:
++
+** Una **subred privada** en la VCN que pueda comunicarse con el LIF de gestión de ONTAP
+** Una **puerta de enlace de servicios** con una ruta a todos los <Region\> servicios de Oracle Services Network (necesaria para descargar la imagen de la función)
+
+
+* Crea una política de IAM para el grupo que va a implementar la pila. Obtén más información sobre link:permissions-oci.html["Permisos de OCI NSS"].
++
+Otorga al grupo permiso para crear la pila y la función. Sustituye `<deploy-group>` y `<compartment-name>` por tus propios valores. Utiliza un grupo con nombre, no `any-user`.
+
++
+[listing]
+----
+Allow group <deploy-group> to manage orm-stacks in compartment <compartment-name>
+Allow group <deploy-group> to manage orm-jobs in compartment <compartment-name>
+Allow group <deploy-group> to manage functions-family in compartment <compartment-name>
+Allow group <deploy-group> to manage log-groups in compartment <compartment-name>
+Allow group <deploy-group> to use virtual-network-family in compartment <compartment-name>
+----
++
+Si activas **Local OCI Vault Authentication**, añade:
+
++
+[listing]
+----
+Allow group <deploy-group> to manage dynamic-groups in tenancy
+Allow group <deploy-group> to manage policies in compartment <compartment-name>
+----
++
+A continuación, la pila crea (o reutiliza) el grupo dinámico `netapp-functions-dg` para que la función pueda leer el secreto de Vault. Regla de coincidencia:
+
++
+[listing]
+----
+ALL {resource.type = 'fnfunc', resource.compartment.id = '<compartment-ocid>'}
+----
++
+Política de Vault en el compartimento donde se encuentran la función y el secreto:
+
++
+[listing]
+----
+Allow dynamic-group netapp-functions-dg to read secret-bundles in compartment <compartment-name>
+Allow dynamic-group netapp-functions-dg to use keys in compartment <compartment-name>
+----
+
+
+.Pasos
+Utiliza la CLI de OCI u OCI Terraform para crear y registrar el enlace en Workload Factory.
+
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Administración* > *Enlaces*.
+. En la página «Enlaces», selecciona *Crear y asociar enlace* > *OCI NetApp Storage Service*.
+. En el cuadro de diálogo «Agregar enlace», en *Detalles*, introduce lo siguiente:
++
+.. *Nombre del enlace*: Introduce el nombre que quieras utilizar para este enlace. El nombre debe ser único dentro de tu cuenta.
+.. *OCI Vault*: opcional. Permite que Workload Factory obtenga de forma segura las credenciales de acceso a ONTAP desde tu OCI Vault.
++
+La pila de implementación del enlace añade la siguiente expresión regular predeterminada para el OCID del secreto de OCI Vault a la política de permisos de OCI Functions: `ocid1.vaultsecret.oc1.iad.<unique_id>.ONTAPSecret*`.
+
++
+Puedes crear secretos que se ajusten a la expresión regular predeterminada o actualizar la expresión regular en el archivo de configuración de Terraform para que coincida con el OCID de tu secreto.
+
+.. *Etiquetas*: si lo deseas, puedes añadir hasta 50 etiquetas a este enlace para clasificar más fácilmente tus recursos. Por ejemplo, podrías añadir una etiqueta que identifique que este enlace lo utilizan los sistemas de almacenamiento OCI NSS.
+.. *Registro del enlace*: sigue las instrucciones en la consola de Workload Factory para registrar el enlace. El registro del enlace se realiza desde tu entorno de OCI Terraform. Selecciona OCI Terraform en el Codebox para ver las instrucciones.
+.. *Asociación de enlace*: selecciona el sistema de almacenamiento OCI NSS que deseas asociar a este enlace e introduce el nombre de usuario y la contraseña.
+.. *Permisos del enlace*: especifica los permisos necesarios para que el grupo de usuarios pueda crear el enlace.
++
+.Permisos necesarios para el enlace
+[source, text]
+----
+Allow group to manage orm-stacks in compartment id
+Allow group to manage orm-jobs in compartment id
+Allow group to manage dynamic-groups in tenancy
+Allow group to manage policies in compartment id
+Allow group to manage functions-family in compartment id
+Allow group to manage log-groups in compartment id
+Allow group to use virtual-network-family in compartment id
+----
+
+
+. En el cuadro de diálogo «Add Link», en *Location*, introduce lo siguiente:
++
+.. *tenancy de OCI*: introduce la tenancy de OCI.
+.. *Compartimento*: introduce el compartimento.
+.. *Región*: selecciona la región.
+.. *Subred*: selecciona la subred.
+.. *Grupo de seguridad de red*: introduce el grupo de seguridad.
++
+Workload Factory obtiene automáticamente la cuenta de OCI, la ubicación y el grupo de seguridad en función del sistema OCI NSS seleccionado.
+
+
+
+. Selecciona *Add*.
++
+Puedes comprobar el estado de la creación del enlace en la página Eventos. Esto no debería tardar más de cinco minutos.
+
+. Vuelve a la interfaz de Workload Factory y verás que el enlace está asociado con el sistema de almacenamiento OCI NSS.
+
+
+
+
+[[deploy-the-terraform-stack-in-oci-resource-manager]]
+== Implementa la pila de Terraform en OCI Resource Manager
+
+.Pasos
+. En el Codebox, selecciona *OCI Terraform*.
+. Selecciona *Redirect to OCI Resource Manager*.
+. En el cuadro de diálogo, selecciona *Continuar*.
+. Inicia sesión en el tenancy de OCI que contiene el pool de almacenamiento.
+. Revisa el compartimento, la región y las variables (rellenadas previamente desde Workload Factory).
+. Selecciona *Crear*. Espera hasta que el trabajo de aplicación se complete correctamente.
+. Abre Job *Output* y copia `function_ocid`.
+
+
+
+
+[[register-the-function-in-workload-factory]]
+== Registra la función en Workload Factory
+
+.Pasos
+. Vuelve a la página *Add link*.
+. En «*Registro de enlaces*», pega el OCID de la función ((`ocid1.fnfunc.oc1...`).
+. Selecciona *Add*.
+
+
+
+
+[[other-ways-to-apply-the-same-template]]
+== Otras formas de aplicar la misma plantilla
+
+Utilízalos solo si no estás usando Resource Manager desde Codebox.
+
+**CLI de Terraform**
+
+. Crea una carpeta.
+. Copia o descarga **OCI Terraform** desde el Codebox (`main.tf`) en esa carpeta.
+. De la carpeta:
++
+[listing]
+----
+terraform init
+terraform plan
+terraform apply
+----
+. Copia `function_ocid` de la salida de apply y continúa con [Registrar la función](#3-register-the-function-in-workload-factory).
+
+
+**CLI de OCI**
+
+Utiliza la pestaña **OCI CLI** de Codebox para descargar el archivo zip, crear la pila de Resource Manager y, a continuación, ejecutar los trabajos de plan y de aplicación.
+
+.Resultado
+El enlace aparece en tu lista de *Enlaces*.
+
+Para eliminar la función, borra el enlace en Workload Factory y luego destruye el stack de Resource Manager (o ejecuta `terraform destroy`).
+
+.Resultado
+El enlace aparece en tu lista de *Enlaces*.
+
+Para eliminar la función, borra el enlace en Workload Factory y luego destruye el stack de Resource Manager (o ejecuta `terraform destroy`).
+
+
+
+[[associate-an-existing-link-with-an-oci-netapp-storage-service-system]]
+== Asociar un enlace existente con un sistema de OCI NetApp Storage Service
+
+Después de crear un enlace, asícialo con uno o más sistemas de OCI NetApp Storage Service.
+
+.Pasos
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Almacenamiento*.
+. Selecciona *OCI NetApp Storage Service* > *Inventario*.
+. Selecciona el menú de acciones del grupo de almacenamiento al que quieres asociar un enlace y, a continuación, selecciona *Asociar enlace*.
+. Comprueba el identificador de red (nombre de la subred u OCID y CIDR).
+. Selecciona *Asociar un enlace existente*.
+. Selecciona el nombre del enlace.
+. Elige el método de autenticación:
++
+** *Workload Factory*: introduce el nombre de usuario y la contraseña de administrador de ONTAP.
+** *Gestión de secretos de OCI - OCI Vault Key*: utilízala cuando la función de enlace se haya implementado con compatibilidad con Vault. Introduce el OCID del secreto de Vault.
+
+
+. Selecciona *Aplicar*.
+
+
+.Resultado
+Workload Factory asocia el enlace con el sistema OCI NSS. Podrás realizar operaciones avanzadas de ONTAP.
+
+.Información relacionada
+link:../setup/links-overview.html#when-a-link-is-required["Más información sobre los enlaces"].

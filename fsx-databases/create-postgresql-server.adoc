@@ -1,0 +1,284 @@
+---
+sidebar: sidebar 
+permalink: fsx-databases/create-postgresql-server.html 
+keywords: create, server, PostgreSQL, deploy, host, deploy a database host, database host 
+summary: Crea un nuevo servidor SQL de PostgreSQL en NetApp Workload Factory for Databases. 
+---
+= Crea un servidor PostgreSQL en NetApp Workload Factory for Databases
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para crear un nuevo servidor PostgreSQL, o host de base de datos, en NetApp Workload Factory for Databases, es necesario implementar un sistema de archivos FSx for ONTAP y disponer de recursos para Active Directory.
+
+
+
+[[about-this-task]]
+== Acerca de esta tarea
+
+Antes de crear un servidor PostgreSQL desde Workload Factory, infórmate sobre los tipos de implementación de almacenamiento disponibles para la configuración del host de la base de datos, los modos de funcionamiento de Workload Factory y los requisitos necesarios para llevar a cabo esta operación.
+
+.FSx para implementaciones del sistema de archivos ONTAP
+Para crear un nuevo servidor PostgreSQL, se requiere un sistema de archivos FSx for ONTAP como back-end de almacenamiento. Puedes usar un sistema de archivos FSx for ONTAP existente o crear un nuevo sistema de archivos. Si seleccionas un sistema de archivos FSx for ONTAP existente como back-end de almacenamiento de tu servidor de bases de datos, crearemos una nueva máquina virtual de almacenamiento para las cargas de trabajo de PostgreSQL.
+
++ Los sistemas de archivos FSx for ONTAP cuentan con dos modelos de implementación del servidor PostgreSQL: _alta disponibilidad (HA)_ o _instancia única_. Se crean diferentes recursos para el sistema de archivos FSx for ONTAP según el modelo de implementación de FSx for ONTAP que elijas.
+
+* *Implementación de alta disponibilidad (HA)*: se implementa un sistema de archivos FSx for NetApp ONTAP de varias zonas de disponibilidad cuando se selecciona un nuevo sistema de archivos FSx for ONTAP para una implementación de HA. Se crean volúmenes y LUN independientes para los archivos de datos, registro y tempdb en una implementación de HA. Se crean un volumen y un LUN adicionales para el disco de quórum o testigo de Windows cluster. La implementación de HA configura la replicación de streaming entre los servidores PostgreSQL primario y secundario.
+* *Implementación de instancia única*: cuando se crea un nuevo servidor PostgreSQL, se crea un sistema de archivos FSx for ONTAP en una única zona de disponibilidad. Además, se crean volúmenes y LUN independientes para los archivos de datos, de registro y de tempdb.
+
+
+
+
+[[before-you-begin]]
+== Antes de empezar
+
+Debes tener link:../fsx-storage/add-credentials.html["concede permisos para la _creación de hosts de bases de datos_"^] en tu cuenta de AWS para crear un nuevo host de base de datos en workload factory.
+
+
+
+[[create-a-postgresql-server]]
+== Crear un servidor PostgreSQL
+
+Puedes usar los modos de implementación _Quick create_ o _Advanced create_ para completar esta tarea en workload factory con permisos del modo _Automate_. También puedes usar las siguientes herramientas disponibles en Codebox: API de REST, AWS CLI, AWS CloudFormation y Terraform. link:../admin/use-codebox.html#how-to-use-codebox["Descubre cómo utilizar Codebox para la automatización"^].
+
+
+NOTE: Al utilizar Terraform desde Codebox, el código que copias o descargas oculta las contraseñas de `fsxadmin` y `vsadmin`. Tendrás que volver a introducir las contraseñas cuando ejecutes el código. Tendrás que incluir los siguientes permisos para la cuenta de usuario además de los permisos del modo _Automate_: `iam:TagRole` y `iam:TagInstanceProfile`. link:../admin/use-codebox.html#use-terraform-from-codebox["Aprende a usar Terraform desde Codebox"^].
+
+[role="tabbed-block"]
+====
+.Creación rápida
+--
+
+NOTE: En _Quick create_, HA es el modelo de implementación predeterminado, Windows 2016 es la versión predeterminada de Windows y SQL 2019 Standard Edition es la versión predeterminada de SQL.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Bases de datos*.
+. En Databases Overview, selecciona *Deploy host* y luego selecciona *PostgreSQL Server* en el menú.
+. Selecciona *Creación rápida*.
+. En el apartado *zona de aterrizaje*, indica lo siguiente:
++
+.. *Credenciales de AWS*: selecciona las credenciales de AWS con permisos de automatización para implementar el nuevo host de base de datos.
++
+Las credenciales de AWS con permisos para la _creación de hosts de bases de datos_ permiten a Workload Factory implementar y gestionar el nuevo host de base de datos desde tu cuenta de AWS dentro de workload factory.
+
++
+Las credenciales de AWS con permisos de _visualización, planificación y análisis_ permiten a Workload Factory generar una plantilla de CloudFormation para que la utilices en la consola de AWS CloudFormation.
+
++
+Si no tienes credenciales de AWS asociadas en Workload Factory y quieres crear el nuevo servidor en Workload Factory, sigue la *Option 1* para ir a la página Credentials. Añade manualmente las credenciales necesarias y los permisos de _creación del host de la base de datos_ para las cargas de trabajo de bases de datos.
+
++
+Si deseas rellenar el formulario de creación de un nuevo servidor en Workload Factory para poder descargar una plantilla completa del archivo YAML para su implementación en AWS CloudFormation, sigue la *Opción 2* para asegurarte de que dispones de los permisos necesarios para crear el nuevo servidor en AWS CloudFormation. Añade manualmente las credenciales necesarias y los permisos de _visualización, planificación y análisis_ para las cargas de trabajo de bases de datos.
+
++
+Si lo prefieres, puedes descargar una plantilla de archivo YAML parcialmente completada desde el Codebox para crear la pila fuera de Workload Factory sin necesidad de credenciales ni permisos. Selecciona *CloudFormation* en el menú desplegable del Codebox para descargar el archivo YAML.
+
+.. *Región & VPC*: selecciona una región y una red VPC.
++
+Asegúrate de que los grupos de seguridad de un punto final de interfaz existente permitan el acceso al protocolo HTTPS (443) a las subredes seleccionadas.
+
++
+Los puntos de conexión de la interfaz de los servicios de AWS (SQS, FSx, EC2, CloudWatch, CloudFormation, SSM) y el punto de conexión de la pasarela de S3 se crean durante la implementación si no existen.
+
++
+Los atributos DNS de la VPC `EnableDnsSupport` y `EnableDnsHostnames` se modifican para habilitar la resolución de direcciones de endpoints si aún no están configurados como `true`.
+
+.. *Zonas de disponibilidad*: selecciona las zonas de disponibilidad y las subredes.
++
+
+NOTE: Las implementaciones de HA solo son compatibles con configuraciones de FSx for ONTAP de Multiple Availability Zone (MAZ).
+
++
+Las subredes no deben compartir la misma tabla de rutas para garantizar una alta disponibilidad.
+
++
+... En el campo *Cluster configuration - Node 1*, selecciona la zona de disponibilidad principal para la configuración de MAZ FSx for ONTAP en el menú desplegable *Availability zone* y una subred de la zona de disponibilidad principal en el menú desplegable *Subnet*.
+... En el campo *Configuración del clúster - Nodo 2*, selecciona la zona de disponibilidad secundaria para la configuración de MAZ FSx for ONTAP en el menú desplegable *Zona de disponibilidad* y una subred de la zona de disponibilidad secundaria en el menú desplegable *Subred*.
+
+
+
+
+. En *Configuración de la aplicación*, introduce un nombre de usuario y una contraseña para *Credenciales de la base de datos*.
+. En *Conectividad*, selecciona un par de claves para conectarte de forma segura a tu instancia.
+. En *Configuración de infraestructura*, introduce lo siguiente:
++
+.. *FSx for ONTAP system*: crea un nuevo sistema de archivos FSx for ONTAP o usa un sistema de archivos FSx for ONTAP existente.
++
+... *Crear un nuevo FSx para ONTAP*: introduce el nombre de usuario y la contraseña.
++
+Para las cuentas GovCloud, introduce el valor ARN del parámetro AWS SSM para las credenciales de FSx para ONTAP en el siguiente formato: `{fsx:{"username":"fsxadmin","password":"pass"}}`. El tipo de parámetro AWS SSM debe ser "Secure String" con el nombre en el formato `/netapp/wlmdb/<anyname>`. Obtén más información sobre cómo recuperar parámetros SSM desde link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud documentación"^].
+
++
+Un nuevo sistema de archivos FSx para ONTAP puede añadir 30 minutos o más al tiempo de instalación.
+
+... *Seleccionar un FSx para ONTAP ya existente*: selecciona el nombre del FSx para ONTAP en el menú desplegable e introduce un nombre de usuario y una contraseña para el sistema de archivos.
++
+En el caso de los sistemas de archivos FSx for ONTAP ya existentes, asegúrate de lo siguiente:
+
++
+**** El grupo de enrutamiento asociado a FSx for ONTAP permite usar rutas a las subredes para el despliegue.
+**** El grupo de seguridad permite el tráfico desde las subredes usadas para el despliegue, concretamente los puertos TCP HTTPS (443) e iSCSI (3260).
+
+
+
+
+.. *Tamaño de la unidad de datos*: introduce la capacidad de la unidad de datos y selecciona la unidad de capacidad.
+
+
+. Resumen:
++
+.. *Vista previa predeterminada*: revisa las configuraciones predeterminadas establecidas por Quick create.
+.. *Coste estimado*: ofrece una estimación de los gastos en los que podrías incurrir si implementaras los recursos que se muestran.
+
+
+. Haz clic en *Crear*.
++
+Como alternativa, si quieres cambiar ahora alguna de estas configuraciones predeterminadas, crea el servidor de bases de datos con Advanced create.
+
++
+También puedes seleccionar *Guardar configuración* para implementar el host más adelante.
+
+
+
+--
+.Creación avanzada
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Bases de datos*.
+. En Databases Overview, selecciona *Deploy host* y luego selecciona *PostgreSQL Server* en el menú.
+. Selecciona *Advanced create*.
+. En *modelo de implementación*, selecciona *instancia independiente* o *alta disponibilidad (HA)*.
+. En el apartado *zona de aterrizaje*, indica lo siguiente:
++
+.. *Credenciales de AWS*: selecciona las credenciales de AWS con permisos de automatización para implementar el nuevo host de base de datos.
++
+Las credenciales de AWS con permisos para la _creación de hosts de bases de datos_ permiten a Workload Factory implementar y gestionar el nuevo host de base de datos desde tu cuenta de AWS dentro de workload factory.
+
++
+Las credenciales de AWS con permisos de _visualización, planificación y análisis_ permiten a Workload Factory generar una plantilla de CloudFormation para que la utilices en la consola de AWS CloudFormation.
+
++
+Si no tienes credenciales de AWS asociadas en Workload Factory y quieres crear el nuevo servidor en Workload Factory, sigue la *Option 1* para ir a la página Credentials. Añade manualmente las credenciales necesarias y los permisos de _creación del host de la base de datos_ para las cargas de trabajo de bases de datos.
+
++
+Si deseas rellenar el formulario de creación de un nuevo servidor en Workload Factory para poder descargar una plantilla completa del archivo YAML para su implementación en AWS CloudFormation, sigue la *Opción 2* para asegurarte de que dispones de los permisos necesarios para crear el nuevo servidor en AWS CloudFormation. Añade manualmente las credenciales necesarias y los permisos de _visualización, planificación y análisis_ para las cargas de trabajo de bases de datos.
+
++
+Si lo prefieres, puedes descargar una plantilla de archivo YAML parcialmente completada desde el Codebox para crear la pila fuera de Workload Factory sin necesidad de credenciales ni permisos. Selecciona *CloudFormation* en el menú desplegable del Codebox para descargar el archivo YAML.
+
+.. *Región & VPC*: selecciona una región y una red VPC.
++
+Asegúrate de que los grupos de seguridad de un punto final de interfaz existente permitan el acceso al protocolo HTTPS (443) a las subredes seleccionadas.
+
++
+Los puntos de conexión de la interfaz de los servicios de AWS (SQS, FSx, EC2, CloudWatch, Cloud Formation, SSM) y el punto de conexión de la puerta de enlace de S3 se crean durante la implementación si no se encuentran.
+
++
+Los atributos DNS de la VPC `EnableDnsSupport` y `EnableDnsHostnames` se modifican para habilitar la resolución de direcciones de puntos finales si aún no están configurados en `true`.
+
+.. *Zonas de disponibilidad*: selecciona las zonas de disponibilidad y las subredes.
++
+*Para implementaciones de una sola instancia*
+
++
+En el campo *Configuración del clúster - Nodo 1*, selecciona una zona de disponibilidad en el menú desplegable *Zona de disponibilidad* y una subred en el menú desplegable *Subred*.
+
++
+*Para implementaciones de HA*
+
++
+... En el campo *Cluster configuration - Node 1*, selecciona la zona de disponibilidad principal para la configuración de MAZ FSx for ONTAP en el menú desplegable *Availability zone* y una subred de la zona de disponibilidad principal en el menú desplegable *Subnet*.
+... En el campo *Configuración del clúster - Nodo 2*, selecciona la zona de disponibilidad secundaria para la configuración de MAZ FSx for ONTAP en el menú desplegable *Zona de disponibilidad* y una subred de la zona de disponibilidad secundaria en el menú desplegable *Subred*.
+
+
+.. *Grupo de seguridad*: Se crea un grupo de seguridad de carga de trabajo para permitir los puertos y protocolos necesarios para PostgreSQL. Además, puedes seleccionar uno o varios grupos de seguridad.
+
+
+. En *Configuración de la aplicación*, introduce lo siguiente:
++
+.. Selecciona el *sistema operativo* del menú desplegable.
+.. Selecciona la *versión de PostgreSQL* del menú desplegable.
+.. *Nombre del servidor de bases de datos*: introduce el nombre del clúster de bases de datos.
+.. *Credenciales de la base de datos*: introduce un nombre de usuario y una contraseña para una nueva cuenta de servicio o utiliza las credenciales de una cuenta de servicio existente en Active Directory.
++
+Para las cuentas GovCloud, introduce el valor ARN del parámetro SSM de AWS para las credenciales en el siguiente formato: `{fsx:{"username":"fsxadmin","password":"pass"}}`. El tipo de parámetro AWS SSM debe ser "Secure String" con el nombre en el formato `/netapp/wlmdb/<anyname>`. Obtén más información sobre cómo recuperar parámetros SSM desde link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud documentación"^].
+
+
+
+. En *Conectividad*, selecciona un par de claves para conectarte de forma segura a tu instancia.
+. En *Configuración de infraestructura*, introduce lo siguiente:
++
+.. *Tipo de instancia de base de datos*: selecciona el tipo de instancia de base de datos en el menú desplegable.
+.. *FSx for ONTAP system*: crea un nuevo sistema de archivos FSx for ONTAP o usa un sistema de archivos FSx for ONTAP existente.
++
+... *Crear un nuevo FSx para ONTAP*: introduce el nombre de usuario y la contraseña.
++
+Para las cuentas GovCloud, introduce el valor ARN del parámetro AWS SSM para las credenciales FSx para ONTAP en el siguiente formato: `{fsx:{"username":"fsxadmin","password":"pass"}}`. El tipo de parámetro AWS SSM debe ser "Secure String" con el nombre en el formato `/netapp/wlmdb/<anyname>`. Obtén más información sobre cómo recuperar parámetros SSM desde link:https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-ssm.html["AWS GovCloud documentación"^].
+
++
+Un nuevo sistema de archivos FSx para ONTAP puede añadir 30 minutos o más al tiempo de instalación.
+
+... *Seleccionar un FSx para ONTAP ya existente*: selecciona el nombre del FSx para ONTAP en el menú desplegable e introduce un nombre de usuario y una contraseña para el sistema de archivos.
++
+En el caso de los sistemas de archivos FSx for ONTAP ya existentes, asegúrate de lo siguiente:
+
++
+**** El grupo de enrutamiento asociado a FSx for ONTAP permite usar rutas a las subredes para el despliegue.
+**** El grupo de seguridad permite el tráfico desde las subredes usadas para el despliegue, concretamente los puertos TCP HTTPS (443) e iSCSI (3260).
+
+
+
+
+.. *Política de SnapVault*: Activada por defecto. Las instantáneas se realizan a diario y tienen un periodo de retención de 7 días.
++
+Las instantáneas se asignan a los volúmenes creados para las cargas de trabajo de PostgreSQL.
+
+.. *Tamaño de la unidad de datos*: introduce la capacidad de la unidad de datos y selecciona la unidad de capacidad.
+.. *IOPS aprovisionadas*: selecciona *Automático* o *Aprovisionadas por el usuario*. Si seleccionas *Aprovisionadas por el usuario*, introduce el valor de IOPS.
+.. *Capacidad de rendimiento*: selecciona la capacidad de rendimiento del menú desplegable.
++
+En determinadas regiones, puedes seleccionar una capacidad de rendimiento de 4 GBps. Para aprovisionar 4 GBps de capacidad de rendimiento, tu sistema de archivos FSx for ONTAP debe estar configurado con un mínimo de 5,120 GiB de capacidad de almacenamiento SSD y 160,000 IOPS SSD.
+
+.. *Cifrado*: selecciona una clave de tu cuenta o una clave de otra cuenta. Debes introducir el ARN de la clave de cifrado de otra cuenta.
++
+Las claves de cifrado personalizadas de FSx para ONTAP no aparecen en la lista según la aplicabilidad del servicio. Selecciona una clave de cifrado de FSx adecuada. Las claves de cifrado que no sean de FSx provocarán un error en la creación del servidor.
+
++
+Las claves gestionadas por AWS se filtran en función de la aplicabilidad del servicio.
+
+.. *Etiquetas*: si lo deseas, puedes añadir hasta 40 etiquetas.
+.. *Servicio de notificación simple*: Opcionalmente, puedes habilitar el Servicio de notificación simple (SNS) para esta configuración seleccionando un tema SNS para PostgreSQL en el menú desplegable.
++
+... Activa el Simple Notification Service.
+... Selecciona un ARN del menú desplegable.
+
+
+.. *supervisión de CloudWatch*: opcionalmente, puedes activar la supervisión de CloudWatch.
++
+Recomendamos habilitar CloudWatch para depurar en caso de fallo. Los eventos que aparecen en la consola de AWS CloudFormation se muestran a grandes rasgos y no especifican la causa raíz. Todos los registros detallados se guardan en la `C:\cfn\logs` carpeta de las instancias de EC2.
+
++
+En CloudWatch, se crea un grupo de registros con el nombre de la pila. Debajo del grupo de registros, aparece un flujo de registros para cada nodo de validación y nodo SQL. CloudWatch muestra el progreso del script y proporciona información para ayudarte a entender si la implementación falla y cuándo lo hace.
+
+.. *Reversión de recursos*: esta función no está disponible actualmente.
+
+
+. Resumen
++
+.. *Coste estimado*: ofrece una estimación de los gastos en los que podrías incurrir si implementaras los recursos que se muestran.
+
+
+. Haz clic en *Create* para implementar el nuevo host de bases de datos.
++
+Como alternativa, puedes guardar la configuración.
+
+
+
+--
+====
+.Qué sigue
+Puedes configurar manualmente los usuarios, el acceso remoto y las bases de datos en el servidor PostgreSQL implementado.

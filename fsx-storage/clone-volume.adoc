@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/clone-volume.html 
+keywords: clone volume, clone, clone data 
+summary: Clona un volumen en NetApp Workload Factory para crear un volumen de lectura/escritura a partir del volumen original para realizar pruebas. 
+---
+= Clona un volumen en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Clona un volumen en NetApp Workload Factory para crear un volumen de lectura/escritura a partir del volumen original para realizar pruebas.
+
+El clon refleja el estado actual de los datos en un momento específico. También puedes usar clones para dar a otros usuarios acceso a los datos sin darles acceso a los datos de producción.
+
+.Acerca de esta tarea
+La clonación de volúmenes solo es compatible con volúmenes FlexClone.
+
+Cuando se clona un volumen, se crea un volumen de lectura/escritura con referencias a instantáneas del volumen primario. La creación del clon ocurre en segundos. Los datos clonados no residen en el clon del volumen, sino en el volumen primario. Cualquier dato nuevo que se escriba en el volumen tras la creación del clon reside en el clon.
+
+Para que un volumen clonado contenga todos los datos del volumen primario y cualquier dato nuevo añadido al clon tras su creación, tendrás que link:split-cloned-volume.html["separa el clon"] desde el volumen primario. Además, no puedes eliminar un volumen primario si tiene un clon. Debes dividir un clon antes de poder eliminar el volumen primario.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen que deseas clonar.
+. Selecciona *Acciones de protección de datos* y luego *Clonar volumen*.
+. En el cuadro de diálogo Clonar volumen, introduce un nombre para el clon del volumen.
+. Selecciona *Clonar*.
+

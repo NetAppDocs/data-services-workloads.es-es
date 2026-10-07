@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: get-help.html 
+keywords: help, ticket, open support case, support, netapp support, technical support, call support, phone number, open ticket, web ticket, open an issue, NetApp Console 
+summary: 'NetApp ofrece soporte para la NetApp Console de varias maneras. Hay disponibles numerosas opciones de autoayuda gratuitas 24x7, como artículos de la knowledgebase (KB) y un foro de la comunidad. Tu registro de soporte incluye soporte técnico remoto a través de tickets web.' 
+---
+= Obtén ayuda con los servicios en la nube de NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp ofrece soporte para NetApp Console y sus servicios en la nube de diversas formas. Hay disponibles amplias opciones gratuitas de autoayuda las 24/7, como artículos de la base de conocimientos (KB) y un foro de la comunidad. Tu registro de soporte incluye soporte técnico remoto a través de tickets web.
+
+
+
+[[get-support-for-a-cloud-provider-file-service]]
+== Obtén soporte para el servicio de archivos de un proveedor de nube
+
+Para obtener soporte técnico relacionado con un servicio de archivos de un proveedor de nube, su infraestructura o cualquier solución que utilice el servicio, consulta la documentación de ese producto.
+
+* link:https://docs.netapp.com/us-en/storage-management-fsx-ontap/start/concept-fsx-aws.html#getting-help["Amazon FSx for ONTAP"^]
+* link:https://docs.netapp.com/us-en/storage-management-azure-netapp-files/concept-azure-netapp-files.html#getting-help["Azure NetApp Files"^]
+* link:https://docs.netapp.com/us-en/storage-management-google-cloud-netapp-volumes/concept-gcnv.html#getting-help["Google Cloud NetApp Volumes"^]
+
+
+Para recibir soporte técnico específico para NetApp y sus soluciones de almacenamiento y servicios de datos, utiliza las opciones de soporte descritas a continuación.
+
+
+
+[[use-self-support-options]]
+== Utiliza las opciones de autoservicio
+
+Estas opciones están disponibles de forma gratuita, las 24 horas del día, los 7 días de la semana:
+
+* Documentación
++
+La documentación de la NetApp Console que estás viendo ahora.
+
+* https://kb.netapp.com/Cloud/BlueXP["Base de conocimientos"^]
++
+Busca en la base de conocimientos de NetApp para encontrar artículos útiles y solucionar problemas.
+
+* http://community.netapp.com/["Comunidades"^]
++
+Únete a la comunidad de NetApp Console para seguir las discusiones en curso o crear nuevas.
+
+
+
+
+
+[[create-a-case-with-netapp-support]]
+== Crea un caso con el soporte de NetApp
+
+Además de las opciones de autoayuda mencionadas anteriormente, puedes trabajar con un especialista de soporte de NetApp para resolver cualquier problema después de que actives el soporte.
+
+.Antes de empezar
+* Para usar la función *Crear un caso*, primero debes asociar tus credenciales del sitio de soporte de NetApp con tu inicio de sesión en la consola. https://docs.netapp.com/us-en/bluexp-setup-admin/task-manage-user-credentials.html["Aprende a gestionar las credenciales asociadas a tu inicio de sesión en la consola"^].
+* Si vas a abrir un caso para un sistema ONTAP que tiene un número de serie, entonces tu cuenta NSS debe estar asociada a ese número de serie.
+
+
+.Pasos
+. En la consola NetApp, selecciona *Ayuda > Soporte*.
+. En la página *Recursos*, elige una de las opciones disponibles en Soporte técnico:
++
+.. Selecciona «Llámanos» si deseas hablar con alguien por teléfono. Se te redirigirá a una página en netapp.com en la que figuran los números de teléfono a los que puedes llamar.
+.. Selecciona *Crear un caso* para abrir un ticket con un especialista de soporte técnico de NetApp:
++
+*** *Servicio*: Selecciona el servicio con el que está asociado el problema. Por ejemplo, *NetApp Console* cuando se trate de un problema de soporte técnico con flujos de trabajo o funcionalidad dentro de la Console.
+*** *Sistema*: Si es aplicable al almacenamiento, selecciona *Cloud Volumes ONTAP* o *On-Prem* y luego el entorno de trabajo asociado.
++
+La lista de sistemas está dentro del ámbito de la organización de la Console y del agente de la Console que tú has seleccionado en el banner superior.
+
+*** *Prioridad del caso*: Elige la prioridad del caso, que puede ser baja, media, alta o crítica.
++
+Para obtener más detalles sobre estas prioridades, pasa el mouse por encima del icono de información junto al nombre del campo.
+
+*** *Descripción del problema*: Proporciona una descripción detallada de tu problema, incluyendo cualquier mensaje de error aplicable o los pasos de resolución de problemas que realizaste.
+*** *Direcciones de correo electrónico adicionales*: Introduce direcciones de correo electrónico adicionales si deseas informar a otra persona sobre este asunto.
+*** *Archivo adjunto (opcional)*: Sube hasta cinco archivos adjuntos, uno a la vez.
++
+Los archivos adjuntos tienen un límite de 25 MB por archivo. Se admiten las siguientes extensiones de archivo: txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx y csv.
+
+
+
+
+
++
+image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-create-case.png["Una captura de pantalla del formulario «Crear un caso» que te permite crear un caso con el soporte de NetApp."]
+
+
+
+.Después de que termines
+Aparecerá una ventana emergente con el número de tu caso de soporte. Un especialista de soporte de NetApp revisará tu caso y se pondrá en contacto contigo pronto.
+
+Para consultar el historial de tus casos de soporte, puedes seleccionar *Configuración > Cronología* y buscar las acciones denominadas "crear caso de soporte". Un botón situado en el extremo derecho te permite expandir la acción para ver los detalles.
+
+Es posible que te aparezca el siguiente mensaje de error al intentar crear un caso:
+
+«No estás autorizado a crear un caso contra el servicio seleccionado»
+
+Este error podría indicar que la cuenta NSS y la empresa registrada a la que está asociada no coinciden con la empresa registrada para el número de serie de la cuenta de NetApp Console (es decir, 960xxxx) o el número de serie del entorno de trabajo. Puedes pedir ayuda usando una de las siguientes opciones:
+
+* Envía un caso no técnico a https://mysupport.netapp.com/site/help[]
+
+
+
+
+[[manage-your-support-cases]]
+== Administra tus casos de soporte técnico
+
+Puedes ver y gestionar los casos de soporte activos y resueltos directamente desde la NetApp Console. Puedes gestionar los casos asociados a tu cuenta de NSS y a tu empresa.
+
+Ten en cuenta lo siguiente:
+
+* El panel de gestión de casos en la parte superior de la página ofrece dos vistas:
++
+** La vista de la izquierda muestra el total de casos abiertos en los últimos 3 meses por la cuenta de usuario NSS que has facilitado.
+** La vista de la derecha muestra el total de casos abiertos en los últimos 3 meses a nivel de tu empresa según tu cuenta de usuario NSS.
+
+
++
+Los resultados en la tabla reflejan los casos relacionados con la vista que seleccionaste.
+
+* Puedes añadir o eliminar las columnas que te interesen y puedes filtrar el contenido de columnas como Prioridad y Estado. Otras columnas solo permiten ordenar.
++
+Consulta los pasos que se indican a continuación para obtener más detalles.
+
+* A nivel de cada caso, ofrecemos la posibilidad de actualizar las notas del caso o cerrar un caso que aún no esté en estado Closed o Pending Closed.
+
+
+.Pasos
+. En la consola NetApp, selecciona *Ayuda > Soporte*.
+. Selecciona *Case Management* y si te lo piden, añade tu cuenta NSS a la NetApp Console.
++
+La página *Gestión de casos* muestra los casos abiertos relacionados con la cuenta NSS asociada a tu cuenta de usuario de la Console. Esta es la misma cuenta NSS que aparece en la parte superior de la página *Gestión de NSS*.
+
+. Si lo deseas, puedes modificar la información que se muestra en la tabla:
++
+** En *Casos de la organización*, selecciona *Ver* para ver todos los casos asociados con tu empresa.
+** Modifica el intervalo de fechas eligiendo un intervalo exacto o seleccionando otro periodo de tiempo.
+** Filtra el contenido de las columnas.
+** Cambia las columnas que aparecen en la tabla seleccionando image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-columns.png["El icono con el signo «+» que aparece en la tabla"] y luego elige las columnas que te gustaría mostrar.
+
+
+. Gestiona un caso existente seleccionando image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-action.png["Un icono con tres puntos que aparece en la última columna de la tabla"] y eligiendo una de las opciones disponibles:
++
+** *Ver caso*: Ver todos los detalles sobre un caso específico.
+** *Actualizar notas del caso*: Facilita más detalles sobre tu problema o selecciona *Subir archivos* para adjuntar hasta un máximo de cinco archivos.
++
+Los archivos adjuntos tienen un límite de 25 MB por archivo. Se admiten las siguientes extensiones de archivo: txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx y csv.
+
+** *Cerrar caso*: Indica los motivos por los que vas a cerrar el caso y selecciona *Cerrar caso*.
+
+
+

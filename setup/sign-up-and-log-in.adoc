@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: setup/sign-up-and-log-in.html 
+keywords: sign up, signing up, sign in, signing in, login with netapp, log in with netapp, create account, account, log in with nss, nss, nss login 
+summary: Puedes acceder a Workload Factory desde NetApp Console. Cuando empieces a usar Workload Factory, el primer paso es registrarte con tus credenciales actuales de NetApp Support Site o creando un inicio de sesión en la nube de NetApp. 
+---
+= Regístrate e inicia sesión en Workload Factory desde NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory es accesible desde NetApp Console. Para usar Console, regístrate o inicia sesión con tus credenciales de NetApp Support Site, o crea un inicio de sesión de NetApp Console. Si eres la primera persona de tu empresa en registrarse, crearás una nueva organización como administrador. Si tu empresa ya tiene una organización, regístrate o inicia sesión con tus credenciales existentes de NetApp Support Site o con el inicio de sesión único (SSO) de tu empresa.
+
+Directiva no resuelta en <stdin> - include::https://raw.githubusercontent.com/NetAppDocs/console-setup-admin/main/_include/task-sign-up-saas.adoc[]
+
+.Resultado
+Ya has iniciado sesión y puedes empezar a utilizar Workload Factory para gestionar tus sistemas de almacenamiento y tus cargas de trabajo. Para acceder a Workload Factory, selecciona *Cargas de trabajo* del menú principal.

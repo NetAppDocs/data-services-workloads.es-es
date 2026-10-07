@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/create-workspaces.html 
+keywords: manage, workspace, snapshot, project 
+summary: Un espacio de trabajo en NetApp Workload Factory for EDA es una representación en Perforce de un proyecto basada en una instantánea del mismo. Puedes crear espacios de trabajo como parte de un proyecto EDA. 
+---
+= Crear un espacio de trabajo de EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Un espacio de trabajo en NetApp Workload Factory for EDA es una representación en Perforce de un proyecto en un momento concreto. Puedes crear espacios de trabajo usando una instantánea del proyecto como base. Puedes crear nuevos espacios de trabajo dentro de un proyecto de EDA. Puedes crear espacios de trabajo desde la interfaz de usuario de Perforce.
+
+.Antes de empezar
+Asegúrate de haber integrado EDA con Perforce Helix Visual Client. Consulta link:integrate-perforce.html["Integrar EDA con Perforce"^] para obtener más información.
+
+.Pasos
+. Inicia sesión en Perforce.
+. En el menú de Perforce, selecciona *View* > *WF*.
++
+La pantalla de inicio de sesión de Workload Factory aparece en la Perforce UI.
+
+. Inicia sesión usando una de las link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias en la consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se usa para navegar a cargas de trabajo como almacenamiento, eda, ai, bases de datos, vmware y administración."] y luego selecciona *EDA*.
+. Selecciona *CI/CD*.
+. Selecciona *Crear proyecto* y a continuación selecciona *Crear espacio de trabajo*.
+. En la página Crear un proyecto de espacio de trabajo, introduce lo siguiente:
++
+.. Selecciona una instantánea para usarla como base del espacio de trabajo.
+.. Introduce un nombre para el espacio de trabajo.
+.. Si quieres, introduce un identificador de usuario para reclamar el espacio de trabajo. Este identificador debe coincidir con el ID de usuario de Perforce del desarrollador que va a usar este espacio de trabajo.
+
+
+. Selecciona *Crear*.
+
+
+.Resultado
+El espacio de trabajo se ha creado y aparece en la lista de espacios de trabajo de la página «Workspaces».

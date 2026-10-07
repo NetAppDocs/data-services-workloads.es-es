@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: admin/manage-links.html 
+keywords: links, accounts, lambda, creating, associating, disassociating, deleting, editing 
+summary: Puedes ver los enlaces asociados a tu cuenta, actualizar las contraseñas para la autenticación de enlaces y eliminar un enlace en NetApp Workload Factory. 
+---
+= Gestiona los enlaces de NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestiona los enlaces que has asociado a tu cuenta de Workload Factory. Puedes ver los enlaces asociados a un sistema de archivos FSx for ONTAP o a un sistema OCI NetApp Storage Service (OCI NSS), proporcionar contraseñas usadas para la autenticación de enlaces y eliminar enlaces de NetApp Console.
+
+link:../setup/links-overview.html["Obtén más información sobre los enlaces."]
+
+
+
+[[view-the-links-associated-with-your-account]]
+== Ver los enlaces asociados a tu cuenta
+
+Puedes consultar los enlaces que están asociados actualmente a tu cuenta.
+
+.Pasos
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Administración* > *Enlaces*.
++
+Los enlaces existentes aparecen en la página Links.
+
+. Para ver los sistemas de almacenamiento asociados a un enlace, selecciona el botón *View* en la sección Recursos asociados.
+. Si necesitas el nombre de recurso de Amazon (ARN) para el enlace, puedes seleccionar el icono _copiar_ junto al campo ARN.
+
+
+
+
+[[edit-a-link]]
+== Editar un enlace
+
+No puedes editar un enlace desde NetApp Console. Si necesitas hacer algún cambio en un enlace, tendrás que crear uno nuevo y luego asociarlo a tu sistema de almacenamiento.
+
+
+NOTE: Puedes editar la configuración de red de AWS Lambda u Oracle Cloud Functions (por ejemplo, VPC, subredes y grupos de seguridad) mediante la consola de tu proveedor de servicios en la nube y los cambios se reflejarán en los enlaces o en la interfaz de usuario de gestión de Functions; sin embargo, estos cambios pueden provocar problemas de conectividad entre AWS Lambda u Oracle CLoud Functions y ONTAP, por lo que no se recomiendan.
+
+
+
+[[authenticate-a-link]]
+== Autentica un enlace
+
+Autentica un enlace introduciendo la contraseña de un usuario administrador para las credenciales de Workload Factory o con un secreto de AWS Secrets Manager u Oracle Vault.
+
+* Para AWS Secrets Manager, introduce el nombre del secreto o el ARN de un secreto de AWS Secrets Manager para conectar el enlace a un sistema de archivos FSx for ONTAP.
++
+
+NOTE: AWS Secrets Manager no es compatible cuando se utiliza un agente de consola.
+
+* En el caso de Oracle Vault, introduce el OCID del secreto del vault para conectar el enlace a un sistema OCI NetAApp Storage Service.
+
+
+
+NOTE: Solo se admite un método de autenticación por enlace. Por ejemplo, si seleccionas la autenticación de enlace con AWS Secrets Manager, no podrás cambiar el método de autenticación después.
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos al que quieras asociar un enlace y luego selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona *Autenticar el enlace*.
+. En la página de enlace de autenticación, selecciona un modo de autenticación:
++
+** *Workload Factory*: introduce la contraseña dos veces.
+** *AWS Secrets Manager*: introduce el ARN del secreto.
+
+
+. Selecciona *Aplicar*.
+
+
+--
+.OCI NetApp Storage Service
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *OCI NetApp Storage Service*.
+. En *OCI NetApp Storage Service*, selecciona el menú de acciones del grupo de almacenamiento con el que deseas asociar un enlace y, a continuación, selecciona *Gestionar*.
+. En la vista general del pool de almacenamiento, selecciona *Autenticar el enlace*.
+. En la página de enlace de autenticación, selecciona un modo de autenticación:
++
+** *Workload Factory*: introduce la contraseña dos veces.
+** *OCI Vault*: introduce el OCID del secreto.
+
+
+. Selecciona *Aplicar*.
+
+
+--
+====
+.Resultado
+El enlace está autenticado y puedes realizar operaciones avanzadas de ONTAP
+
+
+
+[[update-the-password-for-link-authentication]]
+== Actualiza la contraseña para la autenticación mediante enlace
+
+Cuando la contraseña administrativa no es válida, actualiza la contraseña para conectar el enlace con tu sistema de almacenamiento.
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos al que quieras asociar un enlace y luego selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona *Update password*.
+. En la página del enlace Authenticate, introduce la nueva contraseña dos veces.
+. Selecciona *Aplicar*.
+
+
+--
+.OCI NetApp Storage Service
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *OCI NetApp Storage Service*.
+. En *OCI NetApp Storage Service*, selecciona el menú de acciones del grupo de almacenamiento con el que deseas asociar un enlace y, a continuación, selecciona *Gestionar*.
+. En la vista general del pool de almacenamiento, selecciona *Actualizar contraseña*.
+. En la página del enlace Authenticate, introduce la nueva contraseña dos veces.
+. Selecciona *Aplicar*.
+
+
+--
+====
+.Resultado
+Se ha actualizado la contraseña y el enlace ya está conectado al sistema de almacenamiento.
+
+
+
+[[remove-a-link]]
+== Eliminar un enlace
+
+Puedes eliminar un enlace que ya no utilices en tu entorno. Los sistemas de almacenamiento u otros recursos que usan ese enlace no podrán usar determinadas funciones una vez eliminado el enlace.
+
+Ten en cuenta que el enlace solo se elimina de Workload Factory; no se elimina de tu entorno de AWS u Oracle.
+
+* En el caso de FSx for ONTAP, debes eliminar la función Lambda de tu cuenta de AWS tras eliminar el enlace en Workload Factory.
+* Para OCI NetApp Storage Service, debes eliminar la instancia de Function de tu cuenta de OCI después de quitar el enlace en Workload Factory.
+
+
+[role="tabbed-block"]
+====
+.Amazon FSx for NetApp ONTAP
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Administración* > *Enlaces*.
++
+Los enlaces existentes aparecen en la página Links.
+
+. En la página «Enlaces», selecciona el menú de acciones del enlace que quieres eliminar y luego selecciona *Eliminar*.
+. Si estás seguro, selecciona *Eliminar* de nuevo.
+
+
+Consulta la documentación de AWS para link:https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html#with-userapp-walkthrough-custom-events-delete-function["elimina la función Lambda"].
+
+--
+.OCI NetApp Storage Service
+--
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Administración* > *Enlaces*.
++
+Los enlaces existentes aparecen en la página Links.
+
+. En la página «Enlaces», selecciona el menú de acciones del enlace que quieres eliminar y luego selecciona *Eliminar*.
+. Si estás seguro, selecciona *Eliminar* de nuevo.
+
+
+--
+====

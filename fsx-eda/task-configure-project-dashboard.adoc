@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: fsx-eda/task-configure-project-dashboard.html 
+keywords: configure, dashboard, AWS tags, CloudWatch, FSx for ONTAP, Workload Factory, EDA, custom filters, project tags, team tags 
+summary: Configura filtros personalizados para el panel de control de Projects para organizar las métricas según tu estructura empresarial, como proyectos, equipos o aplicaciones. 
+---
+= Configura el panel de control de proyectos en Workload Factory para EDA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Configura filtros personalizados en el panel de control de Projects para organizar los datos de acuerdo con el funcionamiento de tu empresa, como por proyecto, equipo o centro de costes. Esto hace que sea más fácil ver claramente los costes, detectar qué recursos usan más capacidad y tomar mejores decisiones sobre presupuestos y personal. Cuando los filtros coinciden con la estructura de tu organización, puedes encontrar rápidamente los datos que necesitas y gestionar la capacidad, los costes y el rendimiento de manera más eficiente.
+
+
+
+[[before-you-begin]]
+== Antes de empezar
+
+Para utilizar filtros personalizados, añade etiquetas de AWS a tus volúmenes de FSx for ONTAP según tus necesidades, como etiquetas para proyectos, equipos o unidades de negocio.
+
+
+
+[[configure-custom-filters]]
+== Configurar filtros personalizados
+
+
+NOTE: Solo el primer administrador que abra el panel de control de Proyectos puede crear, modificar o eliminar filtros personalizados. El resto de usuarios, incluidos los demás administradores, solo pueden ver los filtros.
+
+.Acerca de esta tarea
+Puedes configurar hasta cinco filtros personalizados utilizando tus etiquetas de AWS. Cada filtro necesita lo siguiente: una etiqueta de filtro, una clave de etiqueta de AWS y un tipo de selección (única o múltiple).
+
+Si no configuras ningún filtro personalizado, los filtros predeterminados, sistema de archivos, tipo de volumen e intervalo de tiempo, seguirán estando disponibles, así que puedes seguir viendo y usando tus paneles de control.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *EDA*.
+. Selecciona *Proyectos*.
++
+Si aún no has configurado tu panel de control, se te pedirá automáticamente que lo hagas.
+
+. Selecciona *Add filters*.
+. Para cada filtro personalizado que quieras crear, añade los detalles:
++
+** Nombre de la etiqueta del filtro (el nombre que aparece en el dashboard)
+** Nombre de la clave de etiqueta de AWS (la clave de etiqueta real utilizada en tus recursos)
+** Tipo de selección (simple o múltiple)
++
+
+NOTE: Los filtros aparecen en el panel de control en el orden en que los hayas configurado. Coloca los filtros que más utilices en la parte superior para que te resulte más fácil acceder a ellos.
+
+
+
+. Selecciona *Aplicar*.
++
+Puedes eliminar un filtro personalizado seleccionando el icono de la papelera junto a ese filtro antes de aplicar tus cambios.
+
+. Para ver tus cambios después de aplicar cualquier etiqueta o filtro, selecciona el icono de actualizar en el panel.
+. Para editar la configuración del panel de control más adelante, selecciona *Configurar*.
+
+
+.Resultado
+Al aplicar estas etiquetas, Workload Factory comienza a recopilar y mostrar las métricas relacionadas de CloudWatch. Luego, tu panel de control te ayuda a organizar recursos, hacer un seguimiento de los costos y filtrar elementos según tus necesidades.
+
+
+
+[[related-information]]
+== Información relacionada
+
+* link:learn-project-dashboard.html["Conoce el panel de control Projects"]
+* link:task-use-project-dashboard.html["Usa el panel Proyectos"]
+

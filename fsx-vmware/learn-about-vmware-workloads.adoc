@@ -1,0 +1,123 @@
+---
+sidebar: sidebar 
+permalink: fsx-vmware/learn-about-vmware-workloads.html 
+keywords: overview, concepts, features, use case, workloads, how Workload Factory works 
+summary: 'NetApp Workload Factory para VMware te da herramientas para mover tus datos de sistemas locales a Amazon EVS, VMware Cloud on AWS (VMC), Amazon EC2 o Google Cloud VMware Engine.' 
+---
+= Más información sobre NetApp Workload Factory para VMware
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory para VMware te da herramientas para mover tus datos de sistemas locales a Amazon Elastic VMware Service (EVS), VMware Cloud on AWS (VMC), Amazon EC2 o Google Cloud VMware Engine.
+
+
+
+[[what-is-netapp-workload-factory-for-vmware]]
+== ¿Qué es NetApp Workload Factory para VMware?
+
+NetApp Workload Factory para VMware te ofrece un centro de planificación y asesores de migración que te permiten analizar tus configuraciones actuales de máquinas virtuales en entornos locales vSphere. Luego, los asesores de migración generan un plan para implementar las distribuciones recomendadas de máquinas virtuales en Amazon EVS, Amazon EC2, VMware Cloud on AWS vSphere clusters o Google Cloud VMware Engine, usando almacenamiento nativo de la nube personalizado como almacenes de datos externos. Para entornos AWS, esto incluye Amazon FSx for NetApp ONTAP file systems. Para entornos Google Cloud, esto incluye Google Cloud NetApp Volumes. El centro de planificación, que actúa como el panel de Workload Factory para VMware, te permite gestionar conjuntos de datos de inventario de VM guardados, planes de migración guardados y aprovisionar cualquiera de los planes de migración que hayas guardado.
+
+Amazon FSx for NetApp ONTAP es un datastore NFS externo construido sobre el sistema de archivos ONTAP de NetApp que puedes conectar a instancias de Amazon EVS, Amazon EC2 o a clústeres de VMware Cloud en AWS vSphere. De manera similar, Google Cloud NetApp Volumes ofrece datastores NFS externos para entornos de Google Cloud VMware Engine. No necesitas agregar más hosts para aumentar la capacidad de almacenamiento; simplemente usa estos volúmenes de almacenamiento nativos de la nube como datastores externos para complementar los datastores de vSAN. Esto te da una infraestructura de almacenamiento flexible, de alto rendimiento y virtualizada que escala de forma independiente a los recursos de cómputo.
+
+Para obtener más información sobre Workload Factory, consulta el link:../setup/learn-about-workload-factory.html["Descripción general de Workload Factory"^].
+
+
+
+[[how-the-vmware-migration-advisors-work]]
+== Cómo funcionan los asesores de migración de VMware
+
+Los asesores de migración pueden ayudarte a mover máquinas virtuales (VM) locales y sus datos, que se ejecutan en cualquier datastore compatible con VMware, a datastores de Amazon EVS, Amazon EC2, VMware Cloud o Google Cloud VMware Engine, lo que incluye datastores NFS complementarios en un sistema de archivos FSx for ONTAP o Google Cloud NetApp Volumes.
+
+Ten en cuenta que puedes conectar hasta cuatro (4) volúmenes de FSx for ONTAP a un único clúster de vSphere en VMware Cloud on AWS.
+
+
+
+[[what-you-can-do-with-the-migration-advisors]]
+== Qué puedes hacer con los asesores de migración
+
+Los asesores de migración ofrecen la siguiente funcionalidad:
+
+* Analizar las configuraciones actuales de las máquinas virtuales locales
+* Determina qué máquinas virtuales migrar a Amazon EC2, Amazon EVS, VMware Cloud on AWS o Google Cloud VMware Engine
+* Identifica el espacio necesario en los volúmenes de almacenamiento nativos de la nube que se usarán como almacenes de datos externos de máquinas virtuales
+* Revisa el informe resultante para entender los pasos del despliegue
+* Realiza el despliegue real (para Amazon EC2, Amazon EVS y VMware Cloud on AWS)
+
+
+El asesor de migración admite la planificación de la configuración para un único Amazon EVS, Amazon EC2 o un clúster de VMware Cloud on AWS conectado a sistemas de archivos Amazon FSx for NetApp ONTAP, o un clúster de Google Cloud VMware Engine conectado a Google Cloud NetApp Volumes.
+
+
+
+[[benefits-of-using-the-migration-advisors]]
+== Ventajas de utilizar los asesores de migración
+
+La transición de partes de tu infraestructura actual a Amazon EC2, Amazon EVS, VMware Cloud on AWS o Google Cloud VMware Engine usando almacenamiento nativo en la nube como almacenes de datos NFS externos te da los siguientes beneficios:
+
+* Optimización de costes gracias a la separación entre host y almacenamiento y a la eficiencia avanzada de los datos
+* Posibilidad de ampliar la capacidad de almacenamiento según sea necesario sin tener que adquirir instancias de host adicionales
+* NetApp capacidades de gestión de datos de ONTAP en la nube, como instantáneas con uso eficiente del espacio, clonación, compresión, deduplicación, compactación y replicación
+* Reducción de la gestión de las renovaciones de hardware
+* Posibilidad de modificar el rendimiento de datos, las IOPS y el tamaño del sistema de archivos, además de aumentar o reducir el tamaño de los volúmenes
+* Alta disponibilidad compatible con implementaciones en varias zonas de disponibilidad (AZ)
+* Reducción de costes y latencia en configuraciones single-AZ que utilizan VPC peering sin necesidad de un Transit Gateway
+
+
+
+
+[[tools-to-use-netapp-workload-factory]]
+== Herramientas para usar NetApp Workload Factory
+
+Puedes utilizar NetApp Workload Factory con las siguientes herramientas:
+
+* *Workload Factory console*: Workload Factory console te ofrece una vista visual e integral de tus aplicaciones y proyectos.
+* *NetApp Console*: la NetApp Console ofrece una experiencia de interfaz híbrida para que puedas usar Workload Factory junto con otros servicios de datos de NetApp.
+* *Ask me*: usa el asistente de IA Ask me para hacer preguntas y obtener más información sobre Workload Factory sin salir de la consola de Workload Factory. Accede a Ask me desde el menú de ayuda de Workload Factory.
+* *CloudShell CLI*: Workload Factory incluye una CLI de CloudShell para gestionar y operar entornos de AWS y NetApp entre cuentas desde una única CLI basada en navegador. Accede a CloudShell desde la barra superior de la consola de Workload Factory.
+* *API de REST*: Utiliza las API de REST de Workload Factory para implementar y gestionar tus sistemas de archivos FSx for ONTAP y otros recursos de AWS.
+* *CloudFormation*: utiliza el código de AWS CloudFormation para llevar a cabo las acciones que hayas definido en la consola de Workload Factory con el fin de modelar, aprovisionar y gestionar recursos de AWS y de terceros desde la pila de CloudFormation en tu cuenta de AWS.
+* *NetApp Terraform provider*: utiliza Terraform para crear y gestionar los flujos de trabajo de infraestructura generados en la consola de Workload Factory.
+
+
+
+
+[[well-architected-analysis-for-evs-environments]]
+== Análisis bien diseñados para entornos EVS
+
+La pestaña Well-architected proporciona un análisis diario automatizado de tus entornos de Amazon Elastic VMware Service (EVS) para asegurar la alineación con las prácticas recomendadas de AWS y NetApp. La pestaña identifica problemas de configuración y ofrece una guía detallada de corrección para ayudarte a mantener operaciones, seguridad y eficiencia de costes óptimas.
+
+Los análisis automáticos se realizan mediante las API de AWS—no se requieren credenciales de vSphere. Los hallazgos se organizan por área de configuración, y cada hallazgo incluye el estado, los niveles de gravedad, los detalles de los recursos afectados y los procedimientos de corrección paso a paso.
+
+link:view-evs-well-architected.html["Implementa configuraciones de EVS bien diseñadas en Workload Factory"].
+
+
+
+[[cost]]
+== Coste
+
+No tiene costo usar Workload Factory for VMware.
+
+Tendrás que pagar por los recursos de AWS que implementes siguiendo las recomendaciones de los asesores de migración.
+
+
+
+[[licensing]]
+== Licencias
+
+No se necesitan licencias especiales de NetApp para utilizar Workload Factory for VMware.
+
+
+
+[[regions]]
+== Regiones
+
+Workload Factory es compatible en todas las regiones comerciales en las que se ofrece soporte para FSx for ONTAP. https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["Consulta las regiones de Amazon compatibles."^]
+
+Las siguientes regiones de AWS no son compatibles:
+
+* Regiones de China
+* Secret Cloud
+* Top Secret Cloud
+

@@ -1,0 +1,151 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/use-snapshots.html 
+keywords: create snapshot, snapshot 
+summary: Protege los datos de los volúmenes contra el borrado accidental o la corrupción creando y gestionando instantáneas en NetApp Workload Factory. 
+---
+= Utiliza instantáneas para proteger los datos en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Protege los datos de los volúmenes contra el borrado accidental o la corrupción creando y gestionando instantáneas en NetApp Workload Factory. Puedes crear una instantánea bajo demanda de un volumen, definir una política de instantáneas para automatizar la creación y retención de instantáneas para máquinas virtuales de almacenamiento, y restaurar un volumen a partir de una instantánea existente para recuperar datos en un momento específico.
+
+
+
+[[create-an-on-demand-snapshot-of-a-volume]]
+== Crear una instantánea bajo demanda de un volumen
+
+Crea una instantánea manual de un volumen de FSx for ONTAP en NetApp Workload Factory. Las instantáneas son versiones del contenido de tu volumen en un momento específico.
+
+Las instantáneas son recursos de los volúmenes y son capturas instantáneas de tus datos que solo consumen espacio por los datos modificados. Como los datos cambian con el tiempo, las instantáneas suelen consumir más espacio a medida que envejecen.
+
+Los volúmenes FSx for ONTAP utilizan copy-on-write just-in-time, de modo que los archivos no modificados de las instantáneas no consumen nada de la capacidad del volumen.
+
+
+NOTE: Las instantáneas no son copias de tus datos. Si quieres hacer copias de tus datos, considera usar las funciones de copias de seguridad de volúmenes o de replicación de volúmenes.
+
+.Antes de empezar
+Debes asociar un enlace para crear una instantánea manual de un volumen. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"]. Después de que se asocie el enlace, vuelve a esta operación.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos que contiene el volumen para el que quieres crear una instantánea y luego selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Volúmenes*.
+. En la pestaña *Volúmenes*, selecciona el menú de acciones del volumen que deseas proteger con instantáneas.
+. Selecciona *Acciones de protección de datos* y luego *Gestionar instantáneas*.
+. En la página «Gestionar instantáneas», selecciona *Crear instantánea*.
+. En el cuadro de diálogo «Crear una instantánea», haz lo siguiente:
++
+.. Introduce un nombre de instantánea en el campo *Nombre de la instantánea*.
+.. Si lo deseas, selecciona una etiqueta o crea una nueva.
+.. Establece el *período de retención* como un número de horas, días, meses o años.
+.. Opcional: *hacer que esta instantánea sea inmutable* para evitar que se elimine durante el periodo de retención.
++
+Acepta la afirmación sobre las instantáneas inmutables.
+
+
+
+. Selecciona *Crear*.
+
+
+
+
+[[create-a-snapshot-policy-for-storage-vms]]
+== Crea una política de snapshot para las máquinas virtuales de almacenamiento
+
+Crea una política de SnapVault personalizada para las máquinas virtuales de almacenamiento en Workload Factory para gestionar la creación y la retención de instantáneas. Una política de SnapVault define cómo el sistema crea instantáneas para una máquina virtual de almacenamiento. Puedes crear una política de SnapVault para una máquina virtual de almacenamiento en un sistema de archivos FSx for ONTAP. También puedes compartir la política entre varias máquinas virtuales de almacenamiento.
+
+Puedes crear una política de SnapVault personalizada que difiera de las tres políticas de SnapVault integradas para FSx for ONTAP:
+
+* `default`
+* `default-1weekly`
+* `none`
+
+
+De forma predeterminada, cada volumen está asociado a la política de SnapVault `default` del sistema de archivos. Recomendamos utilizar esta política para la mayoría de las cargas de trabajo.
+
+Personalizar una política te permite especificar cuándo crear snapshots, cuántas copias conservar y cómo nombrarlas.
+
+.Antes de empezar
+* Una vez creada una política de SnapVault, no puedes modificar su asociación con las VM de almacenamiento, pero siempre puedes añadir o quitar la política de los volúmenes.
+* Ten en cuenta lo siguiente sobre la capacidad de las instantáneas antes de usarlas:
++
+** En la mayoría de los conjuntos de datos, una capacidad adicional del 20 % es suficiente para conservar las instantáneas durante un máximo de cuatro semanas. A medida que los datos se vuelven más antiguos, es menos probable que se usen para restauraciones.
+** Sobrescribir todos los datos de una instantánea consume una capacidad de volumen considerable, lo que influye al aprovisionar la capacidad del volumen.
+
+
+* Para crear una política de snapshot personalizada, debes asociar un enlace. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"]. Después de que se asocie el enlace, vuelve a esta operación.
+
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos con el volumen y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Storage VMs*.
+. En la pestaña *Máquinas virtuales de almacenamiento*, selecciona el menú de acciones del volumen que deseas proteger con instantáneas programadas, luego *Acciones avanzadas* y después *Gestionar políticas de SnapVault*.
+. En la página de gestión de políticas de SnapVault, selecciona *Crear política de SnapVault*.
+. En el campo *Nombre de la política de SnapVault*, introduce un nombre para la política de SnapVault.
+. Si lo deseas, introduce una descripción para la política de SnapVault.
+. En *Configuración de la política y copias*, selecciona cuándo crear instantáneas. Por ejemplo, cada minuto o cada hora.
++
+Puedes seleccionar más de una frecuencia.
+
+. En *Número de copias*, introduce el número de copias que quieres conservar.
++
+El número máximo de copias es 1.023.
+
+. Opcional: en *Convención de nomenclatura*, introduce un *Prefijo* para la política.
+. La *etiqueta de retención* se rellena automáticamente.
++
+Esta etiqueta hace referencia a SnapMirror, o a la etiqueta de replicación que se utiliza para seleccionar únicamente las instantáneas especificadas para la replicación desde el sistema de archivos de origen al sistema de archivos de destino.
+
+. Opcional: activa las *instantáneas inmutables* para las programaciones que necesites, configura el *período de retención* para cada programación y acepta la declaración para continuar.
++
+Al habilitar las instantáneas inmutables, se bloquean todas las instantáneas de esta política de snapshots para evitar que se eliminen durante el periodo de retención.
+
+. *Compartir entre máquinas virtuales de almacenamiento*: activado por defecto. Cuando está activado, la política de Snapshot se comparte entre todas las máquinas virtuales de almacenamiento del sistema de archivos. Desactívalo para crear una política de Snapshot para una sola máquina virtual de almacenamiento.
+. Selecciona *Crear*.
+
+
+
+
+[[restore-a-volume-from-a-snapshot]]
+== Restaurar un volumen a partir de una instantánea
+
+Puedes restaurar datos desde una instantánea a un volumen existente o a uno nuevo. La operación de restauración permite la recuperación a un momento específico cuando un volumen contiene archivos eliminados o dañados.
+
+La creación de un nuevo volumen a partir de una instantánea genera una copia de todo el volumen en pocos segundos independientemente del tamaño del mismo. La copia recién creada constituye un nuevo volumen.
+
+.Antes de empezar
+Ten en cuenta las siguientes limitaciones antes de crear un volumen a partir de una instantánea:
+
+* Solo puedes restaurar un volumen a partir de una instantánea si ya dispones de una copia Snapshot existente del volumen.
+* Cambios en los modelos de permisos: si utilizas esta operación para cambiar el tipo de protocolo de almacenamiento conectado a la red (NAS), es posible que también cambie el modelo de permisos que proporciona el estilo de seguridad. Podrías tener problemas con los permisos de acceso a archivos, que solo puedes corregir manualmente con acceso de administrador mediante las herramientas del cliente NAS para la configuración de permisos.
+
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos con el volumen y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona la pestaña *Volúmenes*.
+. En la pestaña *Volúmenes*, selecciona el menú de acciones del volumen que deseas restaurar desde una instantánea.
+. Selecciona *Acciones de protección de datos* y luego *Gestionar instantáneas*.
+. En la página «Gestionar instantáneas», selecciona el menú de acciones de la instantánea que deseas restaurar y, a continuación, selecciona *Restaurar*.
+. En el cuadro de diálogo «Restaurar volumen desde una instantánea», selecciona una de las siguientes opciones:
++
+** Activa la opción *Restaurar como un nuevo volumen*.
++
+En el campo *Nombre del volumen restaurado*, introduce un nombre único para el volumen que deseas restaurar.
+
+** Restaurar datos desde una instantánea a un volumen existente. Esta operación elimina de forma permanente cualquier dato que se haya modificado después de la hora de creación de la instantánea.
++
+Acepta la declaración para continuar.
+
+
+
+. Selecciona *Restaurar*.
+

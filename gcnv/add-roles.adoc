@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: gcnv/add-roles.html 
+keywords: setup, set up, add role, requirements, permissions, google cloud netapp volumes, gcnv, bluexp. netapp console,assign 
+summary: La NetApp Console necesita que a los miembros se les asignen los roles correctos. 
+---
+= Asignar roles de Google Cloud NetApp Volumes
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Debes asignar los roles correctos a los miembros en NetApp Console para empezar a trabajar con Google Cloud NetApp Volumes. Para obtener más información, consulta link:https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["Conoce los roles de acceso de NetApp Console para todos los servicios"^].
+
+
+
+[[assign-roles-to-the-service-account-member]]
+== Asignar roles al miembro de la cuenta de servicio
+
+. Inicia sesión en https://docs.netapp.com/us-en/console-setup-admin/task-logging-in.html["NetApp Console"^].
+. Selecciona *Administración* y a continuación *Identidad y acceso*.
+. Selecciona el menú de acciones image:screenshot_gallery_options.gif["Un icono con tres puntos."] junto al miembro al que quieres asignar un rol y selecciona *Add a role*.
+. Para añadir un rol, sigue los pasos que se indican en el cuadro de diálogo:
++
+.. Selecciona una carpeta o un proyecto: elige el nivel de la jerarquía de recursos para el que el miembro debe tener permisos.
++
+Si seleccionas una carpeta, el miembro tendrá permisos para todo lo que se encuentre dentro de la carpeta.
+
+.. En el menú desplegable *Categoría*, selecciona la categoría de rol *Aplicación*. https://docs.netapp.com/us-en/console-setup-admin/reference-iam-predefined-roles.html["Conoce los roles de acceso"^].
+.. En el menú desplegable *Role*, selecciona un rol que otorgue al miembro permisos sobre los recursos asociados a la carpeta o al proyecto que seleccionaste.
++
+*Important:* debes añadir uno de estos roles o ambos:
+
++
+*** _administrador de Google Cloud NetApp Volumes_ O
+*** _visor de Google Cloud NetApp Volumes_
+
+
+.. Añadir rol: si deseas conceder acceso a carpetas o proyectos adicionales dentro de tu organización, selecciona *Añadir rol*, especifica otra carpeta, otro proyecto u otra categoría de rol y, a continuación, selecciona una categoría de rol y el rol correspondiente.
+
+
+. Selecciona *Add new roles*.
+
+
+.¿Qué sigue?
+link:create-discover-systems.html["Añade un sistema de Google Cloud NetApp Volumes"].

@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-svm-settings.html 
+keywords: edit storage vm settings, vm tags, svm tags, storage vm settings, storage vm password, svm password 
+summary: Puedes añadir, actualizar o eliminar etiquetas de una máquina virtual de almacenamiento en cualquier momento. 
+---
+= Gestiona la configuración de las máquinas virtuales de almacenamiento en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Administra la configuración de una máquina virtual de almacenamiento en NetApp Workload Factory. Puedes configurar y actualizar Active Directory para una máquina virtual de almacenamiento, actualizar la contraseña de la máquina virtual y gestionar las etiquetas de la máquina virtual.
+
+
+
+[[configure-and-update-ad-for-a-storage-vm-in-netapp-workload-factory]]
+== Configura y actualiza AD para una máquina virtual de almacenamiento en NetApp Workload Factory
+
+Configura y actualiza Active Directory para una máquina virtual de almacenamiento en un sistema de archivos FSx for ONTAP en NetApp Workload Factory.
+
+Los mismos pasos se aplican para configurar y actualizar Active Directory para una máquina virtual de almacenamiento.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos con la máquina virtual de almacenamiento que quieres actualizar y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, en Storage VMs, selecciona *Manage*.
+. En la pantalla «Gestionar máquinas virtuales de almacenamiento», selecciona el menú de acciones de la máquina virtual de almacenamiento para la que quieres configurar Active Directory y, a continuación, selecciona *Acciones básicas* > *Gestionar la configuración de AD*.
+. En la página «Gestionar configuración de AD», introduce los siguientes datos:
++
+.. *Dominio de Active Directory al que unirse*: introduce el dominio completo (FQDN) de tu Active Directory.
+.. *Direcciones IP de DNS*: introduce hasta tres direcciones IP separadas por comas.
+.. *Nombre NetBIOS del servidor SMB*: introduce el nombre NetBIOS del servidor SMB del objeto de equipo de Active Directory que crearás para tu máquina virtual de almacenamiento. Este es el nombre de esta máquina virtual de almacenamiento en Active Directory.
+.. *Nombre de usuario*: introduce el nombre de usuario de la cuenta de servicio en tu Active Directory actual.
++
+No incluyas ningún prefijo ni sufijo de dominio. Para `EXAMPLE\ADMIN`, usa `ADMIN`.
+
+.. *Contraseña*: introduce la contraseña de la cuenta de servicio.
+.. *Unidad organizativa (OU)*: introduce la unidad organizativa.
++
+OU es el nombre de ruta distintivo de la unidad organizativa a la que quieres unir tu sistema de archivos.
+
+.. *Grupo de administradores delegados*: si lo deseas, introduce el grupo de administradores delegados del sistema de archivos.
++
+El grupo «Administradores delegados» es el nombre del grupo de tu Active Directory que puede administrar tu sistema de archivos.
+
++
+Si utilizas AWS Managed Microsoft AD, debes especificar un grupo como AWS Delegated FSx Administrators, AWS Delegated Administrators o un grupo personalizado con permisos delegados para la OU.
+
++
+Si te conectas a un AD autogestionado, utiliza el nombre del grupo de tu AD. El grupo predeterminado es `Domain Admins`.
+
+
+
+. Selecciona *Aplicar*.
+
+
+
+
+[[manage-storage-vm-tags]]
+== Gestionar etiquetas de VM de almacenamiento
+
+Las etiquetas pueden ayudarte a clasificar tus recursos. Puedes añadir, editar y eliminar etiquetas de una máquina virtual de almacenamiento en cualquier momento en NetApp Workload Factory.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos con la máquina virtual de almacenamiento que quieres actualizar y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, en Storage VMs, selecciona *Manage*.
+. En la pantalla «Gestionar máquinas virtuales de almacenamiento», selecciona el menú de acciones de la máquina virtual de almacenamiento cuyas etiquetas quieres editar y, a continuación, selecciona *Acciones básicas* > *Editar etiquetas de la máquina virtual de almacenamiento*.
+. En la página Edit storage VM tags, añade, edita o elimina etiquetas.
++
+El número máximo de etiquetas que puedes aplicar a una máquina virtual de almacenamiento es 50.
+
+. Selecciona *Aplicar*.
+
+
+
+
+[[reset-the-storage-vm-password-in-netapp-workload-factory]]
+== Restablecer la contraseña de la máquina virtual de almacenamiento en NetApp Workload Factory
+
+Restablece la contraseña de una máquina virtual de almacenamiento en NetApp Workload Factory cuando sea necesario.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En *FSx for ONTAP*, selecciona el menú de acciones del sistema de archivos cuya contraseña de máquina virtual de almacenamiento deseas restablecer y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, en Storage VMs, selecciona *Manage*.
+. En la pantalla «Gestionar máquinas virtuales de almacenamiento», selecciona el menú de acciones de la máquina virtual de almacenamiento cuya contraseña deseas restablecer y, a continuación, selecciona *Acciones básicas* > *Restablecer contraseña*.
+. En el cuadro de diálogo «Restablecer contraseña», introduce los siguientes datos:
++
+.. *Nueva contraseña*: introduce una nueva contraseña para la máquina virtual de almacenamiento.
+.. *Confirmar contraseña*: introduce de nuevo la nueva contraseña para confirmarla.
+
+
+

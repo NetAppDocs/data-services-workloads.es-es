@@ -1,0 +1,75 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/manage-file-system-settings.html 
+keywords: create fsx tags, create tags, edit fsx tags, fsx tags, reset fsx admin password 
+summary: Añade, actualiza o elimina en cualquier momento las etiquetas del sistema de archivos de FSx for ONTAP para un sistema de archivos. 
+---
+= Gestiona la configuración del sistema de archivos FSx for ONTAP en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gestiona la configuración de un sistema de archivos FSx for ONTAP en NetApp Workload Factory. Puedes gestionar las etiquetas del sistema de archivos, restablecer la contraseña de fsxadmin cuando sea necesario y actualizar la capacidad de rendimiento según sea preciso.
+
+
+
+[[manage-fsx-for-ontap-file-system-tags]]
+== Gestiona las etiquetas del sistema de archivos FSx for ONTAP
+
+Las etiquetas pueden ayudarte a clasificar tus recursos. Puedes añadir, editar y eliminar etiquetas de un sistema de archivos en cualquier momento en NetApp Workload Factory.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Almacenamiento*.
+. En el menú *Storage*, selecciona *Inventory*.
+. En el *Inventario*, selecciona el menú de acciones del sistema de archivos que deseas actualizar y a continuación selecciona *Gestionar etiquetas del sistema de archivos*.
+. En el cuadro de diálogo *Gestionar etiquetas del sistema de archivos*, añade, edita o elimina etiquetas según sea necesario.
++
+El número máximo de etiquetas que puedes aplicar a un sistema de archivos es 50.
+
+. Selecciona *Aplicar*.
+
+
+
+
+[[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
+== Restablece la contraseña de fsxadmin de un sistema de archivos FSx para ONTAP
+
+Restablece la contraseña de fsxadmin en NetApp Workload Factory cuando sea necesario.
+
+Si has indicado un usuario alternativo al crear el sistema de archivos, solo podrás restablecer la contraseña de fsxadmin en la consola de AWS.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Almacenamiento*.
+. En el menú *Storage*, selecciona *Inventory*.
+. En *Inventory*, selecciona el menú de acciones del sistema de archivos para el que quieras restablecer la contraseña de fsxadmin y, a continuación, selecciona *Manage*.
+. En la vista general del sistema de archivos, selecciona el menú de acciones.
++
+image:screenshot-reset-fsxadmin-password.png["Una captura de pantalla del menú de acciones en la pestaña de resumen de un sistema de archivos."]
+
+. Selecciona *Restablecer contraseña de fsxadmin*.
+. En el cuadro de diálogo «Restablecer contraseña de fsxadmin», introduce una nueva contraseña para fsxadmin y vuelve a introducirla para confirmarla.
+. Selecciona *Aplicar*.
+
+
+
+
+[[update-throughput-capacity-for-an-fsx-for-ontap-file-system]]
+== Actualiza la capacidad de rendimiento de un sistema de archivos Amazon FSx for NetApp ONTAP
+
+Actualiza la capacidad de rendimiento de un sistema de archivos FSx for ONTAP en NetApp Workload Factory según sea necesario.
+
+Para conocer los límites de capacidad de rendimiento, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/limits.html["Cuotas"^] en la documentación de AWS FSx for NetApp ONTAP.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Almacenamiento*.
+. En el menú *Storage*, selecciona *Inventory*.
+. En el *Inventario*, selecciona el menú de acciones del sistema de archivos cuya capacidad de rendimiento deseas actualizar y, a continuación, selecciona *Gestionar*.
+. En «Información», selecciona el icono del lápiz junto a *Capacidad de rendimiento*. El icono del lápiz aparece junto a la flecha desplegable cuando pasas el ratón sobre la fila *Capacidad de rendimiento*.
+. En el cuadro de diálogo «Capacidad de rendimiento», selecciona la capacidad de rendimiento que necesitas.
+. Selecciona *Aplicar* para guardar los cambios
+
