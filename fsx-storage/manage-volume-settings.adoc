@@ -11,7 +11,24 @@ summary: Las etiquetas pueden ayudarte a clasificar tus recursos. Puedes añadir
 
 
 [role="lead"]
-Personaliza la configuración de volúmenes de FSx para ONTAP en NetApp Workload Factory para adaptarla a las necesidades de tu organización. Puedes gestionar las etiquetas de los volúmenes para clasificar los recursos, actualizar la configuración de eficiencia del almacenamiento para optimizar el espacio y el ahorro de costes, y gestionar la configuración de archivos inmutables para controlar la retención de datos y protegerlos frente a cambios no autorizados.
+Personaliza la configuración de volúmenes de FSx para ONTAP en NetApp Workload Factory para adaptarla a las necesidades de tu organización. Puedes gestionar las etiquetas de los volúmenes para clasificar recursos, como configurar cargas de trabajo de volumen, actualizar la configuración de eficiencia del almacenamiento para optimizar el espacio y ahorrar costes, y gestionar la configuración de archivos inmutables para controlar la retención de datos y protegerlos frente a cambios no autorizados.
+
+
+
+[[change-volume-workload]]
+== Cambiar la carga de trabajo del volumen
+
+Actualiza las cargas de trabajo de un volumen para que se ajusten a los casos de uso previstos.
+
+.Pasos
+. Inicia sesión usando una de las link:https://docs.netapp.com/us-en/workload-setup-admin/console-experiences.html["experiencias en la consola"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se usa para navegar a cargas de trabajo como almacenamiento, eda, ai, bases de datos, vmware y administración."] y luego selecciona *Almacenamiento*.
+. En el menú de Storage, selecciona *Volumes explorer*.
+. Selecciona el menú de acciones del volumen para el que quieres actualizar la carga de trabajo.
+. Selecciona *Advanced actions* y, a continuación, *Change workloads*.
+. En el cuadro de diálogo «Cambiar cargas de trabajo», selecciona las cargas de trabajo correctas para el volumen.
+. Selecciona *Aplicar* para guardar los cambios.
+
 
 
 

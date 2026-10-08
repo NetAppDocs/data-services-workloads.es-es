@@ -87,6 +87,7 @@ NOTE: Al utilizar Terraform desde Codebox, el código que copias o descargas ocu
 . En la página «Crear volumen», en la sección «Datos generales», introduce los siguientes datos:
 +
 .. *Nombre del volumen*: introduce un nombre para el volumen.
+.. *Carga de trabajo*: selecciona la carga de trabajo asociada al volumen.
 .. *Nombre de la máquina virtual de almacenamiento*: Si lo deseas, introduce un nombre para la máquina virtual de almacenamiento.
 .. *Estilo de volumen*: selecciona el volumen *FlexVol* o *FlexGroup*.
 +

@@ -11,7 +11,7 @@ summary: Añade, actualiza o elimina en cualquier momento las etiquetas del sist
 
 
 [role="lead"]
-Gestiona la configuración de un sistema de archivos FSx for ONTAP en NetApp Workload Factory. Puedes gestionar las etiquetas del sistema de archivos, restablecer la contraseña de fsxadmin cuando sea necesario y actualizar la capacidad de rendimiento según sea preciso.
+Gestiona la configuración de un sistema de archivos FSx para ONTAP en NetApp Workload Factory para mantener tu sistema de archivos organizado, seguro y con el tamaño adecuado para tu carga de trabajo. Puedes añadir o editar etiquetas, gestionar las credenciales de ONTAP, restablecer la contraseña de fsxadmin y actualizar la capacidad de procesamiento en cualquier momento.
 
 
 
@@ -34,6 +34,44 @@ El número máximo de etiquetas que puedes aplicar a un sistema de archivos es 5
 
 
 
+[[manage-ontap-credentials]]
+== Gestionar las credenciales de ONTAP
+
+Gestiona las credenciales de ONTAP para un sistema de archivos FSx for ONTAP en NetApp Workload Factory. Workload Factory tiene dos tipos de credenciales: primarias y restringidas. De forma predeterminada, el sistema de archivos utiliza las credenciales primarias de ONTAP. Las credenciales restringidas se usan solo para operaciones de IA (AIOps) como Ask Me, Rule builder y paneles personalizados. Opcionalmente, puedes añadir un conjunto de credenciales restringidas y actualizar cualquiera de los dos conjuntos en cualquier momento.
+
+Puedes realizar las siguientes tareas:
+
+* Activa esta opción para añadir un conjunto de credenciales restringidas, ya sea mediante un nombre de usuario y una contraseña o un ARN secreto.
+* Modifica las credenciales existentes, incluido el nombre de usuario y la contraseña, solo la contraseña o el ARN del secreto.
+
+
+Workload Factory permite cambiar entre el servicio de credenciales de Workload Factory (nombre de usuario y contraseña) y AWS Secrets Manager.
+
+Workload Factory gestiona las credenciales restringidas de la siguiente manera:
+
+* Si no has proporcionado credenciales restringidas para un sistema de archivos y luego creas reglas personalizadas o paneles de control, o haces preguntas a Ask Me, Workload Factory crea credenciales de solo lectura de ONTAP para usarlas como el conjunto de credenciales restringidas.
+* Si ya has facilitado credenciales restringidas para un sistema de archivos, esas credenciales se usan para AIOps.
+
+
+.Antes de empezar
+Debes asociar un enlace para gestionar las credenciales de ONTAP. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú FSx for ONTAP, selecciona *Inventory*.
+. En el *Inventario*, selecciona el menú de acciones del sistema de archivos cuyas credenciales quieras gestionar y, a continuación, selecciona *Gestionar*.
+. En la vista general del sistema de archivos, selecciona el menú de acciones.
++
+image:screenshot-manage-ontap-credentials.png["Una captura de pantalla del menú de acciones en la pestaña de resumen de un sistema de archivos."]
+
+. Selecciona *Manage ONTAP credentials*.
+. Actualiza las credenciales principales o restringidas de ONTAP.
+. Selecciona *Aplicar*.
+
+
+
+
 [[reset-the-fsxadmin-password-of-an-fsx-for-ontap-file-system]]
 == Restablece la contraseña de fsxadmin de un sistema de archivos FSx para ONTAP
 
@@ -43,8 +81,8 @@ Si has indicado un usuario alternativo al crear el sistema de archivos, solo pod
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
-. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Almacenamiento*.
-. En el menú *Storage*, selecciona *Inventory*.
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *FSx for ONTAP*.
+. En el menú FSx for ONTAP, selecciona *Inventory*.
 . En *Inventory*, selecciona el menú de acciones del sistema de archivos para el que quieras restablecer la contraseña de fsxadmin y, a continuación, selecciona *Manage*.
 . En la vista general del sistema de archivos, selecciona el menú de acciones.
 +
