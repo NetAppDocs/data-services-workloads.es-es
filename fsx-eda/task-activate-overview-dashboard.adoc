@@ -60,8 +60,8 @@ Workload Factory comienza a recopilar métricas de CloudWatch para todos los sis
 
 Después de activar el dashboard, puedes:
 
-* link:task-use-overview-dashboard.html["Usa el panel de control general"] para monitorizar la salud y la capacidad de los clústeres
-* link:task-use-overview-dashboard.html#change-ssd-management-mode["Habilitar y configurar los modos de gestión de capacidad de los SSD"] (Recomendar, Automatizar o Ninguna)
-* link:task-use-overview-dashboard.html#change-throughput-management-mode["Activar y configurar los modos de gestión del rendimiento"] (Recomendar, Automatizar o Ninguna)
+* link:../fsx-eda/task-use-overview-dashboard.html["Usa el panel de control general"] para monitorizar la salud y la capacidad de los clústeres
+* link:../fsx-eda/task-use-overview-dashboard.html#change-ssd-management-mode["Habilitar y configurar los modos de gestión de capacidad de los SSD"] (Recomendar, Automatizar o Ninguna)
+* link:../fsx-eda/task-use-overview-dashboard.html#change-throughput-management-mode["Activar y configurar los modos de gestión del rendimiento"] (Recomendar, Automatizar o Ninguna)
 * Configura filtros para centrarte en regiones o cuentas de AWS específicas
 

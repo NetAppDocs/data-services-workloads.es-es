@@ -25,7 +25,7 @@ Utiliza esta información para resolver los problemas habituales que puedas enco
 **Solución:** Prueba lo siguiente:
 
 * Reformula tu solicitud con detalles más claros sobre lo que quieres monitorizar.
-* Empieza con una de las propuestas de ejemplo en link:create-custom-dashboard-fsx.html["Crear un panel de control personalizado"].
+* Empieza con una de las propuestas de ejemplo en link:../admin/create-custom-dashboard-fsx.html["Crear un panel de control personalizado"].
 * Divide las necesidades de monitoreo complejas en varios paneles de control más sencillos.
 * Especifica las cargas de trabajo, las métricas, los intervalos de tiempo o las dimensiones que deseas supervisar.
 
@@ -41,7 +41,7 @@ Utiliza esta información para resolver los problemas habituales que puedas enco
 
 **Solución:**
 
-* **Comprueba los permisos:** Asegúrate de que tu cuenta de Workload Factory tenga acceso de lectura a las cargas de trabajo y los recursos que usa el panel de control. Consulta los requisitos de permisos en link:learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["Credenciales y permisos de AWS"].
+* **Comprueba los permisos:** Asegúrate de que tu cuenta de Workload Factory tenga acceso de lectura a las cargas de trabajo y los recursos que usa el panel de control. Revisa la link:../admin/learn-custom-dashboards-fsx.html#aws-credentials-and-permissions["requisitos de permisos"].
 * **Comprobar las credenciales:** Confirma que tus credenciales de AWS son válidas y no han caducado. Consulta link:../fsx-storage/add-credentials.html["Agregar credenciales AWS"] para obtener más detalles.
 
 
@@ -85,4 +85,4 @@ Todos los usuarios de una cuenta de Workload Factory pueden ver y eliminar los p
 [[additional-help]]
 == Ayuda adicional
 
-Si sigues teniendo problemas con los paneles personalizados, consulta link:../get-help.html["Consigue ayuda"] para obtener información sobre cómo ponerte en contacto con el soporte de NetApp.
+Si sigues teniendo problemas con los paneles personalizados, consulta link:../get-help.html["Consigue ayuda"] para obtener información sobre cómo ponerte en contacto con el servicio de asistencia de NetApp.

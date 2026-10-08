@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/manage-custom-rules.html 
-keywords: manage custom rules, disable rules, delete rules, rule catalog, byor 
-summary: Ver, activar, desactivar y eliminar reglas arquitectónicas personalizadas del catálogo de reglas. 
+keywords: manage rules, edit rules, disable rules, delete rules, rule catalog, byor 
+summary: Ver, editar, activar, desactivar y eliminar reglas arquitectónicas personalizadas del catálogo de reglas. 
 ---
-= Gestiona reglas personalizadas para NetApp Workload Factory
+= Gestionar reglas personalizadas para Workload Factory en NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Ver, activar, desactivar y eliminar reglas arquitectónicas personaliza
 
 
 [role="lead"]
-El catálogo de reglas es el lugar donde puedes gestionar todas tus reglas personalizadas. Puedes consultar los detalles de cada regla, comprobar sus resultados y activarla o desactivarla.
+El catálogo de reglas es el lugar donde puedes gestionar todas tus reglas personalizadas. Puedes consultar los detalles de las reglas, editarlas, comprobar los resultados y controlar si se ejecutan según lo programado.
 
 
 
@@ -49,24 +49,94 @@ Si la comprobación ha fallado en algunos elementos, lee el mensaje de error par
 [[edit-a-custom-rule]]
 == Editar una regla personalizada
 
-Puedes modificar la lógica, la programación u otros ajustes de una regla en cualquier momento. Cuando editas una regla, el generador de reglas se abre con los ajustes actuales de la regla.
+Puedes cambiar el nombre de una regla en cualquier momento. También puedes editar la descripción de una regla, el tipo de recurso, la programación, la gravedad, la lógica de condiciones, el ámbito de evaluación y las instrucciones de corrección.
+
+Puedes cambiar el nombre de una regla desde el catálogo de reglas o desde la tarjeta de detalles de la regla. Para editar cualquier otra configuración de la regla, empieza desde el catálogo de reglas.
 
 .Pasos
 . En el catálogo de reglas, haz clic en la regla que quieras editar.
-. Haz clic en *Editar*.
+. Debe realizar una de las siguientes acciones:
 +
-La regla cambia al modo de borrador y se abre el generador de reglas.
-
-. Edita el mensaje de la regla o usa la conversación para mejorar la regla.
-. Revisa la interpretación actualizada de la IA y la definición de la regla.
+** Para cambiar el nombre de la regla, modifica el nombre de la regla desde el catálogo o desde la ficha de detalles de la regla.
+** Para editar otros ajustes de la regla, haz clic en *Edit*.
 +
-El sistema muestra qué ha cambiado con respecto a la regla actual, incluida cualquier llamada a la API o lógica.
+La regla se abre en modo de chat con todo su historial.
 
-. Haz una de las siguientes acciones en función de los cambios realizados:
+
+
+. Pide los cambios que quieras hacer o actualiza la solicitud en el chat.
 +
-** Si has hecho cambios menores, haz clic en *Guardar* para actualizar la regla.
-** Si hiciste cambios importantes, haz clic en *Validar regla* para comprobarlos y, a continuación, haz clic en *Programar* para guardar y programar la regla, o haz clic en *Guardar como borrador* para guardarla sin programarla.
-** Para descartar los cambios, haz clic en *Volver a la versión anterior*. La regla vuelve a su definición original y sale del modo de edición.
+Si antes no pudiste crear la regla, puedes continuar desde esa regla y actualizar tu solicitud en el chat.
+
+. Consulta la explicación actualizada y el resumen de los cambios.
++
+El sistema muestra qué cambió respecto a la regla actual antes de guardarla.
+
+. Si la regla está en modo borrador, selecciona *Validar regla* para comprobar la lógica actualizada.
+. Debe realizar una de las siguientes acciones:
++
+** Para conservar los cambios, haz clic en *Save* para reemplazar la regla actual. Si cambiaste la programación, guarda la programación actualizada. Si no cambiaste la programación, seguirá igual.
+** Para descartar los cambios, haz clic en *Descartar cambios*. La regla vuelve a su versión anterior y sale del modo de edición.
 
 
 
+
+Mientras editas una regla, esta aparece como *En edición* para ti. Los demás usuarios siguen viendo la regla programada actual, y las ejecuciones programadas continúan con normalidad hasta que guardes los cambios.
+
+
+
+[[pause-a-rule]]
+== Poner en pausa una regla
+
+Pausa una regla para detener las evaluaciones sin eliminar la regla. Las reglas en pausa permanecen en el catálogo y se pueden reiniciar en cualquier momento.
+
+.Pasos
+. En el catálogo de reglas, haz clic en la regla que quieras pausar.
+. Debe realizar una de las siguientes acciones:
++
+** Para pausar una regla programada, haz clic en *Pausar* y luego confirma. La regla deja de ejecutarse según su programación.
+** Para reanudar una regla en pausa, haz clic en *Reanudar* y luego confirma. La regla vuelve a realizar evaluaciones periódicas.
+
+
+
+
+
+
+[[delete-a-custom-rule]]
+== Eliminar una regla personalizada
+
+Elimina una regla de forma definitiva cuando ya no la necesites. Esta acción no se puede deshacer.
+
+.Pasos
+. En el catálogo de reglas, haz clic en la regla que quieras eliminar.
+. Haz clic en *Delete*.
+. Confirma que deseas eliminar la regla de forma permanente.
+
+
+.Resultado
+La regla se elimina del catálogo. Se borra todo el historial de evaluaciones.
+
+
+
+[[run-a-quick-test]]
+== Haz una prueba rápida
+
+Realiza una prueba rápida en cualquier momento para comprobar el cumplimiento actual sin tener que esperar a la próxima ejecución programada.
+
+.Pasos
+. En el catálogo de reglas, haz clic en la regla que quieras evaluar.
+. Haz clic en *Validar*.
++
+El sistema evalúa todos los recursos en el alcance según la lógica de la regla.
+
+. Revisa los resultados para ver el estado actual del cumplimiento.
+
+
+Las pruebas se auditan y aparecen en el historial de evaluación de la regla.
+
+
+
+[[what-to-do-next]]
+== Qué hacer a continuación
+
+link:../fsx-storage/learn-custom-rules.html["Obtén más información sobre las reglas personalizadas"]

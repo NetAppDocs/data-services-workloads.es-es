@@ -14,7 +14,7 @@ summary: Accede a tu catálogo de paneles de control para ver, actualizar y elim
 Gestiona tus paneles personalizados desde el catálogo de paneles. Desde allí, puedes consultar detalles, compartir paneles, actualizar los datos o eliminar los paneles que ya no necesites.
 
 .Acerca de esta tarea
-Puedes ver y gestionar los paneles personalizados desde el catálogo de paneles. Los paneles privados solo son visibles para ti, mientras que los paneles públicos son visibles para todos los usuarios de tu cuenta de Workload Factory. Cada panel muestra datos básicos como el nombre del creador, la fecha de creación y una etiqueta de visibilidad (privado o público).
+Puedes ver y gestionar los paneles personalizados desde el catálogo de paneles. Los paneles privados solo son visibles para ti, mientras que los paneles públicos son visibles para todos los usuarios de tu cuenta de Workload Factory. Cada panel muestra datos básicos como el nombre del creador, la fecha de creación y una etiqueta de visibilidad (Privado o Público).
 
 Los paneles personalizados son de solo lectura. No pueden modificar tu almacenamiento ni la configuración de las cargas de trabajo.
 
@@ -28,7 +28,7 @@ Debes tener al menos un panel de control personalizado en tu cuenta de Workload 
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
-. En el menú de NetApp Console, selecciona *Workloads* > *Workloads Overview* > *Custom dashboards*.
+. En el menú, selecciona *Resumen de cargas de trabajo* y luego *Cuadros de mando personalizados*.
 +
 El catálogo de paneles muestra todos los paneles personalizados de tu cuenta de Workload Factory.
 
@@ -62,7 +62,30 @@ El panel de control se actualiza al instante. La etiqueta de visibilidad de la t
 
 Los datos del panel se cargan al abrir un panel. Puedes actualizarlo para ver la información más reciente.
 
-El panel de control vuelve a cargar los datos de tus cargas de trabajo. La hora de la última actualización cambia para mostrar cuándo se actualizaron los datos.
+El panel de control vuelve a cargar los datos de tus cargas de trabajo.
+
+
+
+[[edit-dashboards]]
+== Editar paneles de control
+
+Puedes editar un panel de control para modificar lo que muestra, incluidas las métricas, los gráficos y los intervalos de tiempo.
+
+
+NOTE: Solo quien creó el dashboard puede editarlo. Mientras lo editas, los demás usuarios no pueden ver tus cambios hasta que los guardes.
+
+.Pasos
+. En la página *Paneles personalizados*, busca el panel que quieras editar.
+. En el menú *Actions* de ese dashboard, selecciona *Edit dashboard*.
+. En el cuadro de diálogo de IA, describe los cambios que quieres hacer.
++
+Este proceso es similar al de crear un nuevo panel de control. Puedes modificar las cargas de trabajo, las métricas o los intervalos de tiempo que supervisa el panel de control.
+
+. Revisa los cambios y selecciona **Guardar**.
+
+
+.Resultado
+El panel de control se actualiza con los cambios que realices. La fecha de la última modificación también se actualiza.
 
 
 
@@ -85,6 +108,6 @@ El panel de control se elimina definitivamente de tu cuenta de Workload Factory 
 [[related-information]]
 == Información relacionada
 
-* link:create-custom-dashboard-fsx.html["Crear paneles personalizados adicionales"]
-* link:troubleshoot-custom-dashboards-fsx.html["Soluciona problemas en los paneles personalizados"]
+* link:../admin/create-custom-dashboard-fsx.html["Crear paneles personalizados adicionales"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Soluciona problemas en los paneles personalizados"]
 

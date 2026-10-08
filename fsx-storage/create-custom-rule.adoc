@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fsx-storage/create-custom-rule.html 
-keywords: create custom rule, custom rules, fsx, ontap, well architected, rule builder 
+keywords: create custom rule, byor, custom rules, fsx, ontap, well architected, rule builder 
 summary: Crea una regla arquitectónica personalizada usando lenguaje natural para aplicar los estándares de tu organización en FSx para ONTAP. 
 ---
-= Crear una regla personalizada en NetApp Workload Factory
+= Crear una regla personalizada para Workload Factory en NetApp Console
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,68 +14,18 @@ summary: Crea una regla arquitectónica personalizada usando lenguaje natural pa
 
 
 [role="lead"]
-Crea reglas personalizadas describiéndolas en lenguaje sencillo. El generador de reglas de IA de NetApp Workload Factory convierte tu solicitud en una regla validada que comprueba tus recursos de FSx for ONTAP.
+Crea reglas personalizadas para comprobar tus recursos de FSx for ONTAP en Workload Factory. Describe las reglas en lenguaje sencillo, y el generador de reglas de AI convertirá tu solicitud en una regla validada.
+
+.Acerca de esta tarea
+El proceso de configuración de la regla te guía en cada paso: crear la regla, revisar cómo la ha interpretado la IA y comprobar los resultados antes de programar revisiones periódicas. Mantienes el control durante todo el proceso. El sistema sugiere una regla basada en tu indicación, pero no ocurre nada hasta que la apruebes.
 
 
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, aparecerá un mensaje y no podrás crear ni editar reglas personalizadas. Ponte en contacto con tu administrador o link:../admin/manage-genai-features.html["conoce la administración de IA"^].
 
-[[about-this-task]]
-== Acerca de esta tarea
-
-El proceso de creación de reglas te guía paso a paso: definir la regla, revisar cómo la ha interpretado la IA y comprobar los resultados antes de programar evaluaciones periódicas. Tú mantienes el control en cada paso. El sistema sugiere una regla basada en tu indicación, pero nada avanza hasta que la confirmes.
-
-
-NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, no podrás crear reglas personalizadas. Ponte en contacto con tu administrador o link:../admin/manage-genai-features.html["conoce la administración de IA"^].
-
-
-
-[[limitations]]
-=== Limitaciones
-
-Las siguientes limitaciones se aplican a las reglas personalizadas:
-
-* No hay soluciones automáticas disponibles. Debes corregir tú mismo los recursos que no cumplan los requisitos usando la guía proporcionada.
-* Cada regla solo puede comprobar un tipo de recurso. Para comprobar varios tipos de recursos, crea reglas independientes.
-* El intervalo de evaluación más corto es de 1 hora para evitar un escaneo excesivo.
-* Las reglas tienen acceso de solo lectura y no pueden realizar cambios en tu entorno.
-
-
-
-
-[[custom-rule-examples]]
-=== Ejemplos de reglas personalizadas
-
-Los siguientes ejemplos ilustran reglas personalizadas habituales:
-
-*Protección del volumen de producción*:: «Todos los volúmenes con la etiqueta ‘Prod’ deben tener instalada una política de snapshot»
-+
---
-Esta regla crea automáticamente instantáneas para proteger los volúmenes de producción de acuerdo con los requisitos de la empresa.
-
---
-*Clasificación por niveles de los volúmenes de archivo*:: "Todos los volúmenes con la etiqueta 'Archive' deben tener una política de almacenamiento por niveles configurada en 'All'"
-+
---
-Esta regla reduce los costes al trasladar automáticamente los datos archivados a un almacenamiento más económico.
-
---
-*Normas de nomenclatura del sistema de archivos*:: "Todos los sistemas de archivos deben seguir la convención de nomenclatura 'fsx-{environment}-{application}'"
-+
---
-Esta norma valida que los sistemas de archivos se ajusten a las convenciones de nomenclatura de la organización para facilitar la gestión y la asignación de costes.
-
---
-
-
-
-
-[[before-you-begin]]
-== Antes de empezar
-
-Antes de que puedas crear y ejecutar reglas personalizadas, asegúrate de tener lo siguiente:
-
-* Has configurado las credenciales de AWS con acceso de solo lectura. link:add-credentials.html["Agrega credenciales de AWS a Workload Factory"^].
-* Dispones de credenciales de ONTAP con permisos de visualización. link:add-credentials.html["Agrega credenciales de ONTAP a Workload Factory"^].
-* Tienes configurada la conectividad con el sistema de almacenamiento en la nube mediante un enlace o un agente de Console. link:create-link.html["Crear y asociar un enlace"] o link:https://docs.netapp.com/us-en/console-setup-admin/concept-agent-install-options.html#agent-console-deploy["implementar un agente de Console"^].
+.Antes de empezar
+* Has configurado las credenciales de AWS con acceso de solo lectura.
+* Dispones de credenciales de ONTAP con permisos de visualización.
+* Tienes un enlace o un agente configurado para la conectividad de FSx for ONTAP.
 * Entiendes que la creación de reglas personalizadas utiliza el servicio Bedrock AI de NetApp.
 
 
@@ -84,12 +34,9 @@ Antes de que puedas crear y ejecutar reglas personalizadas, asegúrate de tener 
 [[create-a-rule]]
 == Crear una regla
 
-Usa Rule builder para crear reglas personalizadas de mejores prácticas con lenguaje sencillo. Estas reglas se revisan en todos tus recursos.
-
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
-. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Well-architected*.
-. En el menú Well-architected, selecciona *Rule builder*.
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y luego selecciona Workloads > Well-architected > Rule builder.
 +
 Al abrir el generador de reglas, se muestran ejemplos de indicaciones para ayudarte a redactar tu regla personalizada. Puedes seleccionar *Copiar indicación* para copiar un ejemplo de indicación en el cuadro de texto del cuadro de diálogo de IA.
 
@@ -114,16 +61,20 @@ La IA analiza tu solicitud y genera una definición de regla.
 
 El generador de reglas muestra:
 
-* *Interpretación analizada*: Cómo la IA entendió tu solicitud en lenguaje sencillo.
-* *Definición de regla*: La regla estructurada que incluye el tipo de recurso, la lógica de condición y los criterios de evaluación.
-* *Razonamiento*: Por qué la IA interpretó tu solicitud de esta manera.
-* *Indicador de confianza*: qué tan seguro está el sistema en la interpretación.
+Interpretación procesada:: Cómo entendió la IA tu solicitud en lenguaje sencillo.
+Definición de regla:: La regla estructurada que incluye el tipo de recurso, la lógica de condiciones y los criterios de evaluación.
+Razonamiento:: Por qué la IA interpretó tu solicitud de esta manera.
+Indicador de confianza:: El grado de confianza del sistema en la interpretación.
 
 
 .Pasos
 . Revisa la interpretación para asegurarte de que se ajusta a lo que querías decir.
+. Comprueba que la definición de la regla sea correcta. Si la interpretación no está clara o es errónea, el sistema puede plantear preguntas como:
 +
-Comprueba que la definición de la regla sea correcta. Si la interpretación no está clara o es errónea, el sistema puede plantear preguntas como: * ¿qué recurso debe comprobarse? * ¿qué valor o límite define el cumplimiento? * ¿con qué frecuencia debe ejecutarse la regla?
+** ¿Qué recurso hay que consultar?
+** ¿Qué valor o límite define el cumplimiento?
+** ¿Con qué frecuencia debe ejecutarse la regla?
+
 
 . Responde a las preguntas aclaratorias de la IA.
 +
@@ -137,7 +88,7 @@ Es posible que la IA te pida que elijas entre varias opciones para comprender me
 [[test-the-rule]]
 == Comprueba la regla
 
-Antes de programar la regla, realiza una prueba única para ver a qué recursos afectará.
+Antes de guardar o programar la regla, realiza una prueba para ver a qué recursos afectará.
 
 .Pasos
 . Selecciona *Validar regla*.
@@ -146,17 +97,10 @@ El sistema evalúa todos los recursos en el alcance según la lógica de tu regl
 
 . Revisa los resultados de la validación:
 +
-** *Recursos evaluados*: Número total de recursos comprobados
-** *Conforme*: Recursos que cumplen los criterios de la regla
-** *No conforme*: Recursos que no cumplen los criterios
-** *Evaluaciones fallidas*: Recursos que no se pudieron evaluar (con detalles del error)
-
-
-. Si algunos recursos no superaron la evaluación, revisa los motivos del error:
-+
-** *Errores de credenciales de AWS*: es posible que los permisos de solo lectura no sean suficientes para determinados recursos
-** *Errores de conectividad*: el enlace o el agente podrían no estar configurados para sistemas de archivos específicos
-** *Errores de permisos de ONTAP*: es posible que el usuario del visor no tenga acceso a ciertos recursos
+** Recursos evaluados: número total de recursos revisados
+** Conformes: recursos que cumplen los criterios de la regla
+** No conformes: recursos que no cumplen los criterios
+** Evaluaciones fallidas: recursos que no se han podido evaluar (con detalles del error)
 
 
 
@@ -166,36 +110,24 @@ El sistema evalúa todos los recursos en el alcance según la lógica de tu regl
 [[save-or-schedule-the-rule]]
 == Guardar o programar la regla
 
-Después de probar tu regla, puedes guardarla como borrador o configurarla para que se ejecute regularmente.
+Una vez que hayas validado tu regla, puedes guardarla como borrador o configurarla para que se ejecute periódicamente.
 
 .Pasos
 . Debe realizar una de las siguientes acciones:
 +
-** Para programar una evaluación periódica, establece la frecuencia de evaluación (mínimo 1 hora, por defecto 24 horas) y selecciona *Schedule*. La regla está activada y se ejecuta según la programación definida.
-** Para guardar sin programarlo, selecciona *Guardar como borrador*. La regla se guarda, pero no se evalúa hasta que la programes.
-** Para descartar la regla, selecciona *Descartar* para cancelar la creación de la regla y volver a empezar.
+** Para programar una evaluación periódica, configura la frecuencia de la evaluación y selecciona *Programar*. La regla está activada y se ejecuta según la programación definida.
+** Para guardar después de la validación sin programarla, selecciona *Guardar como borrador*. La regla se guarda, pero no se evalúa hasta que la programes.
+** Para eliminar la regla, selecciona *Eliminar*.
 
 
 
 
 .Resultado
-Tu regla personalizada se ha creado y aparece en el catálogo de reglas. Si estableces una programación, comprobará tus recursos de FSx for ONTAP con la frecuencia especificada.
-
-
-
-[[troubleshooting]]
-== Solución de problemas
-
-No hay sistemas de archivos disponibles:: Configura tus credenciales de AWS y asegúrate de que tu entorno cuente con al menos un sistema de archivos FSx for ONTAP. El generador de reglas necesita un sistema de archivos para aplicar reglas.
-Interpretación con bajo nivel de confianza:: Se necesita más información. Responde a las preguntas o reformula tu solicitud con detalles claros sobre el tipo de recurso, los límites y las condiciones.
-Errores parciales de validación:: Comprueba qué recursos han fallado y por qué. Las causas más habituales son la falta de configuración de enlaces o agentes o no tener suficientes permisos. Soluciona el problema y luego vuelve a validar.
-Indicación ambigua:: Sé más específico sobre lo que quieres comprobar. Incluye el tipo de recurso, la condición y el umbral. Consulta los ejemplos de indicaciones para ayuda.
-La regla se aplica a varios tipos de recursos:: Crea una regla independiente para cada tipo de recurso. Solo se admite un tipo de recurso por regla.
-
+Tu regla personalizada se ha creado y aparece en el catálogo de reglas. Si estableces una programación, comprobará tus recursos de FSx for ONTAP con la frecuencia especificada. Si editas la regla más adelante, el sistema te guiará por los mismos pasos—chat, revisión, aprobación y validación—antes de que guardes la versión actualizada.
 
 
 
 [[what-to-do-next]]
 == Qué hacer a continuación
 
-link:manage-custom-rules.html["Gestiona reglas personalizadas"]
+link:../fsx-storage/manage-custom-rules.html["Gestiona reglas personalizadas"]

@@ -4,7 +4,7 @@ permalink: admin/learn-custom-dashboards-fsx.html
 keywords: custom dashboards, dashboards, personalized dashboards, AI dashboards, operational visibility, workload monitoring 
 summary: Crea paneles de control potenciados por IA y personalizados según tus cargas de trabajo y prioridades para mejorar la visibilidad operativa sin verte limitado por vistas predefinidas. 
 ---
-= Descubre los paneles personalizados para FSx for ONTAP en NetApp Workload Factory
+= Descubre los paneles personalizados en NetApp Workload Factory
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -18,7 +18,7 @@ Los paneles de control personalizados utilizan la inteligencia artificial para c
 Todos los usuarios de tu cuenta de Workload Factory pueden ver todos los paneles personalizados. Esta configuración compartida ayuda a los equipos a colaborar y ver la misma información operativa en toda la organización.
 
 
-NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, aparecerá un mensaje y no podrás crear paneles de control. Ponte en contacto con tu administrador o link:manage-genai-features.html["conoce la administración de IA"].
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, aparecerá un mensaje y no podrás crear ni editar paneles. Ponte en contacto con tu administrador o link:../admin/manage-genai-features.html["conoce la administración de IA"].
 
 
 
@@ -47,6 +47,11 @@ Durante la configuración, el diálogo guiado por IA te ayuda a definir:
 * Normas o requisitos que debes controlar y demostrar
 
 
+Puedes editar los paneles desde el catálogo y actualizar el nombre, la descripción, la categoría o la solicitud de supervisión antes de decidir si guardas la versión revisada.
+
+
+NOTE: Solo quien creó el dashboard puede editarlo. Mientras lo editas, los demás usuarios no pueden ver tus cambios hasta que los guardes.
+
 
 
 [[view-and-share-dashboards]]
@@ -60,7 +65,7 @@ Los nuevos paneles son privados por defecto, por lo que solo tú puedes verlos. 
 
 Cada tarjeta del panel muestra si el panel es privado o público, así puedes ver rápidamente qué paneles están compartidos.
 
-link:manage-custom-dashboards-fsx.html#change-dashboard-visibility["Descubre cómo cambiar la visibilidad del panel de control"].
+link:../admin/manage-custom-dashboards-fsx.html#change-dashboard-visibility["Descubre cómo cambiar la visibilidad del panel de control"].
 
 
 
@@ -85,7 +90,7 @@ link:../fsx-storage/add-credentials.html["Aprende a añadir credenciales de AWS 
 
 Workload Factory requiere un enlace para conectarse a los sistemas de archivos FSx for ONTAP. Un enlace crea una relación de confianza y conectividad entre Workload Factory y uno o varios sistemas de archivos FSx for ONTAP. Esto te permite supervisar y gestionar ciertas funciones del sistema de archivos directamente desde las llamadas a la API de REST de ONTAP que no están disponibles a través de la API de Amazon FSx for ONTAP.
 
-link:../fsx-storage/create-link.html["Aprende a crear un enlace"^].
+link:../fsx-storage/create-link.html["Aprende a crear un enlace"].
 
 
 
@@ -134,7 +139,7 @@ Los siguientes ejemplos muestran cómo describir tus necesidades de monitoreo en
 [[next-steps]]
 == Próximos pasos
 
-* link:create-custom-dashboard-fsx.html["Crear un panel de control personalizado"]
-* link:manage-custom-dashboards-fsx.html["Gestiona paneles personalizados"]
-* link:troubleshoot-custom-dashboards-fsx.html["Soluciona problemas en los paneles personalizados"]
+* link:../admin/create-custom-dashboard-fsx.html["Crear un panel de control personalizado"]
+* link:../admin/manage-custom-dashboards-fsx.html["Gestiona paneles personalizados"]
+* link:../admin/troubleshoot-custom-dashboards-fsx.html["Soluciona problemas en los paneles personalizados"]
 
