@@ -6811,4 +6811,5 @@
   <block id="e291c5603b49506d01779471f77ce7c8" category="paragraph">Comprueba que cumples los siguientes requisitos:</block>
   <block id="53c306e93da69caff455d3eaa34a6b5c" category="list-text">Para filtrar por etiquetas de asignación de AWS, comprueba que tus sistemas de archivos FSx for ONTAP tengan etiquetas asignadas.</block>
   <block id="22818134e299296b864b78dc4cca4c88" category="paragraph">Se genera un informe en CSV que puede descargarse.</block>
+  <block id="9a90fd93ba397d5f48de07251acc1808" category="list-text">Desglose por componentes de los eventos de latencia</block>
 </blocks>
