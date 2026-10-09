@@ -24,7 +24,7 @@ Las reglas personalizadas te permiten establecer, comprobar y aplicar tus propio
 El generador de reglas te permite crear reglas personalizadas usando un lenguaje sencillo. Estas reglas se verifican en todos tus recursos. Las reglas personalizadas te ayudan a aplicar los estándares, los límites de riesgo y los requisitos operativos de tu organización que las reglas predeterminadas podrían no cubrir.
 
 
-NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, no podrás crear nuevas reglas ni editar las existentes. Las reglas que ya estén programadas seguirán ejecutándose. link:../admin/manage-genai-features.html.["Conoce cómo gestionar las funciones de IA"^].
+NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, no podrás crear nuevas reglas ni editar las existentes. Las reglas que ya estén programadas seguirán ejecutándose. link:../admin/manage-genai-features.html["Conoce cómo gestionar las funciones de IA"].
 
 
 
@@ -46,9 +46,9 @@ Las reglas personalizadas utilizan la IA para convertir instrucciones en lenguaj
 
 Antes de que puedas crear y ejecutar reglas personalizadas, asegúrate de tener lo siguiente:
 
-Credenciales AWS:: Acceso de solo lectura a tu entorno de AWS. Las reglas personalizadas requieren permisos de solo lectura como límite de seguridad. link:https://docs.netapp.com/us-en/workload-setup-admin/add-credentials.html["Agrega credenciales de AWS a Workload Factory"^].
+Credenciales AWS:: Acceso de solo lectura a tu entorno de AWS. Las reglas personalizadas requieren permisos de solo lectura como límite de seguridad. link:add-credentials.html["Agrega credenciales de AWS a Workload Factory"].
 Credenciales ONTAP:: Usuario de FSx viewer con permisos de solo lectura. Workload Factory crea un usuario de solo lectura en cada sistema de archivos FSx for ONTAP si aún no existe uno, lo que le permite realizar evaluaciones.
-Enlace o agente:: Solo es necesario para las reglas que deben conectarse directamente a ONTAP para comprobar configuraciones a las que las API de AWS no pueden acceder. link:https://docs.netapp.com/us-en/workload-fsx-ontap/create-link.html["Conéctate a un sistema de archivos FSx para ONTAP con un enlace"^].
+Enlace o agente:: Solo es necesario para las reglas que deben conectarse directamente a ONTAP para comprobar configuraciones a las que las API de AWS no pueden acceder. link:create-link.html["Conéctate a un sistema de archivos FSx para ONTAP con un enlace"].
 
 
 
@@ -110,4 +110,4 @@ Esta norma valida que los sistemas de archivos se ajusten a las convenciones de 
 [[what-to-do-next]]
 == Qué hacer a continuación
 
-link:../fsx-storage/create-custom-rule.html["Crear una regla personalizada"] link:../fsx-storage/manage-custom-rules.html["Gestiona reglas personalizadas"]
+link:create-custom-rule.html["Crear una regla personalizada"] link:manage-custom-rules.html["Gestiona reglas personalizadas"]
