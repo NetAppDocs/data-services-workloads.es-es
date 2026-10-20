@@ -11,7 +11,7 @@ summary: Empieza a usar NetApp Workload Factory for Databases para usar fragment
 
 
 [role="lead"]
-Con NetApp Workload Factory para bases de datos, puedes empezar de inmediato con permisos de _visualización, planificación y análisis_. Si quieres usar Workload Factory para detectar hosts, gestionar recursos y mucho más, puedes empezar en unos pocos pasos.
+Con NetApp Workload Factory for Databases, puedes empezar de inmediato sin necesidad de permisos. Si quieres usar Workload Factory para detectar hosts, gestionar recursos y mucho más, puedes empezar en unos pocos pasos.
 
 Debes tener una cuenta de AWS para usar Databases.
 
@@ -19,7 +19,7 @@ Sigue estos pasos para empezar.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1"] Inicia sesión en NetApp Workload Factory
 [role="quick-margin-para"]
-Tendrás que ir a link:../setup/sign-up-and-log-in.html["registrarte"^] e iniciar sesión en la NetApp Console.
+Tendrás que link:https://console.netapp.com["Inicia sesión en NetApp Console"^]. Si no tienes una cuenta, link:https://docs.netapp.com/us-en/console-setup-admin/task-sign-up-saas.html["registrarte"^] primero en NetApp Console y luego inicia sesión.
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Dos"] Agrega credenciales y permisos para la carga de trabajo de bases de datos
 [role="quick-margin-para"]

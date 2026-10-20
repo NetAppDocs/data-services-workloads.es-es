@@ -25,8 +25,6 @@ indexpage:
       url: "/setup/learn-about-workload-factory.html"
     - title: Inicio rápido
       url: "/setup/quick-start.html"
-    - title: Regístrate e inicia sesión
-      url: "/setup/sign-up-and-log-in.html"
   - title: Permisos
     links:
     - title: Permisos para Amazon FSx for NetApp ONTAP
