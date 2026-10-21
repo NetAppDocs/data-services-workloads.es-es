@@ -4,7 +4,7 @@ permalink: fsx-vmware/capture-vm-configurations-native.html
 keywords: vm workloads, capture vm details 
 summary: Puedes usar el script Migration advisor VM collector o RVTools para capturar las configuraciones actuales de tus máquinas virtuales. Te recomendamos que uses el script Migration advisor VM collector porque recopila tanto los datos de configuración como los de rendimiento de las máquinas virtuales para ofrecer el plan más preciso. 
 ---
-= Guarda las configuraciones de tus VM antes de migrar a Amazon EC2 con cargas de trabajo de VMware
+= Capturar configuraciones de VM para Amazon EC2
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
