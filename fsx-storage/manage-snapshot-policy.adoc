@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-snapshot-policy.html 
 keywords: manage snapshot policy, change snapshot policy, assign snapshot policy, remove snapshot policy, snapshot policies, snapshot schedule, update, snapshot long-term retention, enable long-term retention 
-summary: Gestiona las políticas de SnapVault para los volúmenes de FSx for ONTAP en Workload Factory. Una política de SnapVault define cómo crea el sistema las instantáneas de un volumen. 
+summary: Asigna, cambia, quita y elimina políticas de snapshots, y habilita snapshots inmutables y retención a largo plazo para volúmenes de FSx for ONTAP en Workload Factory. 
 ---
 = Gestiona las políticas de snapshots para volúmenes en NetApp Workload Factory
 :allow-uri-read: 
@@ -27,7 +27,7 @@ De forma predeterminada, cada volumen está asociado a la política de SnapVault
 Puedes asignar una política de SnapVault a un único volumen para crear instantáneas programadas para dicho volumen.
 
 .Antes de empezar
-Debes asociar un enlace para asignar una política de snapshot. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+Debes asociar un enlace para asignar una política de snapshot. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de asociar el enlace, vuelve a esta operación.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
@@ -39,7 +39,7 @@ Debes asociar un enlace para asignar una política de snapshot. link:create-link
 . En la página de gestión de políticas de SnapVault, selecciona el menú de acciones de la política de SnapVault y luego selecciona *Asignar política al volumen*.
 . En el cuadro de diálogo «Asignar política de SnapVault», selecciona una política de SnapVault para asignarla al volumen y revisa la programación de la política.
 +
-Si la política contiene instantáneas inmutables y quieres usarla, acepta la declaración.
+Si la política contiene instantáneas inmutables y quieres utilizarla, acepta la declaración.
 
 . Selecciona *Assign*.
 
@@ -52,10 +52,10 @@ La política de SnapVault se asigna al volumen.
 [[change-a-snapshot-policy]]
 == Modificar una política de SnapVault
 
-Puedes cambiar el nombre de la política de SnapVault, la programación y el número de copias que quieres conservar, y activar o desactivar las instantáneas inmutables. No es posible activar ni desactivar el uso compartido de políticas entre máquinas virtuales de almacenamiento. Esta opción solo está disponible durante la creación de la política de SnapVault.
+Puedes cambiar el nombre de la política de snapshots, la programación y el número de copias que se deben conservar, así como activar o desactivar las snapshots inmutables. No puedes activar ni desactivar el uso compartido de políticas entre máquinas virtuales de almacenamiento. Solo puedes configurar esta opción al crear una política de snapshots.
 
 .Antes de empezar
-Para mostrar las políticas de snapshot existentes, debes asociar un enlace. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+Para mostrar las políticas de snapshot existentes, debes asociar un enlace. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de asociar el enlace, vuelve a esta operación.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
@@ -80,7 +80,7 @@ Se ha actualizado la política de SnapVault.
 Bloquea las instantáneas para evitar que se eliminen durante el periodo de retención.
 
 .Antes de empezar
-Debes asociar un enlace para habilitar las instantáneas inmutables. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+Debes asociar un enlace para habilitar las instantáneas inmutables. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de asociar el enlace, vuelve a esta operación.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
@@ -148,7 +148,7 @@ NOTE: Editar la retención a largo plazo no está disponible cuando se replican 
 Elimina una política de SnapVault de un volumen porque ya no deseas tener instantáneas de dicho volumen o porque quieres eliminar una política de SnapVault que está asignada a varios volúmenes. Para <<Eliminar una política de SnapVault,eliminar una política de SnapVault>> que esté asignada a más de un volumen, debes eliminarla manualmente de todos los volúmenes.
 
 .Antes de empezar
-Debes asociar un enlace para eliminar una política de snapshot. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+Debes asociar un enlace para eliminar una política de snapshot. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de asociar el enlace, vuelve a esta operación.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].

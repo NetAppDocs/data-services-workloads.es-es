@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-cifs-share.html 
 keywords: cifs, smb, SMB, CIFS, cifs share, change, update, modify, delete, create 
-summary: La gestión del recurso compartido SMB o CIFS de un volumen en Workload Factory incluye la creación, la determinación del acceso de usuarios y grupos y la eliminación. 
+summary: Crea, modifica o elimina un recurso compartido SMB/CIFS para un volumen en Workload Factory y controla qué usuarios y grupos pueden acceder a él. 
 ---
 = Gestiona el recurso compartido SMB/CIFS de un volumen en NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: La gestión del recurso compartido SMB o CIFS de un volumen en Workload
 
 
 [role="lead"]
-Gestionar un recurso compartido SMB/CIFS de un volumen en Workload Factory incluye crear el recurso compartido SMB/CIFS, determinar qué usuarios y grupos tendrán acceso y qué nivel de permisos tendrán, y eliminar el recurso compartido SMB/CIFS.
+Crea, cambia o elimina un recurso compartido SMB/CIFS para un volumen en Workload Factory. Controla qué usuarios y grupos pueden acceder al recurso compartido y el nivel de permisos que tienen.
 
 .Antes de empezar
 Antes de empezar, haz lo siguiente:
@@ -25,7 +25,7 @@ Antes de empezar, haz lo siguiente:
 [[create-an-smbcifs-share-for-a-volume]]
 == Crear un recurso compartido SMB/CIFS para un volumen
 
-Sigue estos pasos para crear un recurso compartido SMB/CIFS para un volumen.
+Crea un recurso compartido SMB/CIFS para un volumen.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
@@ -36,7 +36,7 @@ Sigue estos pasos para crear un recurso compartido SMB/CIFS para un volumen.
 . En el cuadro de diálogo «Crear recurso compartido SMB/CIFS», introduce los siguientes datos:
 +
 .. *Nombre*: introduce el nombre del recurso compartido SMB/CIFS.
-.. *Ruta*: define la ruta utilizando el nombre predeterminado del volumen o indica un recurso compartido a un directorio interno.
+.. *Ruta*: define la ruta con el nombre predeterminado del volumen o proporciona un recurso compartido a un directorio interno.
 +
 Las entradas de ruta válidas para el nombre del volumen, por ejemplo "avocado", son las siguientes:
 
@@ -64,7 +64,7 @@ Las entradas de ruta válidas para el nombre del recurso compartido, por ejemplo
 [[change-an-smbcifs-share-for-a-volume]]
 == Modificar un recurso compartido SMB/CIFS para un volumen
 
-Sigue estos pasos para modificar la configuración del recurso compartido SMB/CIFS de un volumen.
+Cambia la configuración del recurso compartido SMB/CIFS de un volumen.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].

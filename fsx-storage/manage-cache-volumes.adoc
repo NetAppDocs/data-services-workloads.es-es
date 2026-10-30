@@ -11,7 +11,7 @@ summary: Gestiona los volúmenes de caché de un sistema de archivos FSx for ONT
 
 
 [role="lead"]
-Utiliza la consola NetApp Workload Factory para gestionar los volúmenes de caché de los sistemas de archivos FSx for ONTAP. El almacenamiento en caché, un método para almacenar datos de forma temporal, mejora el rendimiento del acceso a los datos al reducir el tiempo de recuperación. Puedes editar el nombre de la caché, ajustar la capacidad, cambiar la política de exportación, seleccionar un método de almacenamiento en caché, rellenar previamente la caché o eliminar volúmenes de caché.
+Utiliza la consola de NetApp Workload Factory para gestionar los volúmenes de caché de los sistemas de archivos FSx for ONTAP. El almacenamiento en caché, un método para almacenar datos de forma temporal, mejora el rendimiento del acceso a los datos al reducir el tiempo de recuperación. Puedes editar el nombre de la caché, ajustar la capacidad, cambiar la política de exportación, seleccionar un método de almacenamiento en caché, precargar la caché o eliminar volúmenes de caché.
 
 .Acerca de esta tarea
 Puedes gestionar los volúmenes de caché asociados a las relaciones de caché en la consola de NetApp Workload Factory.

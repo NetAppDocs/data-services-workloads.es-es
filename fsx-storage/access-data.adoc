@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/access-data.html 
 keywords: access data, mount point, mount volumes, mount clients, on-premises 
-summary: Puedes acceder a tus sistemas de archivos FSx for ONTAP desde el entorno local montando volúmenes para clientes NAS y LUN de iSCSI para clientes SAN. 
+summary: Obtén el punto de montaje para volúmenes de FSx for ONTAP en Workload Factory y encuentra enlaces para montar volúmenes y LUN de iSCSI en clientes NAS y SAN. 
 ---
 = Accede a los datos de tu sistema de archivos FSx for ONTAP
 :allow-uri-read: 
@@ -13,7 +13,7 @@ summary: Puedes acceder a tus sistemas de archivos FSx for ONTAP desde el entorn
 [role="lead"]
 Puedes acceder a tus sistemas de archivos FSx for ONTAP desde el entorno local montando volúmenes para clientes NAS y LUN de iSCSI para clientes SAN.
 
-link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html["Acceso a los datos"^] La documentación de Amazon FSx for NetApp ONTAP incluye temas sobre cómo acceder a los datos como referencia.
+link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html["Acceso a los datos"^] en la documentación de Amazon FSx for NetApp ONTAP se proporciona información sobre cómo acceder a los datos.
 
 También puedes obtener el punto de montaje de los volúmenes en NetApp Workload Factory.
 
@@ -22,7 +22,7 @@ También puedes obtener el punto de montaje de los volúmenes en NetApp Workload
 [[get-mount-point-for-volumes-in-netapp-workload-factory]]
 == Obtén el punto de montaje de los volúmenes en NetApp Workload Factory
 
-Obtén el punto de montaje de un volumen para montar un recurso compartido en un recurso compartido CIFS o un cliente de NFS.
+Obtén el punto de montaje de un volumen para montarlo como un recurso compartido CIFS o en un cliente de NFS.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].

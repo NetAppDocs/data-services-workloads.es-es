@@ -71,7 +71,7 @@ De forma predeterminada, cada volumen está asociado a la política de SnapVault
 Personalizar una política te permite especificar cuándo crear snapshots, cuántas copias conservar y cómo nombrarlas.
 
 .Antes de empezar
-* Una vez creada una política de SnapVault, no puedes modificar su asociación con las VM de almacenamiento, pero siempre puedes añadir o quitar la política de los volúmenes.
+* Una vez creada una política de snapshot, no puedes modificar su asociación con las máquinas virtuales de almacenamiento, pero siempre puedes añadir o eliminar la política de los volúmenes.
 * Ten en cuenta lo siguiente sobre la capacidad de las instantáneas antes de usarlas:
 +
 ** En la mayoría de los conjuntos de datos, una capacidad adicional del 20 % es suficiente para conservar las instantáneas durante un máximo de cuatro semanas. A medida que los datos se vuelven más antiguos, es menos probable que se usen para restauraciones.

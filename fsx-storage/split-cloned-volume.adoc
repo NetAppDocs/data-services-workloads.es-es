@@ -18,17 +18,17 @@ Se puede acceder a los datos tanto en el clon como en el volumen primario durant
 .Acerca de esta tarea
 La operación de división de clones consiste en lo siguiente:
 
-* No se pueden crear nuevas copias de instantánea del volumen FlexClone durante la operación de división.
-* Un volumen FlexClone no se puede separar del volumen primario si forma parte de una relación de protección de datos.
-* Si desconectas el volumen FlexClone mientras la división está en curso, la operación de división se suspende; cuando vuelves a conectar el volumen FlexClone, la operación de división se reanuda.
+* No puedes crear nuevas copias snapshot del volumen FlexClone durante la operación de división.
+* No puedes separar un volumen FlexClone de su volumen primario si pertenece a una relación de protección de datos.
+* Si pones el volumen FlexClone fuera de línea durante la división, la operación de división se suspende. Cuando vuelves a poner el volumen FlexClone en línea, la operación de división se reanuda.
 * Después de la división, tanto el volumen primario FlexVol como el clon requieren la asignación completa de espacio determinada por sus garantías de volumen.
-* Después de que un volumen FlexClone se separa de su volumen primario, los dos no pueden volver a unirse.
+* Después de separar un volumen FlexClone de su volumen primario, no podrás volver a unirlos.
 
 
 .Antes de empezar
 Ten en cuenta lo siguiente antes de dividir un volumen clonado:
 
-* Para dividir un volumen clonado, debes asociar un enlace. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de que se asocie el enlace, vuelve a esta operación.
+* Para dividir un volumen clonado, debes asociar un enlace. link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"^]. Después de asociar el enlace, vuelve a esta operación.
 * El volumen FlexClone debe estar en línea cuando comience la operación de división.
 * El volumen primario debe estar en línea para que la división se realice correctamente.
 

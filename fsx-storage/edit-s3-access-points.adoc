@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: fsx-storage/edit-s3-access-points.html 
+keywords: S3, s3, access points, manage access points, change access points, update access points, modify access points 
+summary: Actualizar los datos del punto de acceso S3, gestionar las etiquetas y activar o desactivar la tabla de inventario de un volumen en FSx for ONTAP. 
+---
+= Editar los puntos de acceso de S3 para un volumen de FSx for ONTAP en NetApp Console
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Actualiza los detalles del punto de acceso S3 y gestiona las etiquetas de un volumen de FSx for ONTAP en NetApp Console.
+
+También puedes habilitar o deshabilitar la *Inventory table* para el punto de acceso. La inventory table genera metadatos para todos los objetos accesibles al punto de acceso S3 e incurre en costes de solicitud de AWS S3. Consulta link:https://aws.amazon.com/s3/pricing/["Documentación de precios de Amazon S3"^] para obtener más información.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Cargas de trabajo* > *Explorador de volúmenes*.
+. Selecciona el menú de acciones del volumen para el que deseas editar los puntos de acceso a S3, luego selecciona *Acciones avanzadas* y después *Gestionar puntos de acceso a S3*.
+. Desde la pantalla *Manage S3 access points*, selecciona el menú de acciones y luego selecciona *Edit access point*.
+. Haz las actualizaciones y luego selecciona *Aplicar*.
++
+Para configurar la infraestructura para la función de tabla de registro en diario, debes seleccionar *Internet* como configuración de red para el punto de acceso S3. link:setup-journal-table.html["Aprende a configurar la infraestructura de la tabla Journal"].
+
+

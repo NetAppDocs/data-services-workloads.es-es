@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-volume-settings.html 
 keywords: volume tags, edit volume tags, edit tags, enable immutable files, disable immutable files, lock files, unlock files, storage efficiency change, update storage efficiency 
-summary: Las etiquetas pueden ayudarte a clasificar tus recursos. Puedes añadir, editar y eliminar etiquetas de volumen en cualquier momento en los volúmenes de FSx for ONTAP. 
+summary: Modificar las cargas de trabajo de los volúmenes, editar las etiquetas de los volúmenes, actualizar la eficiencia del almacenamiento y gestionar la configuración de los archivos inmutables para los volúmenes de FSx for ONTAP en NetApp Workload Factory. 
 ---
 = Gestiona la configuración de volúmenes en NetApp Workload Factory
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Las etiquetas pueden ayudarte a clasificar tus recursos. Puedes añadir
 
 
 [role="lead"]
-Personaliza la configuración de volúmenes de FSx para ONTAP en NetApp Workload Factory para adaptarla a las necesidades de tu organización. Puedes gestionar las etiquetas de los volúmenes para clasificar recursos, como configurar cargas de trabajo de volumen, actualizar la configuración de eficiencia del almacenamiento para optimizar el espacio y ahorrar costes, y gestionar la configuración de archivos inmutables para controlar la retención de datos y protegerlos frente a cambios no autorizados.
+Personaliza la configuración de volúmenes de FSx for ONTAP en NetApp Workload Factory para adaptarla a las necesidades de tu organización. Puedes definir cargas de trabajo y etiquetas de volúmenes para clasificar los recursos, actualizar la configuración de eficiencia del almacenamiento para optimizar el espacio y el ahorro de costes, y gestionar la configuración de archivos inmutables para controlar la retención de datos y protegerlos frente a cambios no autorizados.
 
 
 
@@ -78,7 +78,7 @@ Los volúmenes usan aprovisionamiento ligero tanto si activas como si desactivas
 
 Puedes actualizar ciertos ajustes de archivos inmutables de un volumen cuando la función está activada, como la política de retención y los períodos de retención, el período de autocommit y el modo de anexado del volumen.
 
-Ten en cuenta que solo puedes habilitar los archivos inmutables durante link:create-volume.html["creación de un volumen"].
+Solo puedes habilitar los archivos inmutables durante link:create-volume.html["creación de un volumen"].
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
@@ -89,7 +89,7 @@ Ten en cuenta que solo puedes habilitar los archivos inmutables durante link:cre
 +
 ** *Período de retención*: selecciona *Sin especificar* o *Especificar período*.
 +
-*** *Sin especificar*: el plazo mínimo por defecto es «0» años y el plazo máximo por defecto es «30 años».
+*** *Sin especificar*: el plazo mínimo por defecto es de 0 años y el plazo máximo por defecto es de 30 años.
 *** *Especificar periodo*: opción para definir la política de retención, los periodos mínimo y máximo, la función de autocommit y la función de modo append del volumen. Indica los siguientes datos:
 +
 **** *Política de retención*: este plazo debe ser mayor o igual que el plazo mínimo de retención y menor o igual que el plazo máximo de retención.
@@ -100,10 +100,10 @@ Ten en cuenta que solo puedes habilitar los archivos inmutables durante link:cre
 
 ** *Autocommit*: activa o desactiva la función que permite guardar automáticamente en WORM los archivos que no se hayan modificado durante el periodo de Autocommit.
 ** *Eliminación con privilegios*: activa o desactiva la función. Al activar la función, un administrador de SnapLock puede eliminar un volumen WORM que aún no ha caducado. Esta función solo es compatible con el modo de retención Enterprise.
-** *Modo de anexión de volumen*: activa o desactiva la función. Al activar el modo de anexión de volumen, podrás añadir nuevo contenido a los archivos WORM.
+** *Modo de adición de volumen*: activa o desactiva la función. Al activar el modo de adición de volumen, podrás añadir contenido nuevo a los archivos WORM.
 
 
-. Haz clic en *Aplicar*.
+. Selecciona *Aplicar*.
 
 
 

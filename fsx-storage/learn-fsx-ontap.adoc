@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/learn-fsx-ontap.html 
 keywords: Amazon FSx for NetApp ONTAP, FSx, storage, aws 
-summary: Amazon FSx for NetApp ONTAP es un servicio totalmente gestionado que permite a los clientes iniciar y ejecutar sistemas de archivos como backend de almacenamiento para sus cargas de trabajo dentro de Workload Factory. 
+summary: Descubre Amazon FSx for NetApp ONTAP, un servicio totalmente gestionado que te permite poner en marcha y ejecutar sistemas de archivos como infraestructura de almacenamiento para tus cargas de trabajo en Workload Factory. 
 ---
 = Descubre Amazon FSx for NetApp ONTAP en NetApp Workload Factory
 :allow-uri-read: 
@@ -26,7 +26,7 @@ FSx for ONTAP ofrece las siguientes funciones:
 
 * *Servicio totalmente gestionado*: ofrece un servicio totalmente gestionado integrado con la consola de Workload Factory.
 * *Alta disponibilidad*: ofrece alta disponibilidad para cada sistema de archivos FSx for ONTAP y admite implementaciones en Single y Multiple Availability Zones.
-* *Instantáneas automatizadas*: protege los datos con instantáneas automatizadas y eficientes, que son copias de solo lectura del sistema de archivos o de los volúmenes en un momento específico, casi instantáneas y con uso eficiente del espacio.
+* *Instantáneas automáticas*: protege los datos con instantáneas automatizadas y eficientes, que son copias de solo lectura casi instantáneas, con gestión eficiente del espacio y tomadas en un momento específico del sistema de archivos o de los volúmenes.
 * *Replicación de volúmenes*: ofrece recuperación ante desastres mediante la replicación entre regiones en Amazon Web Services.
 * *Copias de seguridad eficientes*: añade una capa adicional de protección mediante una copia de los datos en otra región para casos de emergencia.
 * *Clonación rápida*: acelera el desarrollo de aplicaciones gracias a la clonación rápida.
@@ -35,7 +35,7 @@ FSx for ONTAP ofrece las siguientes funciones:
 * *Caché en memoria y caché NVMe*: incluye una caché en memoria y una caché NVMe únicas, que potencian el rendimiento de los datos a los que se accede con frecuencia.
 * *Cientos de miles de IOPS*: ofrece cientos de miles de IOPS con discos SSD, lo que garantiza que tu almacenamiento y tus cargas de trabajo obtengan resultados en el momento oportuno.
 * *Thin Provisioning*: permite aprovisionar capacidad por adelantado, lo que supone un ahorro de costes hasta que se necesite más capacidad.
-* *Deduplicación y compresión de datos*: elimina los datos duplicados y comprime los datos para reducir la cantidad de almacenamiento físico necesaria para los sistemas de archivos FSx for ONTAP, lo que se traduce en un ahorro de costes.
+* *Deduplicación y compresión de datos*: elimina los datos duplicados y comprime los datos para reducir la cantidad de almacenamiento físico necesaria para los sistemas de archivos de FSx for ONTAP, lo que se traduce en un ahorro de costes.
 * *Clasificación por niveles de datos*: permite reducir los costes de almacenamiento moviendo los datos a los que se accede con menos frecuencia del nivel de almacenamiento SSD principal, de alto rendimiento, al nivel de almacenamiento secundario del pool de capacidad.
 
 
@@ -46,7 +46,7 @@ FSx for ONTAP ofrece las siguientes funciones:
 
 * *Calculadora de comparación de costes de almacenamiento*: compara los costes de almacenamiento de Amazon Elastic Block Store (EBS), Elastic File System (EFS) y FSx for Windows File Server con los de FSx for ONTAP. Desde la calculadora, puedes ver cómo las configuraciones de almacenamiento de FSx for ONTAP ofrecen un ahorro potencial y planificar tu migración al almacenamiento de FSx for ONTAP.
 * *interfaz de usuario de Console*: ofrece las opciones de modo de implementación _Quick create_ y _Advanced create_. Quick create incluye AWS, NetApp y las prácticas recomendadas estándar del sector para tus configuraciones de almacenamiento. La interfaz también muestra las tendencias de uso de la capacidad de almacenamiento SSD y del rendimiento, resúmenes de cargas de trabajo y ajustes de configuración detallados que puedes ampliar.
-* *Codebox*: ofrece a los desarrolladores un visor de código para las operaciones de FSx for ONTAP, plantillas de código para copiar y descargar, y un catálogo de automatización para reutilizar código.
+* *Codebox*: ofrece a los desarrolladores un visor de código para las operaciones de FSx for ONTAP, plantillas de código para copiar y descargar, y un catálogo de automatización para la reutilización de código.
 
 
 
@@ -77,7 +77,7 @@ AWS mantiene tu cuenta de FSx for ONTAP, no Workload Factory. Consulta link:http
 [[regions]]
 == Regiones
 
-Workload factory es compatible en todas las regiones comerciales donde se admite FSx for ONTAP. link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["Consulta las regiones de Amazon compatibles."^]
+Workload Factory es compatible en todas las regiones comerciales en las que FSx for ONTAP es compatible. link:https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/["Consulta las regiones de Amazon compatibles."^]
 
 Las siguientes regiones de AWS no son compatibles:
 

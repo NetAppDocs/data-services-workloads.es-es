@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/create-discover-systems.html 
 keywords: Amazon FSx for NetApp ONTAP, fsx, volumes, create system, delete system, access key, secret key, region, availability zones, discover, storage capacity, iops, throughput, security group, security, NetApp Console 
-summary: Crea o descubre sistemas de almacenamiento en la nube para añadir y gestionar volúmenes y servicios de datos adicionales desde NetApp Console. 
+summary: Crea o descubre sistemas de archivos FSx para ONTAP para añadir y gestionar volúmenes y servicios de datos adicionales desde la NetApp Console. 
 ---
 = Crea o descubre sistemas de almacenamiento en la nube en NetApp Console
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: Crea o descubre sistemas de almacenamiento en la nube para añadir y ge
 
 
 [role="lead"]
-Crea o descubre sistemas de almacenamiento en la nube para añadir y gestionar volúmenes y servicios de datos adicionales desde NetApp Console.
+Crea o descubre sistemas de archivos FSx de primera y segunda generación para ONTAP con el fin de añadir y gestionar volúmenes y servicios de datos adicionales desde NetApp Console.
 
 
 
@@ -27,7 +27,7 @@ El primer paso es crear un sistema de almacenamiento. Si ya has creado un sistem
 Se crea una máquina virtual de almacenamiento al crear un sistema de archivos.
 
 .Antes de empezar
-Antes de crear tu sistema de archivos FSx para ONTAP, necesitarás:
+Antes de crear tu sistema de archivos FSx for ONTAP, necesitas:
 
 * El ARN de un rol de IAM que otorga a Workload Factory los permisos necesarios para crear un sistema de archivos FSx for ONTAP. link:permissions-reference-fsx.html["Aprende cómo conceder permisos a una cuenta de AWS"^].
 * La información sobre la región y el VPC donde vas a crear la instancia de FSx for ONTAP.
@@ -96,7 +96,7 @@ Si el usuario que indicas no es el usuario fsxadmin y más adelante necesitas re
 ... *Nombre NetBIOS del servidor SMB*: introduce el nombre NetBIOS del servidor SMB del objeto de equipo de Active Directory que se va a crear para tu máquina virtual de almacenamiento. Este es el nombre de esta máquina virtual de almacenamiento en Active Directory.
 ... *Nombre de usuario*: introduce el nombre de usuario de la cuenta de servicio en tu Active Directory actual.
 +
-No incluyas ningún prefijo ni sufijo de dominio. Para `EXAMPLE\ADMIN`, usa `ADMIN`.
+No incluyas ningún prefijo ni sufijo de dominio. Para `EXAMPLE\ADMIN`, utiliza `ADMIN`.
 
 ... *Contraseña*: introduce la contraseña de la cuenta de servicio.
 ... *Unidad organizativa*: opcionalmente, introduce el nombre de la unidad organizativa en la que quieres crear la cuenta de equipo para FSx for ONTAP. La OU es el nombre de ruta distintivo de la unidad organizativa a la que quieres unir el sistema de archivos.
@@ -116,7 +116,7 @@ Si te vas a unir a un AD autogestionado, utiliza el nombre del grupo de tu AD. E
 
 
 .Resultado
-Si creaste el sistema de archivos, la nueva configuración de FSx para ONTAP aparece en la página Sistemas.
+Después de crear el sistema de archivos, podrás verlo en la página Systems.
 
 Puedes gestionar tus sistemas de archivos FSx para ONTAP de varias formas, por ejemplo, desde Workloads en la NetApp Console, con ONTAP System Manager y con AWS CloudFormation.
 
@@ -174,8 +174,8 @@ También puedes cargar una configuración guardada.
 .. *Capacidad de rendimiento por par de alta disponibilidad*: Selecciona la capacidad de rendimiento en función del número de pares de alta disponibilidad. Los sistemas de archivos de primera generación solo admiten un par de alta disponibilidad.
 .. *IOPS aprovisionadas*: selecciona una de las siguientes opciones:
 +
-*** *Automático*: en el modo automático, por cada GiB creado se añaden 3 IOPS.
-*** *Proporcionado por el usuario*: en el caso de «Proporcionado por el usuario», introduce el valor de IOPS.
+*** *Automático*: se añaden 3 IOPS por cada GiB creado.
+*** *Proporcionado por el usuario*: introduce el valor de IOPS.
 
 
 .. *Datos de acceso a ONTAP*: opcional. Introduce tu nombre de usuario y contraseña de ONTAP. La contraseña se puede establecer ahora o más adelante.
@@ -190,7 +190,7 @@ Si el usuario que indicas no es el usuario fsxadmin y más adelante necesitas re
 ... *Nombre NetBIOS del servidor SMB*: introduce el nombre NetBIOS del servidor SMB del objeto de equipo de Active Directory que se va a crear para tu máquina virtual de almacenamiento. Este es el nombre de esta máquina virtual de almacenamiento en Active Directory.
 ... *Nombre de usuario*: introduce el nombre de usuario de la cuenta de servicio en tu Active Directory actual.
 +
-No incluyas ningún prefijo ni sufijo de dominio. Para `EXAMPLE\ADMIN`, usa `ADMIN`.
+No incluyas ningún prefijo ni sufijo de dominio. Para `EXAMPLE\ADMIN`, utiliza `ADMIN`.
 
 ... *Contraseña*: introduce la contraseña de la cuenta de servicio.
 ... *Unidad organizativa*: opcionalmente, introduce el nombre de la unidad organizativa en la que quieres crear la cuenta de equipo para FSx for ONTAP. La OU es el nombre de ruta distintivo de la unidad organizativa a la que quieres unir el sistema de archivos.
@@ -237,7 +237,7 @@ Para un nuevo grupo de seguridad, consulta <<Security group details,detalles del
 
 
 .Resultado
-Si creaste el sistema de archivos, la nueva configuración de FSx para ONTAP aparece en la página Sistemas.
+Después de crear el sistema de archivos, podrás verlo en la página Systems.
 
 Puedes gestionar tus sistemas de archivos FSx para ONTAP de varias formas, por ejemplo, desde Workloads en la NetApp Console, con ONTAP System Manager y con AWS CloudFormation.
 
@@ -245,27 +245,27 @@ Puedes gestionar tus sistemas de archivos FSx para ONTAP de varias formas, por e
 ====
 
 
-[[discover-an-existing-cloud-storage-system]]
-== Descubre un sistema de almacenamiento en la nube existente
+[[discover-an-existing-fsx-for-ontap-file-system]]
+== Descubre un sistema de archivos FSx para ONTAP ya existente
 
-Si ya has introducido tus credenciales de tu proveedor de almacenamiento en la nube en Workload Factory, puedes detectar automáticamente tus sistemas de almacenamiento desde la página Discoverable systems. También puedes consultar los servicios de datos disponibles.
+Si ya has introducido las credenciales de tu proveedor de almacenamiento en la nube en Workload Factory, puedes detectar automáticamente tus sistemas de archivos FSx for ONTAP desde la página Discoverable systems. También puedes consultar los servicios de datos disponibles.
 
 .Acerca de esta tarea
-Solo puedes detectar un sistema de almacenamiento en la nube una vez dentro de una cuenta y asociarlo a un espacio de trabajo. Más adelante, puedes eliminar el sistema de almacenamiento y volver a asociarlo a otro espacio de trabajo.
+Solo puedes descubrir un sistema de archivos FSx for ONTAP una vez dentro de una cuenta y asociarlo a un espacio de trabajo. Más adelante, puedes eliminar el sistema de archivos y volver a asociarlo a otro espacio de trabajo.
 
 .Pasos
 . En el menú de NetApp Console, selecciona *Storage*, luego *Management* y, a continuación, *Discoverable systems*.
-. Se muestra el número de sistemas de almacenamiento en la nube detectados. Selecciona *Discover*.
+. Se muestra el número de sistemas de archivos FSx for ONTAP detectados. Selecciona *Discover*.
 . Selecciona uno o varios sistemas de almacenamiento y selecciona *Discover* para añadirlos a la página Systems.
 
 
 [NOTE]
 ====
-* Si seleccionas un sistema de almacenamiento sin nombre, aparecerá un mensaje pidiéndote que introduzcas un nombre para el sistema.
-* Si seleccionas un sistema de almacenamiento que no tiene las credenciales necesarias para gestionarlo desde Console, recibirás un mensaje para que selecciones credenciales con los permisos necesarios.
+* Si seleccionas un sistema de archivos sin nombre, aparecerá un mensaje pidiéndote que introduzcas un nombre para el sistema.
+* Si seleccionas un sistema de archivos que no cuenta con las credenciales necesarias para gestionarlo desde la NetApp Console, aparecerá un mensaje pidiéndote que selecciones unas credenciales con los permisos necesarios.
 * Las siguientes regiones no son compatibles con la detección: las regiones de China, las regiones de GovCloud (EE. UU.), Secret Cloud y Top Secret Cloud.
 
 
 ====
 .Resultado
-La consola muestra tu sistema detectado en la página Systems. Puedes gestionar tus sistemas de almacenamiento de varias formas, por ejemplo, desde Workloads en la NetApp Console y usando ONTAP System Manager o las herramientas de gestión de almacenamiento de tu proveedor de nube.
+NetApp Console muestra tu sistema de archivos detectado en la página Systems. Puedes gestionar tus sistemas de archivos de varias formas, por ejemplo, desde Workloads en NetApp Console, con ONTAP System Manager y con las herramientas de gestión de almacenamiento de tu proveedor de nube.

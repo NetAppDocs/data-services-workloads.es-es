@@ -47,11 +47,11 @@ Cuando los nombres de las máquinas virtuales de almacenamiento de origen y dest
 _Equilibrado (Automático)_ es la política de almacenamiento por niveles predeterminada al crear un volumen mediante la consola de Workload Factory. Para obtener más información sobre las políticas de almacenamiento por niveles de volúmenes, consulta link:https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/volume-storage-capacity.html#data-tiering-policy["Capacidad de almacenamiento de volumen"^] en la documentación de AWS FSx for NetApp ONTAP. Ten en cuenta que Workload Factory usa nombres basados en casos de uso en la consola de Workload Factory para las políticas de almacenamiento por niveles e incluye los nombres de las políticas de almacenamiento por niveles de FSx for ONTAP entre paréntesis.
 
 +
-Si has seleccionado el caso de uso de migración, Workload Factory selecciona automáticamente la opción de copiar la política de organización en niveles del volumen de origen al volumen de destino. Puedes desmarcar la opción de copiar la política de organización en niveles y seleccionar una política de organización en niveles que se aplique al volumen seleccionado para la replicación.
+Si seleccionaste el caso de uso de migración, Workload Factory selecciona automáticamente la opción de copiar la política de organización en niveles del volumen de origen al volumen de destino. Puedes desmarcar la opción de copiar la política de organización en niveles y seleccionar una política de organización en niveles que se aplique al volumen seleccionado para la replicación.
 
 . *Tasa de transferencia máxima*: selecciona *Limitada* e introduce el límite máximo de transferencia en MB/s. También puedes seleccionar *Ilimitada*.
 +
-Sin un límite, el rendimiento de la red y de las aplicaciones puede disminuir. Como alternativa, recomendamos una tasa de transferencia ilimitada para los sistemas de archivos FSx for ONTAP en cargas de trabajo críticas, por ejemplo, aquellas que se utilizan principalmente para la recuperación ante desastres.
+Sin un límite, el rendimiento de la red y de las aplicaciones podría reducirse. No obstante, recomendamos una tasa de transferencia ilimitada para los sistemas de archivos FSx for ONTAP en el caso de cargas de trabajo críticas, como, por ejemplo, aquellas que se utilizan principalmente para la recuperación ante desastres.
 
 +
 .. En Configuración de replicación, introduce lo siguiente:
@@ -84,7 +84,7 @@ NOTE: Las etiquetas de origen y destino coincidentes son necesarias para la cons
 ** *Políticas de Snapshot*: en la tabla, selecciona la frecuencia de la política de Snapshot y el número de copias que deseas conservar. Puedes seleccionar más de una política de Snapshot.
 
 
-. *Punto de acceso S3*: opcionalmente, adjunta un punto de acceso S3 para acceder a los datos del sistema de archivos FSx for ONTAP que residen en volúmenes NFS o SMB/CIFS a través de las API de AWS S3. Solo se admite el tipo de acceso a archivos. Proporciona los siguientes detalles:
+. *Punto de acceso S3*: opcionalmente, adjunta un punto de acceso S3 para acceder a los datos del sistema de archivos FSx for ONTAP que residen en volúmenes NFS o SMB/CIFS a través de las API de AWS S3. Solo se admite el tipo de acceso a archivos. Indica los siguientes datos:
 +
 ** *Nombre del punto de acceso S3*: Ingresa el nombre del punto de acceso S3.
 ** *Usuario*: selecciona un usuario existente con acceso al volumen o crea un nuevo usuario.

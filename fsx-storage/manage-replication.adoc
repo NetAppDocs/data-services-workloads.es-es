@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: fsx-storage/manage-replication.html 
 keywords: replication management, manage replication, pause replication, stop replication, break replication, delete replication, track replication, change replication schedule, limit replication transfer rate, reverse replication 
-summary: Administra las relaciones de replicación en NetApp Workload Factory. 
+summary: Pausar, reanudar, invertir, detener y eliminar relaciones de replicación, cambiar la programación de la replicación y limitar la tasa de transferencia en NetApp Workload Factory. 
 ---
 = Administra tus relaciones de replicación en NetApp Workload Factory
 :allow-uri-read: 
@@ -20,7 +20,7 @@ Administra tus relaciones de replicación en NetApp Workload Factory. Puedes pau
 
 Cambia la programación de replicación del volumen de origen en una relación de replicación en NetApp Workload Factory.
 
-Elige con qué frecuencia transferir las instantáneas del volumen de origen al volumen replicado para ajustarte a tus objetivos de punto de recuperación (RPO).
+Elige con qué frecuencia se transfieren las instantáneas del volumen de origen al volumen replicado para que coincida con tus objetivos de punto de recuperación (RPOs).
 
 Cuando el destino de la relación de replicación es un clúster de ONTAP local, no es posible modificar la programación de la replicación.
 
@@ -32,7 +32,7 @@ Cuando el destino de la relación de replicación es un clúster de ONTAP local,
 . En la vista general del sistema de archivos, selecciona la pestaña *Relaciones de replicación*.
 . En la pestaña «Relaciones de replicación», selecciona el menú de acciones de la programación de la relación de replicación que quieres cambiar.
 . Selecciona *Editar intervalo de replicación*.
-. En el cuadro de diálogo «Editar intervalo de replicación», selecciona la frecuencia de transferencia de instantáneas desde el volumen de origen. Puedes elegir entre las siguientes frecuencias:
+. En el cuadro de diálogo «Editar intervalo de replicación», selecciona la frecuencia de transferencia de instantáneas desde el volumen de origen. Selecciona una de las siguientes frecuencias:
 +
 ** Cada 5 minutos
 ** Cada hora
@@ -51,7 +51,7 @@ Cuando el destino de la relación de replicación es un clúster de ONTAP local,
 
 Limitar la tasa de transferencia máxima es opcional, pero recomendable. Si no se establece ningún límite, el rendimiento de la red y de las aplicaciones podría disminuir.
 
-Como alternativa, te recomendamos una tasa de transferencia ilimitada para los sistemas de archivos FSx for ONTAP destinados a cargas de trabajo críticas, por ejemplo, los que se utilizan principalmente para la recuperación ante desastres.
+Para cargas de trabajo críticas, como los sistemas de archivos FSx for ONTAP utilizados principalmente para la recuperación ante desastres, se recomienda una tasa de transferencia ilimitada.
 
 .Antes de empezar
 Valora cuánto ancho de banda debes asignar para la replicación.
@@ -118,7 +118,7 @@ La relación se pone en pausa y su estado aparece como «En pausa».
 [[resume-a-paused-replication-relationship]]
 == Reanudar una relación de replicación en pausa
 
-Cuando reanudas una relación de replicación, se elimina cualquier cambio realizado en el volumen de destino mientras la replicación estaba detenida. El volumen de destino pasa de lectura/escritura a solo lectura y vuelve a recibir actualizaciones del volumen de origen en el intervalo de replicación programado.
+Al reanudar una relación de replicación, se eliminan todos los cambios realizados en el volumen de destino mientras la replicación estaba detenida. El volumen de destino pasa del modo de lectura/escritura al modo de solo lectura y vuelve a recibir actualizaciones del volumen de origen en el intervalo de replicación programado.
 
 
 NOTE: Los datos que se hayan escrito en el volumen de origen original entre la última replicación de datos y el momento en que se desactive el volumen de origen no se conservarán.
@@ -152,7 +152,7 @@ Se admiten operaciones de reversión para lo siguiente:
 
 Una vez que detengas la replicación y realices cambios en el volumen de destino, podrás replicar esos cambios de vuelta al volumen de origen. Este proceso es habitual en un escenario de recuperación ante desastres en el que trabajas en el volumen de destino durante un tiempo y quieres intercambiar los roles de los volúmenes.
 
-Cuando inviertes y reanudas una replicación, intercambias los roles de origen y destino de tus volúmenes; el volumen de destino se convierte en el nuevo volumen de origen y el volumen de origen se convierte en el nuevo volumen de destino. La operación de inversión también sobrescribe el contenido del nuevo volumen de destino con el contenido del nuevo volumen de origen. Si inviertes una replicación dos veces, se restablece la dirección original de la replicación.
+Al invertir y reanudar una replicación, se intercambian los roles de origen y destino de tus volúmenes; el volumen de destino pasa a ser el nuevo volumen de origen y el volumen de origen pasa a ser el nuevo volumen de destino. La operación de inversión también sobrescribe el contenido del nuevo volumen de destino con el contenido del nuevo volumen de origen. Si inviertes una replicación dos veces, se restablece la dirección original de la replicación.
 
 []
 ====
@@ -203,7 +203,7 @@ El estado de replicación del volumen cambia a *Interrumpido*. El volumen de des
 [[delete-a-replication-relationship]]
 == Eliminar una relación de replicación
 
-Elimina una relación de replicación en NetApp Workload Factory. Cuando eliminas una relación de replicación, se quita la relación de replicación entre el volumen de origen y el volumen de destino. Después de eliminar la relación de replicación, ambos volúmenes siguen existiendo de forma independiente con los datos actuales que contienen.
+Eliminar una relación de replicación en NetApp Workload Factory. Al eliminar una relación de replicación, se elimina la relación entre el volumen de origen y el de destino. Una vez eliminada la relación, ambos volúmenes siguen existiendo de forma independiente con los datos actuales que contienen.
 
 Al eliminar una relación de replicación, FSx for ONTAP también elimina las instantáneas de replicación comunes del volumen de origen y de destino.
 

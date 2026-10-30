@@ -31,11 +31,11 @@ Revisa las políticas de clasificación por niveles disponibles antes de cambiar
 
 * *Balanced (Auto)*: política predeterminada de organización en niveles al crear un volumen mediante la interfaz de usuario. Mantiene los datos a los que se accede con frecuencia en el nivel de almacenamiento SSD y organiza en niveles los datos a los que se accede con poca frecuencia y las instantáneas en el nivel de almacenamiento del pool de capacidad una vez finalizado el periodo de enfriamiento. Recomendado para cargas de trabajo primarias generales.
 * *Optimización de costes (Todo)*: clasifica todas las instantáneas y los datos en el nivel de almacenamiento del pool de capacidad. Recomendado para destinos secundarios.
-* *Rendimiento optimizado (solo Snapshots)*: solo se organizan en niveles los datos de Snapshot en el nivel de almacenamiento del pool de capacidad. Recomendado para cargas de trabajo de baja latencia, como las bases de datos de misión crítica.
+* *Optimizado para el rendimiento (solo Snapshots)*: solo organiza en niveles los datos de Snapshot en el nivel de almacenamiento del pool de capacidad. Recomendado para cargas de trabajo de baja latencia, como las bases de datos de misión crítica.
 * *Ninguno*: mantiene los datos del volumen en el nivel de almacenamiento SSD, lo que impide que se muevan al nivel de almacenamiento del pool de capacidad.
 
 
-Ten en cuenta que algunas políticas de organización en niveles tienen asociado un periodo mínimo de enfriamiento que establece el tiempo, o los «días de enfriamiento», durante el cual los datos de usuario de un volumen deben permanecer inactivos para que los datos se consideren «fríos» y se muevan al nivel de almacenamiento del pool de capacidad. El periodo de enfriamiento comienza cuando se escriben datos en el disco.
+Algunas políticas de organización en niveles tienen asociado un periodo mínimo de enfriamiento que establece el tiempo, o los _días de enfriamiento_, que los datos de usuario de un volumen deben permanecer inactivos para que los datos se consideren "fríos" y se muevan al nivel de almacenamiento del pool de capacidad. El periodo de enfriamiento comienza cuando se escriben datos en el disco.
 
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].

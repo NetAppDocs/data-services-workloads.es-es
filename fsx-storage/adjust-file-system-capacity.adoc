@@ -50,7 +50,7 @@ Para ajustar la capacidad de un sistema de archivos, primero tienes que <<Habili
 [[enable-automatic-capacity-and-inode-management]]
 == Habilita la gestión automática de la capacidad y los nodos de información
 
-Activa la gestión de capacidad y nodos de información para que NetApp Workload Factory añada automáticamente almacenamiento incremental y nodos de información (archivos) al sistema de archivos FSx for ONTAP y a un volumen, a medida que cambien las necesidades de capacidad con el tiempo. Estas funciones eliminan la necesidad de supervisar manualmente la capacidad y los nodos de información.
+Activa la gestión de la capacidad y de nodos de información para que NetApp Workload Factory añada automáticamente almacenamiento incremental a un sistema de archivos de FSx for ONTAP y nodos de información (archivos) a un volumen a medida que cambien las necesidades de capacidad con el tiempo. Estas funciones eliminan la necesidad de supervisar manualmente la capacidad y los nodos de información.
 
 Solo una cuenta puede gestionar estas funciones.
 
@@ -146,7 +146,7 @@ Antes de empezar, ten en cuenta lo siguiente:
 . En la página FSx for ONTAP, selecciona *Inventario*.
 . En *Inventario*, selecciona el menú de acciones del sistema de archivos para el que quieres habilitar la gestión automática de nodos de información.
 . Selecciona *Gestionar*.
-. En «Información», selecciona el icono del lápiz situado junto a *Gestión automática de nodos de información*. El icono del lápiz aparece junto a la flecha desplegable al pasar el ratón por encima de la fila *Gestión automática de nodos de información*.
+. En «Información», selecciona el icono del lápiz situado junto a *Gestión automática de nodos de información*. El icono del lápiz aparece junto a la flecha del menú desplegable al pasar el ratón por encima de la fila *Gestión automática de nodos de información*.
 . En el cuadro de diálogo *Gestión automática de nodos de información*, introduce lo siguiente:
 +
 .. *Credenciales*: selecciona las credenciales con permisos de _Automate_ en el menú desplegable.
