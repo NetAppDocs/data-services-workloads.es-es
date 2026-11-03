@@ -7,7 +7,7 @@ summary: Actualizar los datos del punto de acceso S3, gestionar las etiquetas y 
 = Editar los puntos de acceso de S3 para un volumen de FSx for ONTAP en NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]

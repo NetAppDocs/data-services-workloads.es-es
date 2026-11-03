@@ -1,0 +1,129 @@
+---
+sidebar: sidebar 
+permalink: oci/configuration-analysis.html 
+keywords: configuration issues, issues, improve, analyze, storage configuration, OCI NSS, recommendation, recommendations 
+summary: NetApp Workload Factory analiza periódicamente las configuraciones del sistema OCI NSS para determinar si existen problemas de configuración. 
+---
+= Análisis de la configuración de los sistemas OCI NSS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp Workload Factory analiza periódicamente las configuraciones del sistema OCI NSS para determinar si hay algún problema de configuración. Cuando encuentra problemas, Workload Factory te muestra cuáles son y te explica qué debes cambiar para que tu entorno de almacenamiento alcance el máximo rendimiento, la eficiencia de costos y el cumplimiento de las mejores prácticas.
+
+Las capacidades clave incluyen:
+
+* Análisis diario de configuración
+* Validaciones automáticas de buenas prácticas
+* Observabilidad proactiva
+* De la información a la acción
+* Asesor de OCI Well-Architected Framework
+
+
+
+
+[[how-it-works]]
+== Cómo funciona
+
+Workload Factory analiza tus cargas de trabajo en implementaciones de almacenamiento en la nube compatibles todos los días. El análisis proporciona el estado de buena arquitectura, información detallada y recomendaciones.
+
+Una vez finalizado el análisis diario, las configuraciones aparecen como "optimizadas" o "no optimizadas" en el panel de control de Well-architected correspondiente a la implementación. Encontrarás los problemas de configuración organizados por categorías, junto con las recomendaciones. Workload Factory ofrece instrucciones detalladas para ayudarte a aplicar los cambios recomendados.
+
+Puedes descartar el análisis de las configuraciones que no se apliquen a tus entornos. Así evitas alertas innecesarias y resultados de optimización inexactos.
+
+
+
+[[why-it-matters]]
+== Por qué es importante
+
+Workload Factory aplica las mejores prácticas a grandes entornos de almacenamiento, bases de datos y VMware, combinando una evaluación continua con recomendaciones y medidas correctivas. Las correcciones automatizadas reducen los errores humanos, garantizan una gestión uniforme y mantienen el rendimiento y la fiabilidad en todas tus infraestructuras de cargas de trabajo.
+
+
+
+[[analysis-requirements]]
+== Requisitos de análisis
+
+Para realizar un análisis completo del sistema de archivos, debes hacer lo siguiente:
+
+* Asocia un enlace. La conectividad de enlace permite a Workload Factory analizar todas las configuraciones del sistema OCI NSS, como la protección de datos y el rendimiento.
++
+link:create-link.html["Aprende cómo asociar un enlace existente o crear y asociar un nuevo enlace"].
+
+* Concede permisos de _vista, planificación y análisis_ en tu cuenta de OCI.
++
+link:add-credentials-oci.html["Aprende cómo conceder permisos a una cuenta de OCI"].
+
+
+
+
+
+[[best-practices-and-recommendations-for-storage-workloads]]
+== Mejores prácticas y recomendaciones para cargas de trabajo de almacenamiento
+
+El panel de control Well-Architected evalúa las configuraciones de almacenamiento según las mejores prácticas de ONTAP y el marco Well-Architected de AWS. La evaluación también recomienda mejoras y correcciones.
+
+El análisis bien diseñado clasifica las configuraciones en los siguientes pilares del marco: _fiabilidad_, _seguridad_, _excelencia operativa_, _optimización de costes_ y _eficiencia de rendimiento_.
+
+
+NOTE: Actualmente, Workload Factory no ofrece recomendaciones específicas para cada carga de trabajo en todas las configuraciones. Adapta tus configuraciones a las necesidades específicas de cada carga de trabajo.
+
+
+
+[[reliability]]
+=== Fiabilidad
+
+La fiabilidad garantiza que las cargas de trabajo realicen sus funciones previstas de forma correcta y constante, incluso cuando hay interrupciones.
+
+* *Capacidad del objeto de archivo*
++
+Se debe aumentar el umbral de capacidad de archivos para evitar alcanzar el límite de capacidad del volumen. Una capacidad de archivos insuficiente (nodos de información) impide escribir datos adicionales en el volumen. Workload Factory recomienda mantener el uso de la capacidad de archivos por debajo del 80 % para permitir la creación de nuevos archivos.
+
+* *política de SnapVault*
++
+Programa instantáneas locales para realizar copias de seguridad eficaces y restauraciones rápidas. Las instantáneas son imágenes de un momento específico de tus volúmenes. Esta recomendación no se aplica a entornos de bases de datos.
+
+* *Margen de capacidad del SSD*
++
+El uso de la capacidad del nivel de almacenamiento SSD no debe superar el 80 %. Esto puede afectar las lecturas y escrituras de datos en tu nivel de almacenamiento de grupo de capacidad y afectar la capacidad de rendimiento de tu sistema de archivos. Cuando se agota la capacidad, los volúmenes de datos pasan a ser de solo lectura. Los servicios que intentan escribir nuevos datos también fallan.
+
+
+
+
+
+[[operational-excellence]]
+=== Excelencia operativa
+
+La excelencia operativa garantiza que las cargas de trabajo se gestionen y supervisen de forma eficaz y que puedan satisfacer las necesidades de sus usuarios.
+
+* *Informes de capacidad visibles para el host*
++
+Activa los informes de capacidad visibles desde el host para ofrecer una mayor visibilidad del uso del almacenamiento a nivel de volumen.
+
+* *Espacio libre para el volumen*
++
+El margen de capacidad del volumen debe fijarse en un 10 % para permitir el crecimiento y evitar problemas de capacidad inesperados.
+
+
+
+
+
+[[cost-optimization]]
+=== Optimización de costos
+
+La optimización de costes te ayuda a obtener el máximo valor para tu negocio mientras mantienes los costes bajos.
+
+* *Tiering de datos fríos* Utiliza la política de tiering solo de Snapshot, que mueve solo los datos de Snapshot al nivel de capacidad mientras mantiene los datos activos en el nivel SSD. Este enfoque preserva el rendimiento de baja latencia para las cargas de trabajo de bases de datos y, al mismo tiempo, reduce los costes de almacenamiento. Aplica el tiering a los datos de Snapshot después de un período de enfriamiento de 7 días.
+* *Limpieza de instantáneas*
++
+Elimina las instantáneas antiguas o creadas manualmente que ya no necesites. Eliminarlas puede reducir los costes y el desorden, especialmente si no son necesarias para tu SLA o para tus necesidades de recuperación.
+
+* *Eficiencia en el almacenamiento*
++
+Activa las eficiencias de almacenamiento —compactación, compresión y deduplicación— para optimizar el uso de la capacidad y reducir el coste del nivel de almacenamiento SSD.
+
+
+
+.Qué sigue
+link:improve-configurations.html["Implementa configuraciones de OCI NSS bien diseñadas"]
