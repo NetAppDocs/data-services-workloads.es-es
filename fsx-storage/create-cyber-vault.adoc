@@ -13,20 +13,32 @@ summary: Descubre las bóvedas cibernéticas de NetApp y cómo implementar una a
 [role="lead"]
 Un volumen de cyber vault es una ubicación de almacenamiento aislada y segura que almacena copias de seguridad de tus datos y los protege frente a ataques de ransomware y otras amenazas cibernéticas. Para crear una bóveda, crea un volumen de cyber vault, desactiva todos los protocolos de cliente, configura una relación de replicación entre el volumen de origen y el volumen de cyber vault, y crea instantáneas inmutables en el volumen de cyber vault.
 
-.¿Qué es una bóveda cibernética?
+
+
+[[what-is-a-cyber-vault]]
+== ¿Qué es una bóveda cibernética?
+
 Una bóveda cibernética es una técnica específica de protección de datos que consiste en almacenar datos críticos en un entorno aislado, separado de la infraestructura informática principal.
 
 La bóveda cibernética es un repositorio de datos "aislado físicamente", inmutable e indeleble, inmune a las amenazas que afectan a la red principal, como el malware, el ransomware o incluso las amenazas internas. Una bóveda cibernética se puede lograr con instantáneas inmutables e indelebles.
 
 Las copias de seguridad con aislamiento físico (air-gap) que utilizan métodos tradicionales consisten en crear un espacio y separar físicamente los soportes primario y secundario. Al trasladar los soportes fuera de las instalaciones o interrumpir la conectividad, los atacantes no tienen acceso a los datos. Esto protege los datos, pero puede provocar tiempos de recuperación más largos.
 
-.Cyber vaults de FSx for ONTAP
+
+
+[[fsx-for-ontap-cyber-vaults]]
+== Cyber vaults de FSx for ONTAP
+
 Amazon FSx for NetApp ONTAP es compatible como origen y destino de un cyber vault.
 
-.Implementación
+
+
+[[implementation]]
+== Implementación
+
 Workload Factory te ayuda a crear una arquitectura de cyber vault. Después de contactar con NetApp para expresar tu interés en implementar un cyber vault, un especialista de NetApp se pondrá en contacto contigo para hablar sobre tus requisitos.
 
-Envía un correo electrónico a ng-FSx-CyberVault@netapp.com para empezar.
+Envía un correo electrónico a ng-CyberVault@netapp.com para empezar.
 
 .Información relacionada
 Para obtener más información sobre los «cyber vaults» y cómo configurar esta arquitectura, consulta link:https://docs.netapp.com/us-en/netapp-solutions-dataops/cyber-vault/ontap-cyber-vault-overview.html["Documentación de ONTAP cyber vault"^].

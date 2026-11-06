@@ -96,7 +96,7 @@ La replicación entre regiones garantiza que tus datos se repliquen en otra regi
 
 * *Margen de capacidad del SSD*
 +
-El uso de la capacidad del nivel de almacenamiento SSD no debe superar el 80 %. Esto puede afectar las lecturas y escrituras de datos en tu nivel de almacenamiento de grupo de capacidad y afectar la capacidad de rendimiento de tu sistema de archivos. Cuando se agota la capacidad, los volúmenes de datos pasan a ser de solo lectura. Los servicios que intentan escribir nuevos datos también fallan.
+La capacidad del nivel de almacenamiento SSD no debe superar el 80 % de uso. Superar este umbral podría afectar a las operaciones de lectura y escritura de datos en tu nivel de almacenamiento del grupo de capacidad y reducir el rendimiento de tu sistema de archivos. Cuando se agota la capacidad, los volúmenes de datos pasan a ser de solo lectura. Los servicios que intenten escribir datos nuevos también fallarán.
 
 * *Etiquetas de la política de replicación*
 +
