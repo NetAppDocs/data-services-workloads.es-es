@@ -216,6 +216,16 @@ sidebar:
           url: "/fsx-eda/task-activate-overview-dashboard.html"
         - title: Usa el panel de control general
           url: "/fsx-eda/task-use-overview-dashboard.html"
+      - title: FSx para el análisis de latencia de ONTAP
+        entries:
+        - title: Conoce el monitoreo de latencia
+          url: "/fsx-eda/learn-latency-monitoring.html"
+        - title: Configura el monitoreo de latencia
+          url: "/fsx-eda/task-configure-latency-monitoring.html"
+        - title: Analiza los problemas de latencia
+          url: "/fsx-eda/task-analyze-latency-issues.html"
+        - title: Analiza las tendencias de latencia
+          url: "/fsx-eda/task-analyze-latency-trends.html"
       - title: Análisis de uso del proyecto
         entries:
         - title: Conoce el panel de control Projects
