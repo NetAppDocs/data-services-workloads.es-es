@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: gcnv/improve-configurations.html 
-keywords: improve configurations, optimize configurations, implement best practices, well-architected storage pool, Google Cloud NetApp Volumes, GCNV 
+keywords: improve configurations, optimize configurations, implement best practices, well-architected storage pool, Google Cloud NetApp Volumes 
 summary: Workload factory analiza las configuraciones de Google Cloud NetApp Volumes y te ofrece información y recomendaciones para ayudarte a lograr la excelencia operativa. 
 ---
 = Implementa configuraciones bien diseñadas de Google Cloud NetApp Volumes
@@ -42,6 +42,7 @@ Una vez finalizado el análisis diario, podrás consultar las recomendaciones so
 .Pasos
 . Inicia sesión en link:https://console.netapp.com/home["NetApp Console"^].
 . En el menú de la NetApp Console, selecciona *Workloads* y luego *Well-architected*.
+. Opcional: utiliza los filtros *Proyectos*, *Credenciales* y *Regiones* para delimitar el alcance del panel de control.
 . Desde el panel de control de Well-architected, selecciona *Ver* para cualquier configuración.
 +
 Si lo deseas, puedes descargar un archivo CSV con las recomendaciones para todas las configuraciones.

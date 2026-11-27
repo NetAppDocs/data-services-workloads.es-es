@@ -21,7 +21,7 @@ Las reglas personalizadas te permiten establecer, comprobar y aplicar tus propio
 [[overview]]
 == Descripción general
 
-El generador de reglas te permite crear reglas personalizadas usando un lenguaje sencillo. Estas reglas se verifican en todos tus recursos. Las reglas personalizadas te ayudan a aplicar los estándares, los límites de riesgo y los requisitos operativos de tu organización que las reglas predeterminadas podrían no cubrir.
+Las reglas personalizadas te permiten crear comprobaciones en lenguaje sencillo. Estas reglas se comprueban en todos tus recursos. Las reglas personalizadas te ayudan a aplicar las normas, los límites de riesgo y los requisitos operativos de tu organización que las reglas predeterminadas podrían no cubrir. Puedes iniciar una regla personalizada a partir de una configuración well-architected compatible. La configuración original permanece en su sitio y la nueva regla empieza como borrador hasta que la programes. Puedes recibir una notificación cuando finalice una regla programada. link:manage-custom-rules.html["Gestiona reglas personalizadas"]
 
 
 NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, no podrás crear nuevas reglas ni editar las existentes. Las reglas que ya estén programadas seguirán ejecutándose. link:../admin/manage-genai-features.html["Conoce cómo gestionar las funciones de IA"].
@@ -60,6 +60,7 @@ Enlace o agente:: Solo es necesario para las reglas que deben conectarse directa
 * Cada regla comprueba solo un tipo de recurso, pero puede aplicarse a una amplia variedad de recursos. Por ejemplo, una regla puede evaluar volúmenes en varias regiones, en todas las regiones o en varias cuentas. Para evaluar diferentes tipos de recursos, crea reglas independientes.
 * Las reglas se ejecutan como máximo una vez por hora para evitar un escaneo excesivo.
 * Las reglas solo pueden leer tu entorno y no pueden hacer cambios.
+* Una regla personalizada creada a partir de una configuración bien diseñada no modifica ni anula dicha configuración.
 * Puedes actualizar estos ajustes más adelante desde el catálogo de reglas.
 
 

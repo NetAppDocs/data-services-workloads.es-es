@@ -319,3 +319,10 @@ Al registrar Oracle Database en SUSE Linux Enterprise Server 12, Workload Factor
 === Permisos de operador necesarios
 
 NetApp Workload Factory for EDA requiere permisos de operador para funcionar correctamente.
+
+
+
+[[latency-breakdown-for-dp-volumes]]
+=== Desglose de la latencia de los volúmenes DP
+
+El desglose de componentes en el análisis básico de latencia no está disponible para los volúmenes de protección de datos (DP).

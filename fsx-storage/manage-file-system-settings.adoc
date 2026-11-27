@@ -37,7 +37,7 @@ El número máximo de etiquetas que puedes aplicar a un sistema de archivos es 5
 [[manage-ontap-credentials]]
 == Gestionar las credenciales de ONTAP
 
-Gestiona las credenciales de ONTAP para un sistema de archivos FSx for ONTAP en NetApp Workload Factory. Workload Factory tiene dos tipos de credenciales: primarias y restringidas. De forma predeterminada, el sistema de archivos utiliza las credenciales primarias de ONTAP. Las credenciales restringidas se usan solo para operaciones de IA (AIOps) como Ask Me, Rule builder y paneles personalizados. Opcionalmente, puedes añadir un conjunto de credenciales restringidas y actualizar cualquiera de los dos conjuntos en cualquier momento.
+Gestiona las credenciales de ONTAP para un sistema de archivos FSx for ONTAP en NetApp Workload Factory. Workload Factory tiene dos tipos de credenciales: primarias y restringidas. De forma predeterminada, el sistema de archivos usa las credenciales primarias de ONTAP. Las credenciales restringidas se usan solo para operaciones de IA (AIOps) como Ask Me, reglas personalizadas y paneles personalizados. Opcionalmente, puedes añadir un conjunto de credenciales restringidas y actualizar cualquiera de los dos conjuntos de credenciales en cualquier momento.
 
 Puedes realizar las siguientes tareas:
 

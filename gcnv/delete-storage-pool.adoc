@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: gcnv/delete-storage-pool.html 
+keywords: delete storage pool, remove storage pool, storage pool 
+summary: Elimina un pool de almacenamiento de Google Cloud NetApp Volumes que no tenga ningún volumen en NetApp Workload Factory. 
+---
+= Eliminar un pool de almacenamiento de Google Cloud NetApp Volumes en NetApp Workload Factory
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Eliminar un grupo de almacenamiento que ya no contenga volúmenes, sin utilizar la consola de Google Cloud.
+
+
+
+[[before-you-begin]]
+== Antes de empezar
+
+Asegúrate de que tu pool de almacenamiento y tu rol de usuario permitan la eliminación para que la opción de eliminar esté disponible cuando sea necesario.
+
+* El pool de almacenamiento no debe contener ningún volumen.
+* El grupo de almacenamiento debe estar en estado Ready o Error.
+* Debes tener el rol de administrador de Google Cloud NetApp Volumes.
+
+
+
+
+[[delete-a-storage-pool]]
+== Eliminar un grupo de almacenamiento
+
+Elimina el pool de almacenamiento solo cuando estés seguro de que nada depende de él, ya que no podrás deshacer la acción.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Storage* > *Google Cloud NetApp Volumes*.
+. En la tabla de grupos de almacenamiento, selecciona image:screenshot_gallery_options.gif["Un icono con tres puntos."] para el grupo de almacenamiento y luego selecciona *Eliminar*.
+. En el cuadro de diálogo de confirmación, escribe el texto *delete* para confirmar y, a continuación, selecciona *Delete*.
+
+
+.Resultado
+El estado del grupo de almacenamiento cambia a «En proceso de eliminación». Una vez completada la eliminación, Workload Factory elimina el grupo de almacenamiento de la tabla. Si la eliminación falla, el grupo de almacenamiento permanece en la tabla y aparece un mensaje de error en link:../admin/monitor-operations.html["Rastreador"].

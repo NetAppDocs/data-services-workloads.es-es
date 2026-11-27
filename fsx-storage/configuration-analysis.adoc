@@ -33,7 +33,7 @@ Una vez finalizado el análisis diario, las configuraciones aparecen como «opti
 
 Puedes descartar el análisis de las configuraciones que no se apliquen a tus entornos. Así evitas alertas innecesarias y resultados de optimización inexactos.
 
-También puedes crear reglas personalizadas en lenguaje sencillo para validar tus entornos según las normas de tu organización y las mejores prácticas de NetApp. Prueba las reglas con una simulación y luego programa que se ejecuten en todos tus entornos. link:learn-custom-rules.html["Obtén más información sobre las reglas personalizadas"^].
+También puedes crear reglas personalizadas en lenguaje sencillo para validar tus entornos según los estándares de tu organización y las mejores prácticas de NetApp. Puedes iniciar una regla a partir de una configuración well-architected compatible o escribir tu propio prompt. Prueba las reglas con una simulación y luego prográmalas para que se ejecuten en todos tus entornos. link:learn-custom-rules.html["Obtén más información sobre las reglas personalizadas"^].
 
 
 
@@ -110,17 +110,9 @@ Aumenta el umbral de capacidad de archivos para evitar alcanzar el límite de ca
 +
 Workload Factory recomienda conectar los hosts al nodo de conmutación por error para mantener la conectividad y evitar interrupciones durante los procesos de conmutación por error.
 
-* *Política de snapshots de SAP HANA*
+* *Política de instantáneas de la base de datos*
 +
-Configura la política de snapshot en "None" para los volúmenes de SAP HANA a fin de reducir los costes de almacenamiento y mejorar el rendimiento de los datos activos de la base de datos.
-
-* *política de snapshots de MySQL*
-+
-Configura la política de snapshots en "None" para los volúmenes de MySQL para reducir los costes de almacenamiento y mejorar el rendimiento de los datos activos de la base de datos.
-
-* *Política de snapshot de PostgreSQL*
-+
-Configura la política de snapshots en "None" para los volúmenes de PostgreSQL a fin de reducir los costes de almacenamiento y mejorar el rendimiento de los datos activos de la base de datos.
+Configura la política de snapshot en "None" para los volúmenes de SAP HANA, MySQL y PostgreSQL para reducir los costes de almacenamiento y mejorar el rendimiento de los datos activos de la base de datos.
 
 
 
@@ -142,10 +134,6 @@ Los volúmenes que sirven datos de aplicaciones mediante iSCSI no deben permitir
 * *Brecha en la detección de varios dispositivos con ARP/AI*
 +
 ARP/AI ofrece una cobertura de protección completa cuando un volumen solo tiene un dispositivo de bloque asociado. Si un volumen tiene varios dispositivos de bloque asociados, Workload Factory traslada esos dispositivos a volúmenes nuevos para que cada volumen tenga solo un dispositivo de bloque.
-
-* *CHAP bidireccional para backends iSCSI de Kubernetes*
-+
-Utiliza la autenticación CHAP bidireccional para los backends iSCSI de Trident con el fin de garantizar que el iniciador y el destino iSCSI se autentiquen mutuamente. De este modo se evita que hosts no autorizados establezcan sesiones iSCSI con la máquina virtual de almacenamiento.
 
 * *Desactiva `showmount` en la máquina virtual de almacenamiento de la aplicación*
 +
@@ -196,10 +184,6 @@ Configura el Thin-Provisioning para los volúmenes de FSx for ONTAP que alojan i
 +
 Configura los sistemas de archivos FSx for ONTAP con la conectividad de AWS Transform MGN (MGN) y la configuración de autenticación de la API necesarias antes de usarlos con AWS MGN.
 
-* *máquina virtual de almacenamiento dedicada para Kubernetes*
-+
-Utiliza una máquina virtual de almacenamiento dedicada para las cargas de trabajo de Kubernetes. Mantener el almacenamiento de Kubernetes separado facilita su gestión, simplifica la configuración de políticas y ayuda a garantizar que los ajustes de almacenamiento sean coherentes.
-
 * *Haz coincidir el SO del igroup con el del host*
 +
 Asegúrate de que el sistema operativo del grupo iniciador (igroup) coincida con el del host para evitar problemas de E/S o de rendimiento.
@@ -215,7 +199,7 @@ La optimización de costes te ayuda a obtener el máximo valor para tu negocio m
 
 * *Nivel de datos inactivos*
 +
-Activa la clasificación de datos inactivos para reducir la utilización del nivel de almacenamiento SSD. Aplica una política de clasificación a todos los volúmenes destinados al almacenamiento de datos generales. En el caso de los volúmenes de bases de datos, activa la clasificación de datos inactivos cuando sea pertinente. FSx for ONTAP analiza continuamente los datos en busca de datos inactivos y los traslada al nivel del fondo común de capacidad sin interrupciones.
+Activa la organización en niveles de los datos fríos para reducir la utilización del nivel de almacenamiento SSD. Aplica una política de organización en niveles a todos los volúmenes destinados al almacenamiento general de datos. Para los volúmenes de base de datos que no sean volúmenes primarios de SAP HANA, activa la organización en niveles de los datos fríos cuando corresponda. FSx for ONTAP analiza continuamente los datos en busca de datos fríos y los mueve al nivel de pool de capacidad sin interrupciones.
 
 * *Eficiencia en el almacenamiento*
 +
@@ -239,7 +223,11 @@ El exceso de capacidad de SSD supone un coste innecesario. Reduce el nivel de SS
 
 * *Volúmenes NAS inactivos*
 +
-Si un volumen NAS no se usa durante 31 días, archívalo o elimínalo para reducir costes.
+Cuando un volumen NAS lleve 31 días sin utilizarse, archiva los datos en el nivel del pool de capacidad o elimina el volumen NAS no utilizado para reducir costes.
+
+* *Limpieza de clones*
++
+Elimina cualquier clon de volumen que tenga más de 30 días para optimizar el uso del almacenamiento y reducir los costes.
 
 * *Limpieza de clones*
 +

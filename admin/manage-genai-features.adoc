@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: admin/manage-genai-features.html 
-keywords: gen ai, generative ai, bedrock, ask me, custom dashboards, rules builder, cloudshell ai, ems analyzer, db log analyzer, latency analyzer, byom, bring your own model, administration 
+keywords: gen ai, generative ai, bedrock, ask me, custom dashboards, custom rules, cloudshell ai, ems analyzer, db log analyzer, latency analyzer, byom, bring your own model, administration 
 summary: Controla el acceso a las funciones de IA basadas en Bedrock en Workload Factory. Puedes desactivar las funciones de IA o utilizar Bedrock gestionado por NetApp o gestionado por el cliente. 
 ---
 = Gestiona las funciones de IA en NetApp Workload Factory
@@ -21,7 +21,7 @@ Controla el acceso a las funciones de IA en Workload Factory. Puedes desactivar 
 [[about-ai-features]]
 == Acerca de las funciones de IA
 
-Workload Factory incluye varias funciones basadas en inteligencia artificial que mejoran tu experiencia, como Ask Me, agentes de IA, paneles personalizados, Rule builder y analizadores para EMS, registros de bases de datos y latencia.
+Workload Factory incluye varias funciones basadas en inteligencia artificial que mejoran tu experiencia como Ask Me, agentes de IA, paneles personalizados, reglas personalizadas y analizadores para EMS, registros de bases de datos y latencia.
 
 Como administrador de Workload Factory, puedes controlar cómo estas funciones usan la IA en la página de configuración de la IA.
 
@@ -44,11 +44,11 @@ NetApp-managed Bedrock (recomendado):: Utiliza un servicio de AWS Bedrock gestio
 Bedrock gestionado por el cliente:: Utiliza tu propia configuración de AWS Bedrock.
 +
 --
-* Para obtener los mejores resultados, NetApp recomienda utilizar Anthropic Claude Sonnet 4.5 o 4.6 con tu configuración de Amazon Bedrock
+* Para obtener los mejores resultados, NetApp recomienda usar el último modelo Anthropic Claude Sonnet con tu configuración de Amazon Bedrock
 
 
 --
-Funciones de GenAI desactivadas:: Desactiva todas las funciones de IA. Los usuarios ya no podrán usar Ask Me, el AI Agent, los analizadores, los paneles personalizados, el generador de reglas ni otras herramientas basadas en IA.
+Funciones de GenAI desactivadas:: Desactiva todas las funciones de IA. Los usuarios ya no podrán usar Ask Me, el agente de IA, los analizadores, los paneles personalizados, las reglas personalizadas ni otras herramientas basadas en IA.
 
 
 

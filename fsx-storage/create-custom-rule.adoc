@@ -14,7 +14,7 @@ summary: Crea una regla arquitectónica personalizada usando lenguaje natural pa
 
 
 [role="lead"]
-Crea reglas personalizadas para comprobar tus recursos de FSx for ONTAP en Workload Factory. Describe las reglas en lenguaje sencillo, y el generador de reglas de AI convertirá tu solicitud en una regla validada.
+Crea reglas personalizadas para comprobar tus recursos de FSx for ONTAP en Workload Factory. Describe las reglas en lenguaje sencillo y Workload Factory convertirá tu solicitud en una regla validada.
 
 .Acerca de esta tarea
 El proceso de configuración de la regla te guía en cada paso: crear la regla, revisar cómo la ha interpretado la IA y comprobar los resultados antes de programar revisiones periódicas. Mantienes el control durante todo el proceso. El sistema sugiere una regla basada en tu indicación, pero no ocurre nada hasta que la apruebes.
@@ -34,11 +34,16 @@ NOTE: Si el administrador de tu cuenta ha desactivado las funciones de IA, apare
 [[create-a-rule]]
 == Crear una regla
 
+Describe la comprobación que quieres para que puedas revisar la regla antes de que se ejecute en tus recursos.
+
 .Pasos
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
-. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y luego selecciona Workloads > Well-architected > Rule builder.
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa"] y, a continuación, selecciona Workloads > Well-architected > Custom rules.
 +
-Al abrir el generador de reglas, se muestran ejemplos de indicaciones para ayudarte a redactar tu regla personalizada. Puedes seleccionar *Copiar indicación* para copiar un ejemplo de indicación en el cuadro de texto del cuadro de diálogo de IA.
+Cuando abres «Reglas personalizadas», se muestran prompts de ejemplo para ayudarte a escribir tu regla personalizada. Puedes seleccionar *Copy prompt* para copiar un prompt de ejemplo en el cuadro de texto del diálogo de la IA.
+
++
+Si has abierto Reglas personalizadas desde una configuración well-architected, el prompt ya está rellenado y no se envía. Edita el prompt antes de continuar.
 
 . En el campo *Crear una regla*, introduce la descripción de tu regla en lenguaje natural. Sé lo más específico posible en cuanto a:
 +
@@ -59,7 +64,7 @@ La IA analiza tu solicitud y genera una definición de regla.
 [[review-the-ai-interpretation]]
 == Revisa la interpretación de la IA
 
-El generador de reglas muestra:
+La página muestra:
 
 Interpretación procesada:: Cómo entendió la IA tu solicitud en lenguaje sencillo.
 Definición de regla:: La regla estructurada que incluye el tipo de recurso, la lógica de condiciones y los criterios de evaluación.
@@ -123,7 +128,7 @@ Una vez que hayas validado tu regla, puedes guardarla como borrador o configurar
 
 
 .Resultado
-Tu regla personalizada se ha creado y aparece en el catálogo de reglas. Si estableces una programación, comprobará tus recursos de FSx for ONTAP con la frecuencia especificada. Si editas la regla más adelante, el sistema te guiará por los mismos pasos—chat, revisión, aprobación y validación—antes de que guardes la versión actualizada.
+Tu regla personalizada se ha creado y aparece en el catálogo de reglas. Si estableces una programación, comprobará tus recursos de FSx for ONTAP con la frecuencia especificada. Si has partido de una configuración bien diseñada, la descripción de la regla indica que esta se basa en dicha configuración. La configuración original no se modifica ni se elimina. Si editas la regla más adelante, el sistema te guiará por los mismos pasos—chat, revisión, aprobación y validación—antes de que guardes la versión actualizada.
 
 
 

@@ -1,0 +1,153 @@
+= Mejoras de Amazon FSx for NetApp ONTAP
+:allow-uri-read: 
+
+
+
+
+[[amazon-fsx-for-netapp-ontap-enhancements]]
+=== Mejoras de Amazon FSx for NetApp ONTAP
+
+
+
+==== Asocia varios sistemas de archivos FSx for ONTAP con un enlace
+
+Ahora puedes asociar varios sistemas de archivos FSx for ONTAP a un enlace nuevo o ya existente en un único flujo de trabajo, en lugar de repetir la asociación para cada sistema de archivos. Puedes autenticar el enlace introduciendo las credenciales de ONTAP para cada sistema de archivos o aplicando las mismas credenciales a varios sistemas de archivos.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/setup/links-overview.html["Más información sobre los enlaces"]
+
+
+
+==== Nuevas recomendaciones para los servicios de nombres de las máquinas virtuales de almacenamiento
+
+Workload Factory incluye ahora las siguientes recomendaciones para los servicios de nombres de las VM de almacenamiento en el análisis de buena arquitectura:
+
+*redundancia de servidores DNS y LDAP*: te recomendamos usar al menos dos servidores DNS en las máquinas virtuales de almacenamiento que usan DNS, y al menos dos servidores LDAP en las máquinas virtuales de almacenamiento que usan LDAP. Un fallo en un solo servidor puede bloquear la resolución de nombres, la autenticación de dominio o el acceso a NFS.
+
+
+
+==== Mejoras en el Explorador de volúmenes
+
+
+
+===== Nuevas columnas de la tabla del explorador de volúmenes
+
+La tabla de Volumes explorer incluye las siguientes columnas nuevas:
+
+* *Tamaño lógico utilizado*: muestra el espacio que los clientes ven como utilizado, antes de los ahorros de eficiencia del almacenamiento. Esta columna aparece de forma predeterminada.
+* *Ruta de unión*: muestra la ruta de unión de un volumen.
+
+
+
+
+===== Gestionar puntos de montaje
+
+Ahora puedes gestionar dónde se montan los volúmenes en el espacio de nombres de una máquina virtual de almacenamiento directamente desde Volumes explorer. Selecciona *Manage mount points* en el menú *Advanced* de un volumen para ver el espacio de nombres de la máquina virtual de almacenamiento como un árbol y, después, montar, desmontar o cambiar la ruta de unión del volumen. Workload Factory comprueba las dependencias antes de desmontar un volumen. No puedes desmontar un volumen que tenga otros volúmenes montados debajo, y recibirás una advertencia cuando el volumen tenga recursos compartidos SMB.
+
+
+
+===== Rutas de unión anidadas para nuevos volúmenes
+
+Al crear un volumen, ahora puedes introducir una ruta de unión anidada, como `/test1/test2`, en la sección *Configuración avanzada*.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-storage/create-volume.html["Aprende a crear un volumen"]
+
+
+
+==== Personaliza una configuración bien diseñada como regla personalizada
+
+Puedes iniciar una regla personalizada a partir de una configuración bien diseñada para poder aplicar tu propio umbral o alcance mientras la práctica recomendada original sigue vigente. Workload Factory abre las reglas personalizadas con un prompt editable basado en esa configuración. La regla comienza como borrador y su descripción indica en qué configuración se basa.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-storage/improve-configurations.html["Descubre cómo personalizar una configuración bien diseñada"]
+
+
+
+==== Recibir notificaciones sobre las ejecuciones programadas de reglas personalizadas
+
+Activa las notificaciones para una regla personalizada programada y recibe los resultados sin iniciar sesión en Workload Factory. Puedes recibir notificaciones después de cada ejecución programada o solo cuando una ejecución falle o tenga un éxito parcial. Las notificaciones se envían a través de los canales que ya configuraste. Las pruebas manuales no envían notificaciones.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/fsx-storage/manage-custom-rules.html["Descubre cómo recibir notificaciones sobre reglas personalizadas programadas"]
+
+
+
+[[workload-factory-administration-enhancements]]
+=== Mejoras en la administración de Workload Factory
+
+Estas mejoras abarcan los paneles personalizados y otras tareas de administración en Workload Factory.
+
+
+
+==== Editar el título y la descripción de un panel personalizado
+
+Puedes editar el título y la descripción de un panel personalizado desde el catálogo de paneles o desde la vista de consola para que sigan siendo precisos a medida que el panel cambia. Ambos campos son obligatorios, y dos paneles pueden tener el mismo título.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/admin/manage-custom-dashboards-fsx.html["Aprende a gestionar los paneles personalizados"]
+
+
+
+[[workload-factory-for-eda-enhancements]]
+=== Workload Factory para mejoras en EDA
+
+Estas mejoras incluyen el análisis automático mediante IA de los volúmenes rastreados, explicaciones más claras de la causa raíz en el análisis de IA y el tiempo durante el que se conservan los resultados del análisis de latencia.
+
+
+
+==== Supervisa volúmenes para el análisis automático con IA
+
+Puedes marcar volúmenes para un análisis automático con IA cuando se detecte un problema de latencia. Los resultados del análisis se guardan durante 72 horas y se incluyen en los correos electrónicos de notificación, para que puedas revisar la causa sin tener que ejecutar el análisis tú mismo.
+
+link:https://docs.netapp.com/us-en/workload-eda/task-analyze-latency-issues.html["Infórmate sobre cómo analizar los problemas de latencia"^].
+
+
+
+==== Explicaciones más claras de las causas raíz en el análisis de IA
+
+Utiliza el análisis de IA para obtener una explicación más clara de qué pudo haber provocado un incidente de latencia. El análisis comprueba si hay problemas relacionados con FlexCache, los pools de capacidad y los sistemas de archivos, así como los límites de rendimiento e IOPS, el uso elevado de SSD, la saturación de escritura y otros volúmenes que utilizan los mismos recursos.
+
+link:https://docs.netapp.com/us-en/workload-eda/task-analyze-latency-issues.html["Infórmate sobre cómo analizar los problemas de latencia"^].
+
+
+
+==== Resultados del análisis de latencia conservados durante 72 horas
+
+Los resultados del análisis de latencia ahora están disponibles en la interfaz durante 72 horas en lugar de 24 horas, lo que te permite revisar un análisis anterior de un volumen.
+
+link:https://docs.netapp.com/us-en/workload-eda/task-analyze-latency-issues.html["Infórmate sobre cómo analizar los problemas de latencia"^].
+
+
+
+[[google-cloud-netapp-volumes-enhancements]]
+=== Mejoras de Google Cloud NetApp Volumes
+
+Estas mejoras abarcan la eliminación de pools de almacenamiento, la apertura del inventario de pools de almacenamiento desde un sistema, la incorporación de un sistema en distintas regiones y la gestión de un sistema desde el panel derecho.
+
+
+
+==== Eliminar un grupo de almacenamiento
+
+Puedes eliminar un grupo de almacenamiento de Google Cloud NetApp Volumes que no tenga volúmenes y esté en estado Ready o Error. No puedes deshacer la eliminación. Si la eliminación falla, el grupo permanece en el inventario y el error está en Tracker.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/gcnv/delete-storage-pool.html["Aprende a eliminar un grupo de almacenamiento"]
+
+
+
+==== Abre el inventario del pool de almacenamiento desde un sistema
+
+Al hacer clic en *Entrar en el sistema* en un sistema de Google Cloud NetApp Volumes, se abre el inventario del grupo de almacenamiento en Workload Factory, con el proyecto, las credenciales y la región de ese sistema ya seleccionados. Un sistema que abarca todas las regiones se abre con todas las regiones seleccionadas.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/gcnv/view-storage-pools.html["Aprende a ver los pools de almacenamiento"]
+
+
+
+==== Añade un sistema en todas las regiones
+
+Cuando añades un sistema Google Cloud NetApp Volumes, la región es opcional y, de forma predeterminada, se establecen todas las regiones. Workload Factory detecta los grupos de almacenamiento en todas las regiones para las credenciales que selecciones. Una región seleccionada determina lo que el sistema muestra en el lienzo y lo que usan Compliance y DRaaS. No limita la detección.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/gcnv/create-discover-systems.html["Aprende a añadir un sistema"]
+
+
+
+==== Gestiona un sistema desde el panel derecho
+
+El panel derecho de un sistema Google Cloud NetApp Volumes te permite ver sus volúmenes y acceder al sistema desde la NetApp Console.
+
+link:https://docs.netapp.com/us-en/data-services-workloads/gcnv/view-storage-pools.html["Aprende a ver los pools de almacenamiento"]

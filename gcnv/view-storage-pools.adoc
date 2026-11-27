@@ -17,9 +17,16 @@ Consulta tus grupos de almacenamiento de Google Cloud NetApp Volumes y sus detal
 . Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
 . Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Almacenamiento* > *Google Cloud NetApp Volumes*.
 . Utiliza los filtros *Projects*, *Credentials* y *Regions* para delimitar los pools de almacenamiento que se muestran.
++
+Si abres esta página al seleccionar *Enter system* en un sistema de Google Cloud NetApp Volumes, los filtros ya muestran el proyecto, las credenciales y la región de ese sistema. Un sistema que abarca todas las regiones se abre con todas las regiones seleccionadas.
+
 . Consulta la tabla de grupos de almacenamiento, que muestra datos como el nombre, el estado, el nivel de servicio y la capacidad.
 +
 El nivel de servicio de un pool de almacenamiento es Standard, Premium, Extreme, Flex File o Flex Unified. Mode muestra Default u ONTAP para los pools de almacenamiento Flex Unified, y Default para todos los demás niveles de servicio.
 
 . Selecciona el nombre de un pool de almacenamiento para abrir sus detalles, incluidos el throughput y la descripción.
+
+
+.Información relacionada
+* link:delete-storage-pool.html["Elimina un pool de almacenamiento de Google Cloud NetApp Volumes"]
 

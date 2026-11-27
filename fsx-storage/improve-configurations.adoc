@@ -74,6 +74,32 @@ Se inicia el proceso de corrección. Selecciona el menú de configuración de la
 
 
 
+[[customize-a-configuration-as-a-custom-rule]]
+== Personaliza una configuración como regla personalizada
+
+Adapta una comprobación de arquitectura a la norma de tu organización, de modo que la recomendación original siga estando disponible.
+
+Si la opción *Personalizar como regla* está disponible, puedes crear una regla personalizada a partir de esa configuración. El prompt se rellena previamente a partir de la configuración y no se enviará hasta que lo envíes.
+
+.Pasos
+. Inicia sesión en link:https://console.netapp.com["NetApp Console"^].
+. Selecciona el menú image:workloads-menu-icon.png["El icono del menú hamburguesa se utiliza para ir a Workloads, la opción del menú de Workload Factory"], *Workloads* > *Well-architected* > *FSx for ONTAP*.
+. Selecciona la configuración que quieras modificar.
+. Si aparece la opción *Personalizar como regla*, selecciónala.
++
+Reglas personalizadas se abre con un prompt basado en tu configuración. El prompt no se envía. Edita el prompt para usar un recurso, un umbral o una comprobación diferentes.
+
+. Sigue los pasos para revisar la indicación, validar la regla y guardarla o programarla. La regla permanecerá en borrador hasta que la programes.
++
+link:create-custom-rule.html["Crear una regla personalizada"]
+
+
+
+.Resultado
+La configuración original permanece en el dashboard well-architected y no se elimina. La descripción de la regla explica que la regla se basa en esta configuración. Una regla personalizada solo lee tu entorno. Para aplicar la recomendación, actualiza la configuración en el dashboard.
+
+
+
 [[dismiss-a-configuration-analysis]]
 == Descartar un análisis de configuración
 
