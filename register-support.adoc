@@ -7,7 +7,7 @@ summary: Antes de que puedas abrir un caso con el soporte técnico de NetApp, ne
 = Regístrate para recibir soporte con NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: https://docs.netapp.com/us-en/console-family/media/
 
 
 [role="lead"]
@@ -94,7 +94,7 @@ Si acabas de llegar a NetApp y no tienes una cuenta de NSS, sigue cada paso a co
 . En la esquina superior derecha de la consola, selecciona el icono de Ayuda y selecciona *Soporte*.
 . Busca el número de serie de tu ID de cuenta en la página de registro de soporte.
 +
-image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-serial-number.png["Una captura de pantalla del menú Ayuda donde Soporte es la primera opción de la lista"]
+image:screenshot-serial-number.png["Una captura de pantalla del menú Ayuda donde Soporte es la primera opción de la lista"]
 
 . Accede a https://register.netapp.com["NetApp sitio de registro de soporte"^] y selecciona *I am not a registered NetApp Customer*.
 . Rellena los campos obligatorios (los que tienen un asterisco rojo).
@@ -149,7 +149,7 @@ Estas credenciales de NSS están asociadas a tu ID de cuenta específico de la C
 .Pasos
 . En la esquina superior derecha de la consola, selecciona el icono de Ayuda y selecciona *Soporte*.
 +
-image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-help-support.png["Una captura de pantalla del menú Ayuda donde Soporte es la primera opción de la lista"]
+image:screenshot-help-support.png["Una captura de pantalla del menú Ayuda donde Soporte es la primera opción de la lista"]
 
 . Selecciona *NSS Management > Add NSS Account*.
 . Cuando se te solicite, selecciona *Continuar* para que se te redirija a una página de inicio de sesión de Microsoft.
@@ -174,9 +174,9 @@ Lo mismo ocurre si ya tienes cuentas NSS a nivel de cliente y intentas añadir u
 
 ** Una vez que hayas iniciado sesión correctamente, NetApp almacenará el nombre de usuario de NSS.
 +
-Este es un ID generado por el sistema que se asocia a tu correo electrónico. En la página *NSS Management*, puedes mostrar tu correo electrónico desde el menú image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["Un icono de tres puntos horizontales"].
+Este es un ID generado por el sistema que se asocia a tu correo electrónico. En la página *NSS Management*, puedes mostrar tu correo electrónico desde el menú image:icon-nss-menu.png["Un icono de tres puntos horizontales"].
 
-** Si alguna vez necesitas actualizar tus tokens de credenciales de inicio de sesión, también hay una opción *Actualizar credenciales* en el menú image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-nss-menu.png["Un icono de tres puntos horizontales"].
+** Si alguna vez necesitas actualizar tus tokens de credenciales de inicio de sesión, también hay una opción *Actualizar credenciales* en el menú image:icon-nss-menu.png["Un icono de tres puntos horizontales"].
 +
 Al utilizar esta opción, se te pedirá que vuelvas a iniciar sesión. Ten en cuenta que el token de estas cuentas caduca a los 90 días. Se publicará una notificación para avisarte de esto.
 

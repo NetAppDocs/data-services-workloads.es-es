@@ -7,7 +7,7 @@ summary: 'NetApp ofrece soporte para la NetApp Console de varias maneras. Hay di
 = Obtén ayuda con los servicios en la nube de NetApp Console
 :allow-uri-read: 
 :icons: font
-:imagesdir: ./media/
+:imagesdir: https://docs.netapp.com/us-en/console-family/media/
 
 
 [role="lead"]
@@ -87,7 +87,7 @@ Los archivos adjuntos tienen un límite de 25 MB por archivo. Se admiten las sig
 
 
 +
-image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/screenshot-create-case.png["Una captura de pantalla del formulario «Crear un caso» que te permite crear un caso con el soporte de NetApp."]
+image:screenshot-create-case.png["Una captura de pantalla del formulario «Crear un caso» que te permite crear un caso con el soporte de NetApp."]
 
 
 
@@ -141,10 +141,10 @@ La página *Gestión de casos* muestra los casos abiertos relacionados con la cu
 ** En *Casos de la organización*, selecciona *Ver* para ver todos los casos asociados con tu empresa.
 ** Modifica el intervalo de fechas eligiendo un intervalo exacto o seleccionando otro periodo de tiempo.
 ** Filtra el contenido de las columnas.
-** Cambia las columnas que aparecen en la tabla seleccionando image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-columns.png["El icono con el signo «+» que aparece en la tabla"] y luego elige las columnas que te gustaría mostrar.
+** Cambia las columnas que aparecen en la tabla seleccionando image:icon-table-columns.png["El icono con el signo «+» que aparece en la tabla"] y luego elige las columnas que te gustaría mostrar.
 
 
-. Gestiona un caso existente seleccionando image:https://raw.githubusercontent.com/NetAppDocs/console-family/main/media/icon-table-action.png["Un icono con tres puntos que aparece en la última columna de la tabla"] y eligiendo una de las opciones disponibles:
+. Gestiona un caso existente seleccionando image:icon-table-action.png["Un icono con tres puntos que aparece en la última columna de la tabla"] y eligiendo una de las opciones disponibles:
 +
 ** *Ver caso*: Ver todos los detalles sobre un caso específico.
 ** *Actualizar notas del caso*: Facilita más detalles sobre tu problema o selecciona *Subir archivos* para adjuntar hasta un máximo de cinco archivos.
